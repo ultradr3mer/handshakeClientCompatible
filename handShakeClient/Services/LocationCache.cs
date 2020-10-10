@@ -16,10 +16,8 @@ namespace HandshakeClient.Services
         return this.cachedLocation.Location;
       }
 
-      //GeolocationRequest request = new GeolocationRequest(GeolocationAccuracy.Medium);
-      //Location location = await Geolocation.GetLocationAsync(request);
-
-      Location location = new Location() { Longitude = 0, Latitude = 0 };
+      GeolocationRequest request = new GeolocationRequest(GeolocationAccuracy.Medium);
+      Location location = await Geolocation.GetLocationAsync(request);
 
       this.cachedLocation = new LocationAndTime()
       {

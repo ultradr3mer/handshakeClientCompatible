@@ -78,19 +78,8 @@
     <AndroidResource Include="Resources\mipmap-xxhdpi\launcher_foreground.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
-    <AndroidResource Include="Resources\drawable\bear.png" />
-    <AndroidResource Include="Resources\drawable\cat.png" />
-    <AndroidResource Include="Resources\drawable\dog.png" />
-    <AndroidResource Include="Resources\drawable\elephant.png" />
-    <AndroidResource Include="Resources\drawable\help.png" />
-    <AndroidResource Include="Resources\drawable\info.png" />
-    <AndroidResource Include="Resources\drawable\monkey.png" />
-    <AndroidResource Include="Resources\drawable\paw.png" />
     <AndroidResource Include="Resources\drawable\xamarin_logo.png" />
     <AndroidResource Include="Resources\drawable\xamarinstore.jpg" />
-    <AndroidResource Include="Resources\drawable\random.png" />
-    <AndroidResource Include="Resources\drawable\back.png" />
-    <AndroidResource Include="Resources\drawable\photo.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-hdpi\" />
@@ -103,6 +92,15 @@
       <Project>{e726e566-0c38-4a23-a002-8d42116c86f3}</Project>
       <Name>HandshakeClient</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\do_not_develop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\tab_about.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\tab_feed.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
