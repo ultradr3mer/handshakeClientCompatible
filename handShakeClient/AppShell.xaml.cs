@@ -1,4 +1,5 @@
 ﻿using HandshakeClient.Views;
+using System;
 using Xamarin.Forms;
 
 namespace HandshakeClient
@@ -23,6 +24,11 @@ namespace HandshakeClient
       Routing.RegisterRoute(nameof(PostDetailPage), typeof(PostDetailPage));
       Routing.RegisterRoute(nameof(NewPostPage), typeof(NewPostPage));
       Routing.RegisterRoute(nameof(SignupPage), typeof(SignupPage));
+    }
+
+    private async void OnLogoutClicked(object sender, EventArgs e)
+    {
+      await Shell.Current.GoToAsync("//LoginPage");
     }
 
     #endregion Methods

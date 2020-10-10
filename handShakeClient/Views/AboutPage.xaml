@@ -28,9 +28,9 @@
         <Label Text="https://github.com/ultradr3mer/handshake" FontSize="15" FontAttributes="Bold" Padding="0"/>
         <Label Text="https://github.com/ultradr3mer/HandshakeClient" FontSize="15" FontAttributes="Bold" Padding="0"/>
         <Button Margin="0,10,0,0" Text="Learn more"
-                        Command="{Binding OpenWebCommand}"
-                        BackgroundColor="{StaticResource Primary}"
-                        TextColor="White" />
+                Command="{Binding OpenWebCommand}"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White" />
       </StackLayout>
     </ScrollView>
     <Image Grid.Row="1" Source="do_not_develop.png" VerticalOptions="End" HorizontalOptions="Start" HeightRequest="256" />

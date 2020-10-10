@@ -133,6 +133,7 @@
     <Content Include="Assets\do_not_develop.png" />
     <Content Include="Assets\tab_about.png" />
     <Content Include="Assets\tab_feed.png" />
+    <Content Include="Assets\user_icon.png" />
     <Content Include="Assets\xamarin_logo.png" />
     <Content Include="Assets\xamarin_logo%402x.png" />
     <Content Include="Assets\xamarin_logo%403x.png" />
