@@ -1,6 +1,6 @@
 ﻿using UIKit;
 
-namespace handShakeClient.iOS
+namespace HandShakeClient.iOS
 {
     public class Application
     {

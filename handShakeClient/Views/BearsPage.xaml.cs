@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using Xamarin.Forms;
-using handShakeClient.Models;
-using handShakeClient.ViewModels;
+using HandShakeClient.Models;
+using HandShakeClient.ViewModels;
 
-namespace handShakeClient.Views
+namespace HandShakeClient.Views
 {
     public partial class BearsPage : ContentPage
     {

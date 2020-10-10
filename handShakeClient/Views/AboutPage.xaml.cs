@@ -2,7 +2,7 @@
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
-namespace handShakeClient.Views
+namespace HandShakeClient.Views
 {
     public partial class AboutPage : ContentPage
     {

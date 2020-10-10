@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using handShakeClient.Models;
+using HandShakeClient.Models;
 
-namespace handShakeClient.Data
+namespace HandShakeClient.Data
 {
     public static class MonkeyData
     {

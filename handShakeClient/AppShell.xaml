@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:controls="clr-namespace:handShakeClient.Controls"
-       xmlns:views="clr-namespace:handShakeClient.Views"
+       xmlns:controls="clr-namespace:HandShakeClient.Controls"
+       xmlns:views="clr-namespace:HandShakeClient.Views"
        FlyoutBackgroundImage="photo.jpg"
        FlyoutBackgroundImageAspect="AspectFill"
        FlyoutHeaderBehavior="CollapseOnScroll"
        Navigating="OnNavigating"
        Navigated="OnNavigated"
-       x:Class="handShakeClient.AppShell">
+       x:Class="HandShakeClient.AppShell">
     <Shell.Resources>
         <Style x:Key="BaseStyle"
                TargetType="Element">

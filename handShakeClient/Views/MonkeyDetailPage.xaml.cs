@@ -1,7 +1,7 @@
 ﻿using Xamarin.Forms;
-using handShakeClient.ViewModels;
+using HandShakeClient.ViewModels;
 
-namespace handShakeClient.Views
+namespace HandShakeClient.Views
 {
     public partial class MonkeyDetailPage : ContentPage
     {

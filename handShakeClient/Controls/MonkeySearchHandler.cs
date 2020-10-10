@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using handShakeClient.Data;
-using handShakeClient.Models;
+using HandShakeClient.Data;
+using HandShakeClient.Models;
 
-namespace handShakeClient.Controls
+namespace HandShakeClient.Controls
 {
     public class MonkeySearchHandler : SearchHandler
     {

@@ -2,7 +2,7 @@
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
-namespace handShakeClient
+namespace HandShakeClient
 {
     public partial class App : Application
     {

@@ -7,8 +7,8 @@
     <ProjectGuid>{73754C6F-1DB5-4BB0-85B3-D85E159C5A57}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Xaminals.UWP</RootNamespace>
-    <AssemblyName>Xaminals.UWP</AssemblyName>
+    <RootNamespace>HandShakeClient.UWP</RootNamespace>
+    <AssemblyName>HandShakeClient.UWP</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
@@ -191,9 +191,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\handShakeClient\handShakeClient.csproj">
+    <ProjectReference Include="..\HandShakeClient\HandShakeClient.csproj">
       <Project>{e726e566-0c38-4a23-a002-8d42116c86f3}</Project>
-      <Name>Xaminals</Name>
+      <Name>HandShakeClient</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

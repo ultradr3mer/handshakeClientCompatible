@@ -3,15 +3,15 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 
-namespace handShakeClient.Droid
+namespace HandShakeClient.Droid
 {
-  [Activity(Label = "handShakeClient", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+  [Activity(Label = "HandShakeClient", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
   public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
   {
     protected override void OnCreate(Bundle savedInstanceState)
     {
-      TabLayoutResource = Xaminals.Droid.Resource.Layout.Tabbar;
-      ToolbarResource = Xaminals.Droid.Resource.Layout.Toolbar;
+      TabLayoutResource = HandShakeClient.Droid.Resource.Layout.Tabbar;
+      ToolbarResource = HandShakeClient.Droid.Resource.Layout.Toolbar;
 
       base.OnCreate(savedInstanceState);
 

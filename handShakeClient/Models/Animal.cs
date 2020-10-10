@@ -1,4 +1,4 @@
-﻿namespace handShakeClient.Models
+﻿namespace HandShakeClient.Models
 {
     public class Animal
     {

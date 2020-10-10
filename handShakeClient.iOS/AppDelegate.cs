@@ -1,7 +1,7 @@
 ﻿using Foundation;
 using UIKit;
 
-namespace handShakeClient.iOS
+namespace HandShakeClient.iOS
 {
     [Register("AppDelegate")]
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate

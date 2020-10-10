@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using Xamarin.Forms;
-using handShakeClient.Models;
+using HandShakeClient.Models;
 
-namespace handShakeClient.Views
+namespace HandShakeClient.Views
 {
     public partial class CatsPage : ContentPage
     {

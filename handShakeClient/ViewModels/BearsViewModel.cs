@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
-using handShakeClient.Data;
-using handShakeClient.Models;
+using HandShakeClient.Data;
+using HandShakeClient.Models;
 
-namespace handShakeClient.ViewModels
+namespace HandShakeClient.ViewModels
 {
     public class BearsViewModel
     {

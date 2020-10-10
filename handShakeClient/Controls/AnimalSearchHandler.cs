@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using handShakeClient.Models;
+using HandShakeClient.Models;
 
-namespace handShakeClient.Controls
+namespace HandShakeClient.Controls
 {
     public class AnimalSearchHandler : SearchHandler
     {

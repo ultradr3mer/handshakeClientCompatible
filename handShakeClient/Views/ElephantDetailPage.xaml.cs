@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using Xamarin.Forms;
-using handShakeClient.Data;
+using HandShakeClient.Data;
 
-namespace handShakeClient.Views
+namespace HandShakeClient.Views
 {
     [QueryProperty("Name", "name")]
     public partial class ElephantDetailPage : ContentPage

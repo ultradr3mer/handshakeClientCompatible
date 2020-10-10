@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using handShakeClient.Data;
-using handShakeClient.Views;
+using HandShakeClient.Data;
+using HandShakeClient.Views;
 
-namespace handShakeClient
+namespace HandShakeClient
 {
     public partial class AppShell : Shell
     {
