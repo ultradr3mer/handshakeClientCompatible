@@ -1,31 +1,50 @@
-﻿using Xamarin.Forms;
+﻿using HandshakeClient.Services;
+using Unity;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
-namespace HandShakeClient
+namespace HandshakeClient
 {
-    public partial class App : Application
+  public partial class App : Application
+  {
+    public static bool IsUserLoggedIn { get; internal set; }
+    public static Client Client { get; internal set; }
+
+    private static UnityContainer container = new UnityContainer();
+    private string initialNavigation;
+
+    public App()
     {
-        public App()
-        {
-            InitializeComponent();
-
-            MainPage = new AppShell();
-        }
-
-        protected override void OnStart()
-        {
-            // Handle when your app starts
-        }
-
-        protected override void OnSleep()
-        {
-            // Handle when your app sleeps
-        }
-
-        protected override void OnResume()
-        {
-            // Handle when your app resumes
-        }
+      InitializeComponent();
+      MainPage = new AppShell();
+      container.RegisterSingleton<LocationCache>();
     }
+
+    public App(string initialNavigation) : this()
+    {
+      this.initialNavigation = initialNavigation;
+    }
+
+    protected override void OnStart()
+    {
+      if (!string.IsNullOrEmpty(initialNavigation))
+      {
+        Shell.Current.GoToAsync(this.initialNavigation);
+      }
+    }
+
+    protected override void OnSleep()
+    {
+    }
+
+    protected override void OnResume()
+    {
+    }
+
+    public static T Resolve<T>()
+    {
+      return container.Resolve<T>();
+    }
+  }
 }

@@ -7,8 +7,8 @@
     <ProjectGuid>{73754C6F-1DB5-4BB0-85B3-D85E159C5A57}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HandShakeClient.UWP</RootNamespace>
-    <AssemblyName>HandShakeClient.UWP</AssemblyName>
+    <RootNamespace>HandshakeClient.UWP</RootNamespace>
+    <AssemblyName>HandshakeClient.UWP</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
@@ -132,27 +132,10 @@
   <ItemGroup>
     <Content Include="Assets\3bar.png" />
     <Content Include="Assets\3bar%402x.png" />
-    <Content Include="Assets\back.png" />
-    <Content Include="Assets\back%402x.png" />
-    <Content Include="Assets\bear.png" />
-    <Content Include="Assets\bear%402x.png" />
-    <Content Include="Assets\cat.png" />
-    <Content Include="Assets\cat%402x.png" />
-    <Content Include="Assets\dog.png" />
-    <Content Include="Assets\dog%402x.png" />
-    <Content Include="Assets\elephant.png" />
-    <Content Include="Assets\elephant%402x.png" />
     <Content Include="Assets\help.png" />
     <Content Include="Assets\help%402x.png" />
     <Content Include="Assets\info.png" />
     <Content Include="Assets\info%402x.png" />
-    <Content Include="Assets\monkey.png" />
-    <Content Include="Assets\monkey%402x.png" />
-    <Content Include="Assets\paw.png" />
-    <Content Include="Assets\paw%402x.png" />
-    <Content Include="Assets\photo.jpg" />
-    <Content Include="Assets\random.png" />
-    <Content Include="Assets\random%402x.png" />
     <Content Include="Assets\xamarin_logo.png" />
     <Content Include="Assets\xamarin_logo%402x.png" />
     <Content Include="Assets\xamarin_logo%403x.png" />
@@ -191,9 +174,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HandShakeClient\HandShakeClient.csproj">
+    <ProjectReference Include="..\HandshakeClient\HandshakeClient.csproj">
       <Project>{e726e566-0c38-4a23-a002-8d42116c86f3}</Project>
-      <Name>HandShakeClient</Name>
+      <Name>HandshakeClient</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HandshakeClient.Views.PostDetailPage"
+             Shell.PresentationMode="ModalAnimated"
+             xmlns:local="clr-namespace:HandshakeClient.ViewModels"  
+             xmlns:service="clr-namespace:HandshakeClient.Services"
+             Title="{Binding Title}">
+  <RefreshView x:DataType="local:PostDetailViewModel" Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+    <StackLayout>
+      <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout Margin="10">
+          <Label Text="{Binding AuthorName}" FontSize="16"/>
+          <Label Text="{Binding Content}" FontSize="13"/>
+          <StackLayout BindableLayout.ItemsSource="{Binding Replys}">
+            <BindableLayout.ItemTemplate>
+              <DataTemplate>
+                <StackLayout Padding="10" x:DataType="service:PostReplyGetData">
+                  <Label Text="{Binding AuthorName}" 
+                        LineBreakMode="NoWrap" 
+                        Style="{DynamicResource ListItemTextStyle}" 
+                        FontSize="16" />
+                  <Label Text="{Binding Content}" 
+                        Style="{DynamicResource ListItemDetailTextStyle}"
+                        FontSize="13" />
+                </StackLayout>
+              </DataTemplate>
+            </BindableLayout.ItemTemplate>
+          </StackLayout>
+        </StackLayout>
+      </ScrollView>
+      <StackLayout Orientation="Horizontal" Margin="7">
+        <Editor Text="{Binding NewReplyText, Mode=TwoWay}" FontSize="Medium" AutoSize="TextChanges" HorizontalOptions="FillAndExpand"/>
+        <Button Text="Reply" Command="{Binding PostReplyCommand}"/>
+        <Button Text="Cancel" Command="{Binding CancelCommand}"/>
+      </StackLayout>
+    </StackLayout>
+  </RefreshView>
+</ContentPage>

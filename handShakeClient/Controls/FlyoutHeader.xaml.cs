@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace HandShakeClient.Controls
+namespace HandshakeClient.Controls
 {
     public partial class FlyoutHeader : ContentView
     {

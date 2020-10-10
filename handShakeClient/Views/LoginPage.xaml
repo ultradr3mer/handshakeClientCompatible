@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="HandshakeClient.Views.LoginPage"
+             xmlns:viewModel="clr-namespace:HandshakeClient.ViewModels"
+             xmlns:comp="clr-namespace:HandshakeClient.Composite"
+             Shell.NavBarIsVisible="False" x:DataType="viewModel:LoginViewModel">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <comp:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ContentPage.Content>
+    <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
+      <Label Text="Username" />
+      <Entry Placeholder="username" Text="{Binding Username}" />
+      <Label Text="Password" />
+      <Entry Placeholder="password" IsPassword="true" Text="{Binding Password}" />
+      <Button Text="Login" Command="{Binding LoginCommand}"/>
+      <Button Text="Signup" Command="{Binding SignupCommand}" />
+      <ActivityIndicator IsVisible="{Binding IsBusy}" 
+                         x:Name="defaultActivityIndicator"
+                         VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="Fill" 
+                         IsRunning="{Binding IsBusy}"/>
+      <Label IsVisible="{Binding Message, Converter={StaticResource StringNullOrEmptyBoolConverter}}" 
+             Text="{Binding Message}" />
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>

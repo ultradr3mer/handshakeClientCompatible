@@ -1,11 +1,11 @@
-﻿namespace HandShakeClient.UWP
+﻿namespace HandshakeClient.UWP
 {
     public sealed partial class MainPage
     {
         public MainPage()
         {
             this.InitializeComponent();
-            this.LoadApplication(new HandShakeClient.App());
+            this.LoadApplication(new HandshakeClient.App());
         }
     }
 }
