@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="de75bcf4-468a-45bc-a8dd-3f24558bd15d"
-    Publisher="CN=Dave"
-    Version="1.0.0.0" />
+    Name="ClaraOriginal"
+    Publisher="CN=ClaraOriginal, O=ClaraOriginal, C=DE"
+    Version="0.0.1.0" />
 
   <mp:PhoneIdentity PhoneProductId="de75bcf4-468a-45bc-a8dd-3f24558bd15d" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>HandshakeClient.UWP</DisplayName>
-    <PublisherDisplayName>Dave</PublisherDisplayName>
+    <PublisherDisplayName>ClaraOriginal</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
