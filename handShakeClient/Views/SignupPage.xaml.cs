@@ -5,7 +5,6 @@ using Xamarin.Forms.Xaml;
 
 namespace HandshakeClient.Views
 {
-  [XamlCompilation(XamlCompilationOptions.Compile)]
   public partial class SignupPage : ContentPage
   {
     #region Constructors

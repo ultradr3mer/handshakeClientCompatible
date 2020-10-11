@@ -3,7 +3,6 @@ using Unity;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace HandshakeClient
 {
   public partial class App : Application
