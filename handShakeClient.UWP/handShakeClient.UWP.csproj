@@ -131,13 +131,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\do_not_develop.png" />
+    <Content Include="Assets\menu_header.jpg" />
     <Content Include="Assets\tab_about.png" />
     <Content Include="Assets\tab_feed.png" />
     <Content Include="Assets\user_icon.png" />
-    <Content Include="Assets\xamarin_logo.png" />
-    <Content Include="Assets\xamarin_logo%402x.png" />
-    <Content Include="Assets\xamarin_logo%403x.png" />
-    <Content Include="Assets\xamarinstore.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -159,16 +156,16 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.9</Version>
+      <Version>6.2.10</Version>
     </PackageReference>
     <PackageReference Include="System.Runtime">
       <Version>4.3.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Essentials">
-      <Version>1.3.1</Version>
+      <Version>1.5.3.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
-      <Version>4.8.0.1269</Version>
+      <Version>4.8.0.1534</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

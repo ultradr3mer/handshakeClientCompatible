@@ -33,6 +33,12 @@ namespace HandshakeClient.Views
       this.ViewModel.OnAppearing();
     }
 
+    private void ToolbarAddItemClicked(object sender, System.EventArgs e)
+    {
+      // Invoke over the clicked event because the command is invoked twice.
+      this.ViewModel.AddItemCommand.Execute(null);
+    }
+
     #endregion Methods
   }
 }
