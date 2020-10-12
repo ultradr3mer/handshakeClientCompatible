@@ -12,4 +12,5 @@ namespace HandshakeClient.Views
       InitializeComponent();
     }
   }
+
 }

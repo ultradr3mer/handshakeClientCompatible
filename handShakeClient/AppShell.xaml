@@ -5,8 +5,25 @@
        xmlns:views="clr-namespace:HandshakeClient.Views"
        FlyoutBackgroundImageAspect="AspectFill"
        FlyoutHeaderBehavior="CollapseOnScroll"
-       x:Class="HandshakeClient.AppShell">
+       x:Class="HandshakeClient.AppShell"
+       TabBarIsVisible="False">
   <Shell.Resources>
+    <ResourceDictionary>
+      <Style x:Key="BaseStyle" TargetType="Element">
+        <Setter Property="Shell.BackgroundColor" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Shell.ForegroundColor" Value="{DynamicResource PageBackgroundColor}" />
+        <Setter Property="Shell.TitleColor" Value="{DynamicResource PrimaryTextColor}" />
+        <Setter Property="Shell.DisabledColor" Value="{DynamicResource DisabledColor}" />
+        <Setter Property="Shell.UnselectedColor" Value="{DynamicResource DisabledColor}" />
+        <Setter Property="Shell.TabBarBackgroundColor" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Shell.TabBarForegroundColor" Value="{DynamicResource PrimaryTextColor}"/>
+        <Setter Property="Shell.TabBarUnselectedColor" Value="{DynamicResource PrimaryTextColor}"/>
+        <Setter Property="Shell.TabBarTitleColor" Value="{DynamicResource PrimaryTextColor}"/>
+      </Style>
+      <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+      <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
+      <Style TargetType="ToolbarItem" BasedOn="{StaticResource BaseStyle}" />
+    </ResourceDictionary>
   </Shell.Resources>
 
   <Shell.FlyoutHeader>
@@ -31,19 +48,25 @@
       </Grid>
     </DataTemplate>
   </Shell.MenuItemTemplate>
-
+  
   <ShellContent Route="LoginPage"
                 Title="Back to Login"
                 Icon="user_icon.png"
                 ContentTemplate="{DataTemplate views:LoginPage}" />
-  <ShellContent Route="PostsPage"
+
+  <FlyoutItem Route="animals"
+                Title="Animals"
+                FlyoutDisplayOptions="AsMultipleItems">
+      <ShellContent Route="PostsPage"
                 Title="Browse"
                 Icon="tab_feed.png"
                 ContentTemplate="{DataTemplate views:PostsPage}" />
-  <ShellContent Route="AboutPage"
+      <ShellContent Route="AboutPage"
                 Title="About"
                 Icon="tab_about.png"
                 ContentTemplate="{DataTemplate views:AboutPage}" />
+  </FlyoutItem>
+
 
   <!--<MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnLogoutClicked"/>-->
 
