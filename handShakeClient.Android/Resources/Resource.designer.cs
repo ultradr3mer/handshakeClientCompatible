@@ -8388,16 +8388,25 @@ namespace HandshakeClient.Droid
 			public const int tab_about = 2131165302;
 			
 			// aapt resource value: 0x7F070077
-			public const int tab_feed = 2131165303;
+			public const int tab_about_white = 2131165303;
 			
 			// aapt resource value: 0x7F070078
-			public const int tooltip_frame_dark = 2131165304;
+			public const int tab_feed = 2131165304;
 			
 			// aapt resource value: 0x7F070079
-			public const int tooltip_frame_light = 2131165305;
+			public const int tab_feed_white = 2131165305;
 			
 			// aapt resource value: 0x7F07007A
-			public const int user_icon = 2131165306;
+			public const int tooltip_frame_dark = 2131165306;
+			
+			// aapt resource value: 0x7F07007B
+			public const int tooltip_frame_light = 2131165307;
+			
+			// aapt resource value: 0x7F07007C
+			public const int user_icon = 2131165308;
+			
+			// aapt resource value: 0x7F07007D
+			public const int user_icon_white = 2131165309;
 			
 			static Drawable()
 			{

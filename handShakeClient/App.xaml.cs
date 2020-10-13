@@ -1,5 +1,8 @@
 ﻿using HandshakeClient.Services;
+using HandshakeClient.Themes;
+using System.Collections.Generic;
 using Unity;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,6 +19,27 @@ namespace HandshakeClient
     public App()
     {
       InitializeComponent();
+
+      var theme = AppInfo.RequestedTheme;
+
+      ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
+      if (mergedDictionaries != null)
+      {
+        mergedDictionaries.Clear();
+
+
+        switch (theme)
+        {
+          case AppTheme.Dark:
+            mergedDictionaries.Add(new BlueDarkTheme());
+            break;
+          case AppTheme.Light:
+          default:
+            mergedDictionaries.Add(new BlueTheme());
+            break;
+        }
+      }
+
       MainPage = new AppShell();
       container.RegisterSingleton<LocationCache>();
     }

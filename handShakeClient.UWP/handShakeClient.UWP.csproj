@@ -133,8 +133,11 @@
     <Content Include="Assets\do_not_develop.png" />
     <Content Include="Assets\menu_header.jpg" />
     <Content Include="Assets\tab_about.png" />
+    <Content Include="Assets\tab_about_white.png" />
     <Content Include="Assets\tab_feed.png" />
+    <Content Include="Assets\tab_feed_white.png" />
     <Content Include="Assets\user_icon.png" />
+    <Content Include="Assets\user_icon_white.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

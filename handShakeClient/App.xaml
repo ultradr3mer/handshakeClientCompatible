@@ -7,22 +7,22 @@
              xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              android:Application.WindowSoftInputModeAdjust="Resize">
   <Application.Resources>
-    
-    <ResourceDictionary Source="Themes/GreenTheme.xaml" />
+
+    <ResourceDictionary Source="Themes/BlueTheme.xaml" />
 
     <Style TargetType="Button">
-      <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}"/>
+      <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}"/>
       <Setter Property="VisualStateManager.VisualStateGroups">
         <VisualStateGroupList>
           <VisualStateGroup x:Name="CommonStates">
             <VisualState x:Name="Normal">
               <VisualState.Setters>
-                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
               </VisualState.Setters>
             </VisualState>
             <VisualState x:Name="Disabled">
               <VisualState.Setters>
-                <Setter Property="BackgroundColor" Value="{StaticResource DisabledColor}" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource DisabledColor}" />
               </VisualState.Setters>
             </VisualState>
           </VisualStateGroup>
@@ -31,12 +31,21 @@
     </Style>
 
     <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
-      <Setter Property="BackgroundColor" Value="{StaticResource PageBackgroundColor}"/>
+      <Setter Property="BackgroundColor" Value="{DynamicResource PageBackgroundColor}"/>
     </Style>
 
     <Style TargetType="Label">
-      <Setter Property="TextColor" Value="{StaticResource PageTextColor}"/>
+      <Setter Property="TextColor" Value="{DynamicResource PageTextColor}"/>
     </Style>
-    
+
+    <Style TargetType="Entry">
+      <Setter Property="TextColor" Value="{DynamicResource PageTextColor}"/>
+      <Setter Property="PlaceholderColor" Value="{DynamicResource PlaceholderColor}"/>
+    </Style>
+
+    <Style TargetType="Editor">
+      <Setter Property="TextColor" Value="{DynamicResource PageTextColor}"/>
+      <Setter Property="PlaceholderColor" Value="{DynamicResource PlaceholderColor}"/>
+    </Style>
   </Application.Resources>
 </Application>

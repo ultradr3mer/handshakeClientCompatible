@@ -2,11 +2,11 @@
 
 namespace HandshakeClient.Themes
 {
-  public partial class GreenTheme : ResourceDictionary
+  public partial class BlueDarkTheme : ResourceDictionary
   {
     #region Constructors
 
-    public GreenTheme()
+    public BlueDarkTheme()
     {
       InitializeComponent();
     }

@@ -12,7 +12,7 @@
     <ResourceDictionary>
       <Style x:Key="BaseStyle" TargetType="Element">
         <Setter Property="Shell.BackgroundColor" Value="{DynamicResource PrimaryColor}" />
-        <Setter Property="Shell.ForegroundColor" Value="{DynamicResource PageBackgroundColor}" />
+        <Setter Property="Shell.ForegroundColor" Value="{DynamicResource PrimaryTextColor}" />
         <Setter Property="Shell.TitleColor" Value="{DynamicResource PrimaryTextColor}" />
         <Setter Property="Shell.DisabledColor" Value="{DynamicResource DisabledColor}" />
         <Setter Property="Shell.UnselectedColor" Value="{DynamicResource DisabledColor}" />
@@ -31,7 +31,6 @@
     <controls:FlyoutHeader />
   </Shell.FlyoutHeader>
 
-  <!-- Template each MenuItem -->
   <Shell.MenuItemTemplate>
     <DataTemplate>
       <Grid>
@@ -50,22 +49,42 @@
     </DataTemplate>
   </Shell.MenuItemTemplate>
 
-  <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
-    <ShellContent Route="LoginPage"
-                Title="Back to Login"
-                Icon="user_icon.png"
-                ContentTemplate="{DataTemplate views:LoginPage}" />
-  </FlyoutItem>
-  
-  <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
-    <ShellContent Route="PostsPage"
-                Title="Browse"
-                Icon="tab_feed.png"
-                ContentTemplate="{DataTemplate views:PostsPage}" />
-      <ShellContent Route="AboutPage"
-                Title="About"
-                Icon="tab_about.png"
-                ContentTemplate="{DataTemplate views:AboutPage}" />
+  <Shell.ItemTemplate>
+    <DataTemplate>
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="0.2*" />
+          <ColumnDefinition Width="0.8*" />
+        </Grid.ColumnDefinitions>
+        <Image Source="{Binding Icon}"
+               Margin="5"
+               HeightRequest="30" />
+        <Label Grid.Column="1"
+                      Text="{Binding Title}"
+                      VerticalTextAlignment="Center"
+               TextColor="{DynamicResource PageTextColor}"/>
+      </Grid>
+    </DataTemplate>
+  </Shell.ItemTemplate>
+
+  <FlyoutItem FlyoutDisplayOptions="AsSingleItem"
+              Title="Back to Login"
+              Icon="{AppThemeBinding Light=user_icon.png, Dark=user_icon_white.png}"
+              Route="LoginPage">
+    <ShellContent ContentTemplate="{DataTemplate views:LoginPage}" />
   </FlyoutItem>
 
+  <FlyoutItem FlyoutDisplayOptions="AsSingleItem"
+              Title="Browse"
+              Icon="{AppThemeBinding Light=tab_feed.png, Dark=tab_feed_white.png}"
+              Route="PostsPage" >
+    <ShellContent ContentTemplate="{DataTemplate views:PostsPage}" />
+  </FlyoutItem>
+
+  <FlyoutItem FlyoutDisplayOptions="AsSingleItem"
+              Title="About"
+              Icon="{AppThemeBinding Light=tab_about.png, Dark=tab_about_white.png}"
+              Route="AboutPage">
+    <ShellContent ContentTemplate="{DataTemplate views:AboutPage}" />
+  </FlyoutItem>
 </Shell>
