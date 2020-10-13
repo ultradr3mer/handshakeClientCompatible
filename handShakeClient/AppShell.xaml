@@ -4,6 +4,7 @@
        xmlns:controls="clr-namespace:HandshakeClient.Controls"
        xmlns:views="clr-namespace:HandshakeClient.Views"
        FlyoutBackgroundImageAspect="AspectFill"
+       FlyoutBackgroundColor="{DynamicResource PageBackgroundColor}"
        FlyoutHeaderBehavior="CollapseOnScroll"
        x:Class="HandshakeClient.AppShell"
        TabBarIsVisible="False">
@@ -48,16 +49,16 @@
       </Grid>
     </DataTemplate>
   </Shell.MenuItemTemplate>
-  
-  <ShellContent Route="LoginPage"
+
+  <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+    <ShellContent Route="LoginPage"
                 Title="Back to Login"
                 Icon="user_icon.png"
                 ContentTemplate="{DataTemplate views:LoginPage}" />
-
-  <FlyoutItem Route="animals"
-                Title="Animals"
-                FlyoutDisplayOptions="AsMultipleItems">
-      <ShellContent Route="PostsPage"
+  </FlyoutItem>
+  
+  <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+    <ShellContent Route="PostsPage"
                 Title="Browse"
                 Icon="tab_feed.png"
                 ContentTemplate="{DataTemplate views:PostsPage}" />
@@ -66,8 +67,5 @@
                 Icon="tab_about.png"
                 ContentTemplate="{DataTemplate views:AboutPage}" />
   </FlyoutItem>
-
-
-  <!--<MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnLogoutClicked"/>-->
 
 </Shell>

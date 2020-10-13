@@ -7,15 +7,17 @@
              xmlns:service="clr-namespace:HandshakeClient.Services"
              Title="{Binding Title}">
   <RefreshView x:DataType="local:PostDetailViewModel" Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-    <StackLayout>
+    <StackLayout Margin="10">
       <ScrollView VerticalOptions="FillAndExpand">
-        <StackLayout Margin="10">
-          <Label Text="{Binding AuthorName}" FontSize="16"/>
+        <StackLayout>
+          <Label Text="{Binding AuthorName}" 
+                 Style="{DynamicResource ListItemTextStyle}" 
+                 FontSize="16"/>
           <Label Text="{Binding Content}" FontSize="13"/>
           <StackLayout BindableLayout.ItemsSource="{Binding Replys}">
             <BindableLayout.ItemTemplate>
               <DataTemplate>
-                <StackLayout Padding="10" x:DataType="service:PostReplyGetData">
+                <StackLayout Margin="10" x:DataType="service:PostReplyGetData">
                   <Label Text="{Binding AuthorName}" 
                         LineBreakMode="NoWrap" 
                         Style="{DynamicResource ListItemTextStyle}" 

@@ -26,11 +26,6 @@ namespace HandshakeClient
       Routing.RegisterRoute(nameof(SignupPage), typeof(SignupPage));
     }
 
-    private async void OnLogoutClicked(object sender, EventArgs e)
-    {
-      await Shell.Current.GoToAsync("//LoginPage");
-    }
-
     #endregion Methods
   }
 }

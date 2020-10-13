@@ -7,9 +7,11 @@
              xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              android:Application.WindowSoftInputModeAdjust="Resize">
   <Application.Resources>
+    
     <ResourceDictionary Source="Themes/GreenTheme.xaml" />
+
     <Style TargetType="Button">
-      <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}"></Setter>
+      <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}"/>
       <Setter Property="VisualStateManager.VisualStateGroups">
         <VisualStateGroupList>
           <VisualStateGroup x:Name="CommonStates">
@@ -27,5 +29,14 @@
         </VisualStateGroupList>
       </Setter>
     </Style>
+
+    <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+      <Setter Property="BackgroundColor" Value="{StaticResource PageBackgroundColor}"/>
+    </Style>
+
+    <Style TargetType="Label">
+      <Setter Property="TextColor" Value="{StaticResource PageTextColor}"/>
+    </Style>
+    
   </Application.Resources>
 </Application>
