@@ -14,30 +14,42 @@
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
       https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
     -->
-  <RefreshView x:DataType="local:PostsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy}">
-    <CollectionView x:Name="ItemsListView"
+  <RefreshView x:DataType="local:PostsViewModel" 
+               Command="{Binding LoadItemsCommand}" 
+               IsRefreshing="{Binding IsBusy}"
+               BackgroundColor="{DynamicResource DeepBackgroundColor}">
+    <ContentView Padding="2">
+      <CollectionView x:Name="ItemsListView"
                 ItemsSource="{Binding Posts}"
                 SelectionMode="None">
-      <CollectionView.ItemTemplate>
-        <DataTemplate>
-            <StackLayout Padding="10" x:DataType="service:PostGetData">
-              <Label Text="{Binding AuthorName}" 
+        <CollectionView.ItemTemplate>
+          <DataTemplate>
+            <ContentView Padding="2">
+              <Frame BackgroundColor="{DynamicResource PageBackgroundColor}"
+                 CornerRadius="3"
+                 HasShadow="True"
+                     Padding="5">
+                <StackLayout Padding="3" x:DataType="service:PostGetData">
+                  <Label Text="{Binding AuthorName}" 
                   LineBreakMode="NoWrap" 
                   Style="{DynamicResource ListItemTextStyle}" 
                   FontSize="16" />
-              <Label Text="{Binding Content}" 
+                  <Label Text="{Binding Content}" 
                   Style="{DynamicResource ListItemDetailTextStyle}"
                   FontSize="13" />
-              <StackLayout.GestureRecognizers>
-                <TapGestureRecognizer 
+                  <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type local:PostsViewModel}}, Path=ItemTapped}"		
                                 CommandParameter="{Binding .}">
-                </TapGestureRecognizer>
-              </StackLayout.GestureRecognizers>
-            </StackLayout>
-        </DataTemplate>
-      </CollectionView.ItemTemplate>
-    </CollectionView>
+                    </TapGestureRecognizer>
+                  </StackLayout.GestureRecognizers>
+                </StackLayout>
+              </Frame>
+            </ContentView>
+          </DataTemplate>
+        </CollectionView.ItemTemplate>
+      </CollectionView>
+    </ContentView>
   </RefreshView>
 </ContentPage>

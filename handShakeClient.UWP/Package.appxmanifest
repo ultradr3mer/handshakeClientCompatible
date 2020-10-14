@@ -9,7 +9,7 @@
   <Identity
     Name="ClaraOriginal"
     Publisher="CN=ClaraOriginal, O=ClaraOriginal, C=DE"
-    Version="0.0.1.0" />
+    Version="0.0.2.0" />
 
   <mp:PhoneIdentity PhoneProductId="de75bcf4-468a-45bc-a8dd-3f24558bd15d" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

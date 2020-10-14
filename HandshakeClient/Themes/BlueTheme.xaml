@@ -3,6 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     x:Class="HandshakeClient.Themes.BlueTheme">
   <Color x:Key="PageBackgroundColor">#f7f7f7</Color>
+  <Color x:Key="DeepBackgroundColor">#dddddd</Color>
   <Color x:Key="PageTextColor">#282828</Color>
   <Color x:Key="PlaceholderColor">#77282828</Color>
   <Color x:Key="NavigationBarColor">#005e99</Color>

@@ -31,11 +31,11 @@ namespace HandshakeClient
         switch (theme)
         {
           case AppTheme.Dark:
-            mergedDictionaries.Add(new BlueDarkTheme());
+            mergedDictionaries.Add(new OrangeDarkTheme());
             break;
           case AppTheme.Light:
           default:
-            mergedDictionaries.Add(new BlueTheme());
+            mergedDictionaries.Add(new OrangeTheme());
             break;
         }
       }

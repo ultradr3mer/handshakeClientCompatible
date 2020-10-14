@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                    x:Class="HandshakeClient.Themes.BlueDarkTheme">
+                    x:Class="HandshakeClient.Themes.OrangeDarkTheme">
   <Color x:Key="PageBackgroundColor">#282828</Color>
   <Color x:Key="DeepBackgroundColor">#1b1b1b</Color>
   <Color x:Key="PageTextColor">#f7f7f7</Color>
   <Color x:Key="PlaceholderColor">#77f7f7f7</Color>
-  <Color x:Key="NavigationBarColor">#005e99</Color>
-  <Color x:Key="PrimaryColor">#005e99</Color>
-  <Color x:Key="DisabledColor">#55005e99</Color>
+  <Color x:Key="NavigationBarColor">#e8c222</Color>
+  <Color x:Key="PrimaryColor">#e8c222</Color>
+  <Color x:Key="DisabledColor">#55e8c222</Color>
   <Color x:Key="PrimaryTextColor">White</Color>
 </ResourceDictionary>

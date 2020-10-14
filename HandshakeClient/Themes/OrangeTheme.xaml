@@ -2,7 +2,8 @@
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     x:Class="HandshakeClient.Themes.OrangeTheme">
-  <Color x:Key="PageBackgroundColor">#f7f7f7</Color>
+  <Color x:Key="PageBackgroundColor">#e3e3e3</Color>
+  <Color x:Key="DeepBackgroundColor">#c7c7c7</Color>
   <Color x:Key="PageTextColor">#282828</Color>
   <Color x:Key="NavigationBarColor">#e8bb00</Color>
   <Color x:Key="PrimaryColor">#e8bb00</Color>
