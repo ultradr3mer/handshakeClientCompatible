@@ -35,8 +35,16 @@
                            FontSize="16" />
                     <Label Text="{Binding Content}" 
                            Style="{DynamicResource ListItemDetailTextStyle}"
-                           FontSize="13" />      
-
+                           FontSize="13" />
+                    <StackLayout Spacing="3" Orientation="Horizontal">
+                      <Image Source="{AppThemeBinding Light=baseline_mode_comment_black_24dp.png, Dark=baseline_mode_comment_white_24dp.png}" 
+                             Opacity="0.5" 
+                             HeightRequest="18"/>
+                      <Label Text="{Binding ReplyCount}" 
+                           Style="{DynamicResource ListItemDetailTextStyle}"
+                           FontSize="13"
+                           VerticalOptions="Center"/>
+                    </StackLayout>
                   </StackLayout>
                   <Frame.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1"

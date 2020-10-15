@@ -69,21 +69,21 @@
 
   <FlyoutItem FlyoutDisplayOptions="AsSingleItem"
               Title="Back to Login"
-              Icon="{AppThemeBinding Light=user_icon.png, Dark=user_icon_white.png}"
+              Icon="{AppThemeBinding Light=baseline_exit_to_app_black_48dp.png, Dark=baseline_exit_to_app_white_48dp.png}"
               Route="LoginPage">
     <ShellContent ContentTemplate="{DataTemplate views:LoginPage}" />
   </FlyoutItem>
 
   <FlyoutItem FlyoutDisplayOptions="AsSingleItem"
               Title="Browse"
-              Icon="{AppThemeBinding Light=tab_feed.png, Dark=tab_feed_white.png}"
+              Icon="{AppThemeBinding Light=baseline_question_answer_black_48dp.png, Dark=baseline_question_answer_white_48dp.png}"
               Route="PostsPage" >
     <ShellContent ContentTemplate="{DataTemplate views:PostsPage}" />
   </FlyoutItem>
 
   <FlyoutItem FlyoutDisplayOptions="AsSingleItem"
               Title="About"
-              Icon="{AppThemeBinding Light=tab_about.png, Dark=tab_about_white.png}"
+              Icon="{AppThemeBinding Light=baseline_info_black_48dp.png, Dark=baseline_info_white_48dp.png}"
               Route="AboutPage">
     <ShellContent ContentTemplate="{DataTemplate views:AboutPage}" />
   </FlyoutItem>
