@@ -9,10 +9,6 @@
   <ContentPage.ToolbarItems>
     <ToolbarItem Text="Add" Clicked="ToolbarAddItemClicked" />
   </ContentPage.ToolbarItems>
-  <!--
-      x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
-      https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
-    -->
   <Frame BackgroundColor="{DynamicResource DeepBackgroundColor}" Padding="0">
     <RefreshView x:DataType="vm:PostsViewModel" 
                  Command="{Binding LoadItemsCommand}" 

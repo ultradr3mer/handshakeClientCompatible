@@ -5,6 +5,7 @@
              Shell.PresentationMode="ModalAnimated"
              xmlns:local="clr-namespace:HandshakeClient.ViewModels"  
              xmlns:service="clr-namespace:HandshakeClient.Services"
+             xmlns:vm="clr-namespace:HandshakeClient.ViewModels"
              Title="{Binding Title}">
   <StackLayout BackgroundColor="{DynamicResource DeepBackgroundColor}" Spacing="0">
     <RefreshView VerticalOptions="FillAndExpand" Grid.Row="0" Grid.ColumnSpan="3" x:DataType="local:PostDetailViewModel" Command="{Binding RefreshCommand}"  IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
@@ -13,7 +14,7 @@
           <ContentView Padding="2">
             <Frame Padding="10" BackgroundColor="{DynamicResource PageBackgroundColor}">
               <StackLayout>
-                <Label Text="{Binding AuthorName}" 
+                <Label Text="{Binding PostTitle}" 
                  Style="{DynamicResource ListItemTextStyle}" 
                  FontSize="16"/>
                 <Label Text="{Binding Content}" FontSize="13"/>
@@ -29,8 +30,8 @@
                          HasShadow="True"
                          Padding="10"
                          HorizontalOptions="Start">
-                    <StackLayout x:DataType="service:PostReplyGetData">
-                      <Label Text="{Binding AuthorName}" 
+                    <StackLayout x:DataType="vm:ReplyEntryViewModel">
+                      <Label Text="{Binding ReplyTitle}" 
                              LineBreakMode="NoWrap" 
                              Style="{DynamicResource ListItemTextStyle}" 
                              FontSize="16" />

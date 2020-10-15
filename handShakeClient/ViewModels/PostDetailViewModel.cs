@@ -1,4 +1,5 @@
 ﻿using HandshakeClient.Composite;
+using HandshakeClient.Extensions;
 using HandshakeClient.Services;
 using System;
 using System.Collections.ObjectModel;
@@ -12,13 +13,13 @@ namespace HandshakeClient.ViewModels
     #region Fields
 
     private Guid idGuid;
-    private string propAuthorName;
+    private string propPostTitle;
     private string propContent;
     private string propId;
     private bool propIsPosting;
     private string propMessage;
     private string propNewReplyText;
-    private ObservableCollection<PostReplyGetData> propReplys;
+    private ObservableCollection<ReplyEntryViewModel> propReplys;
 
     #endregion Fields
 
@@ -26,7 +27,7 @@ namespace HandshakeClient.ViewModels
 
     public PostDetailViewModel()
     {
-      this.Replys = new ObservableCollection<PostReplyGetData>();
+      this.Replys = new ObservableCollection<ReplyEntryViewModel>();
       this.RefreshCommand = new Command(this.RefreshCommandExecute);
       this.CancelCommand = new Command(this.CancelCommandExecute);
       this.PostReplyCommand = new Command(this.PostReplyCommandExecute, this.PostReplyCommandCanExecute);
@@ -37,10 +38,10 @@ namespace HandshakeClient.ViewModels
 
     #region Properties
 
-    public string AuthorName
+    public string PostTitle
     {
-      get { return this.propAuthorName; }
-      set { this.SetProperty(ref this.propAuthorName, value); }
+      get { return this.propPostTitle; }
+      set { this.SetProperty(ref this.propPostTitle, value); }
     }
 
     public Command CancelCommand
@@ -95,7 +96,7 @@ namespace HandshakeClient.ViewModels
       get;
     }
 
-    public ObservableCollection<PostReplyGetData> Replys
+    public ObservableCollection<ReplyEntryViewModel> Replys
     {
       get { return this.propReplys; }
       set { this.SetProperty(ref this.propReplys, value); }
@@ -114,12 +115,12 @@ namespace HandshakeClient.ViewModels
         PostDetailGetData post = await App.Client.PostGetAsync(itemId);
 
         this.Content = post.Content;
-        this.AuthorName = post.AuthorName;
+        this.PostTitle = $"{post.AuthorName} wrote {post.TimeAgo.ToStringForHumans()} ago";
         this.Replys.Clear();
         ObservableCollection<PostReplyGetData> replys = new ObservableCollection<PostReplyGetData>(post.Replys);
-        foreach (PostReplyGetData reply in replys)
+        foreach (PostReplyGetData item in replys)
         {
-          this.Replys.Add(reply);
+          this.Replys.Add(new ReplyEntryViewModel().GetWithDataModel(item));
         }
       }
       catch (ApiException exception)
