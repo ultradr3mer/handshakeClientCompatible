@@ -20,7 +20,7 @@ namespace HandshakeClient.Droid
   Categories = new[] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable },
   DataHost = "handshake.azurewebsites.net",
   DataPathPrefixes = new[] { signupPrefix },
-  DataScheme = "http")]
+  DataSchemes = new[] { "http", "https" })]
   public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
   {
     #region Fields
