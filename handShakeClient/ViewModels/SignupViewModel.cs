@@ -126,7 +126,7 @@ namespace HandshakeClient.ViewModels
           Password = this.Password
         };
 
-        await client.SignupAsync(data);
+        await client.SignupPostAsync(data);
 
         await SecureStorage.SetAsync(LoginViewModel.UsernameKey, this.Username);
         await SecureStorage.SetAsync(LoginViewModel.PasswordKey, this.Password);

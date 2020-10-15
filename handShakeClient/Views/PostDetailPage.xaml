@@ -6,36 +6,57 @@
              xmlns:local="clr-namespace:HandshakeClient.ViewModels"  
              xmlns:service="clr-namespace:HandshakeClient.Services"
              Title="{Binding Title}">
-  <RefreshView x:DataType="local:PostDetailViewModel" Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-    <StackLayout Margin="10">
-      <ScrollView VerticalOptions="FillAndExpand">
-        <StackLayout>
-          <Label Text="{Binding AuthorName}" 
+  <StackLayout BackgroundColor="{DynamicResource DeepBackgroundColor}" Spacing="0">
+    <RefreshView VerticalOptions="FillAndExpand" Grid.Row="0" Grid.ColumnSpan="3" x:DataType="local:PostDetailViewModel" Command="{Binding RefreshCommand}"  IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+      <ScrollView Padding="2">
+        <StackLayout Spacing="0">
+          <ContentView Padding="2">
+            <Frame Padding="10" BackgroundColor="{DynamicResource PageBackgroundColor}">
+              <StackLayout>
+                <Label Text="{Binding AuthorName}" 
                  Style="{DynamicResource ListItemTextStyle}" 
                  FontSize="16"/>
-          <Label Text="{Binding Content}" FontSize="13"/>
-          <StackLayout BindableLayout.ItemsSource="{Binding Replys}">
+                <Label Text="{Binding Content}" FontSize="13"/>
+              </StackLayout>
+            </Frame>
+          </ContentView>
+          <StackLayout Padding="0" Spacing="0" BindableLayout.ItemsSource="{Binding Replys}">
             <BindableLayout.ItemTemplate>
               <DataTemplate>
-                <StackLayout Margin="10" x:DataType="service:PostReplyGetData">
-                  <Label Text="{Binding AuthorName}" 
-                        LineBreakMode="NoWrap" 
-                        Style="{DynamicResource ListItemTextStyle}" 
-                        FontSize="16" />
-                  <Label Text="{Binding Content}" 
-                        Style="{DynamicResource ListItemDetailTextStyle}"
-                        FontSize="13" />
-                </StackLayout>
+                <ContentView Padding="2">
+                  <Frame BackgroundColor="{DynamicResource PageBackgroundColor}"
+                         CornerRadius="3"
+                         HasShadow="True"
+                         Padding="10"
+                         HorizontalOptions="Start">
+                    <StackLayout x:DataType="service:PostReplyGetData">
+                      <Label Text="{Binding AuthorName}" 
+                             LineBreakMode="NoWrap" 
+                             Style="{DynamicResource ListItemTextStyle}" 
+                             FontSize="16" />
+                      <Label Text="{Binding Content}" 
+                             Style="{DynamicResource ListItemDetailTextStyle}"
+                             FontSize="13" />
+                    </StackLayout>
+                  </Frame>
+                </ContentView>
               </DataTemplate>
             </BindableLayout.ItemTemplate>
           </StackLayout>
         </StackLayout>
       </ScrollView>
-      <StackLayout Orientation="Horizontal" Margin="7">
-        <Editor Text="{Binding NewReplyText, Mode=TwoWay}" FontSize="Medium" AutoSize="TextChanges" HorizontalOptions="FillAndExpand"/>
-        <Button Text="Reply" Command="{Binding PostReplyCommand}"/>
-        <Button Text="Cancel" Command="{Binding CancelCommand}"/>
-      </StackLayout>
-    </StackLayout>
-  </RefreshView>
+    </RefreshView>
+    <Grid Padding="7" BackgroundColor="{DynamicResource PageBackgroundColor}">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="Auto"/>
+      </Grid.ColumnDefinitions>
+      <Editor Text="{Binding NewReplyText, Mode=TwoWay}"
+              FontSize="Medium" 
+              AutoSize="TextChanges"/>
+      <Button Grid.Column="1" Text="Reply" Command="{Binding PostReplyCommand}"/>
+      <Button Grid.Column="2" Text="Cancel" Command="{Binding CancelCommand}"/>
+    </Grid>
+  </StackLayout>
 </ContentPage>

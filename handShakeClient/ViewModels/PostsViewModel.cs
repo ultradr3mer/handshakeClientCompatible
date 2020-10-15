@@ -1,10 +1,12 @@
 ﻿using HandshakeClient.Composite;
 using HandshakeClient.Enums;
+using HandshakeClient.Extensions;
 using HandshakeClient.Services;
 using HandshakeClient.Views;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Unity;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -15,7 +17,6 @@ namespace HandshakeClient.ViewModels
     #region Fields
 
     private readonly LocationCache locationCache;
-
     private string propMessage;
     private PostGetData propSelectedPost;
 
@@ -26,11 +27,8 @@ namespace HandshakeClient.ViewModels
     public PostsViewModel(LocationCache locationCache)
     {
       this.Title = "Browse";
-      this.Posts = new ObservableCollection<PostGetData>();
+      this.Posts = new ObservableCollection<PostEntryViewModel>();
       this.LoadItemsCommand = new Command(async () => await this.ExecuteLoadItemsCommand());
-
-      this.ItemTapped = new Command<PostGetData>(this.OnPostSelected);
-
       this.AddItemCommand = new Command(this.OnAddItem);
       this.locationCache = locationCache;
     }
@@ -40,7 +38,6 @@ namespace HandshakeClient.ViewModels
     #region Properties
 
     public Command AddItemCommand { get; }
-    public Command<PostGetData> ItemTapped { get; }
     public Command LoadItemsCommand { get; }
 
     public string Message
@@ -49,21 +46,7 @@ namespace HandshakeClient.ViewModels
       set { this.SetProperty(ref this.propMessage, value); }
     }
 
-    public ObservableCollection<PostGetData> Posts { get; }
-
-    public PostGetData SelectedPost
-    {
-      get
-      {
-        return this.propSelectedPost;
-      }
-
-      set
-      {
-        this.SetProperty(ref this.propSelectedPost, value);
-        this.OnPostSelected(value);
-      }
-    }
+    public ObservableCollection<PostEntryViewModel> Posts { get; }
 
     #endregion Properties
 
@@ -72,7 +55,6 @@ namespace HandshakeClient.ViewModels
     public void OnAppearing()
     {
       this.IsBusy = true;
-      this.SelectedPost = null;
     }
 
     private async Task ExecuteLoadItemsCommand()
@@ -86,7 +68,7 @@ namespace HandshakeClient.ViewModels
         System.Collections.Generic.ICollection<PostGetData> items = await App.Client.PostGetclosepostsAsync(location.Latitude, location.Longitude);
         foreach (PostGetData item in items)
         {
-          this.Posts.Add(item);
+          this.Posts.Add(new PostEntryViewModel().GetWithDataModel(item));
         }
       }
       catch (ApiException exception)
@@ -102,16 +84,6 @@ namespace HandshakeClient.ViewModels
     private async void OnAddItem(object obj)
     {
       await Shell.Current.GoToAsync(nameof(NewPostPage));
-    }
-
-    private async void OnPostSelected(PostGetData item)
-    {
-      if (item == null)
-      {
-        return;
-      }
-
-      await Shell.Current.GoToAsync($"{nameof(PostDetailPage)}?{nameof(PostDetailViewModel.Id)}={item.Id}");
     }
 
     #endregion Methods

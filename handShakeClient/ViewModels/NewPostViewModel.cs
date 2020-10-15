@@ -31,7 +31,9 @@ namespace HandshakeClient.ViewModels
 
     private void NewPostViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-      if (e.PropertyName == nameof(this.Location) || e.PropertyName == nameof(this.Text))
+      if (e.PropertyName == nameof(NewPostViewModel.Location) 
+        || e.PropertyName == nameof(NewPostViewModel.Text) 
+        || e.PropertyName == nameof(NewPostViewModel.IsBusy))
       {
         this.SaveCommand.ChangeCanExecute();
       }
@@ -103,7 +105,8 @@ namespace HandshakeClient.ViewModels
     private bool SaveCommandCanExecute()
     {
       return !string.IsNullOrWhiteSpace(this.Text)
-          && this.Location != null;
+          && this.Location != null
+          && !this.IsBusy;
     }
 
     private async void SaveCommandExecute()
