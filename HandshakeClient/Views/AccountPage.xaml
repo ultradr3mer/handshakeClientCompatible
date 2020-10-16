@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HandshakeClient.Views.AccountPage"
+             xmlns:vm="clr-namespace:HandshakeClient.ViewModels"
+             xmlns:comp="clr-namespace:HandshakeClient.Composite"
+             Title="{Binding Title}">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <comp:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <StackLayout x:DataType="vm:AccountViewModel" Padding="10">
+    <StackLayout Orientation="Horizontal">
+      <Image Source="{AppThemeBinding Light=baseline_account_circle_black_48dp.png, Dark=baseline_account_circle_white_48dp.png}" />
+      <Entry Placeholder="DISPLAY NAME" Text="{Binding Nickname, Mode=TwoWay}" HorizontalOptions="FillAndExpand"/>
+    </StackLayout>
+    <Editor Placeholder="SUMMARY" Text="{Binding Description, Mode=TwoWay}" VerticalOptions="FillAndExpand"/>
+    <ActivityIndicator IsVisible="{Binding IsBusy}" 
+                         x:Name="defaultActivityIndicator"
+                         VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="Fill" 
+                         IsRunning="{Binding IsBusy}"/>
+    <Label IsVisible="{Binding Message, Converter={StaticResource StringNullOrEmptyBoolConverter}}" 
+           Text="{Binding Message}" />
+    <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="End" />
+  </StackLayout>
+</ContentPage>

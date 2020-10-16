@@ -140,6 +140,8 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\baseline_account_circle_black_48dp.png" />
+    <Content Include="Assets\baseline_account_circle_white_48dp.png" />
     <Content Include="Assets\baseline_exit_to_app_black_48dp.png" />
     <Content Include="Assets\baseline_exit_to_app_white_48dp.png" />
     <Content Include="Assets\baseline_info_black_48dp.png" />

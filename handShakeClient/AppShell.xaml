@@ -60,8 +60,9 @@
                Margin="5"
                HeightRequest="30" />
         <Label Grid.Column="1"
-                      Text="{Binding Title}"
-                      VerticalTextAlignment="Center"
+               Text="{Binding Title}"
+               VerticalTextAlignment="Center"
+               TextTransform="Uppercase"
                TextColor="{DynamicResource PageTextColor}"/>
       </Grid>
     </DataTemplate>
@@ -72,6 +73,13 @@
               Icon="{AppThemeBinding Light=baseline_exit_to_app_black_48dp.png, Dark=baseline_exit_to_app_white_48dp.png}"
               Route="LoginPage">
     <ShellContent ContentTemplate="{DataTemplate views:LoginPage}" />
+  </FlyoutItem>
+
+  <FlyoutItem FlyoutDisplayOptions="AsSingleItem"
+              Title="My account"
+              Icon="{AppThemeBinding Light=baseline_account_circle_black_48dp.png, Dark=baseline_account_circle_white_48dp.png}"
+              Route="AccountPage" >
+    <ShellContent ContentTemplate="{DataTemplate views:AccountPage}" />
   </FlyoutItem>
 
   <FlyoutItem FlyoutDisplayOptions="AsSingleItem"

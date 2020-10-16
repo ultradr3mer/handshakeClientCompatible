@@ -11,7 +11,7 @@ namespace HandshakeClient.Views
     public LoginPage()
     {
       InitializeComponent();
-      this.ViewModel = new LoginViewModel();
+      this.ViewModel = App.Resolve<LoginViewModel>();
     }
 
     #endregion Constructors

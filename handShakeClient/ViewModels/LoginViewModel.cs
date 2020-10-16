@@ -13,6 +13,7 @@ namespace HandshakeClient.ViewModels
 
     public const string PasswordKey = "password";
     public const string UsernameKey = "username";
+    private readonly AccountViewModel accountViewModel;
     private string propMessage;
     private string propPassword;
     private string propUsername;
@@ -22,10 +23,11 @@ namespace HandshakeClient.ViewModels
 
     #region Constructors
 
-    public LoginViewModel()
+    public LoginViewModel(AccountViewModel accountViewModel)
     {
       this.LoginCommand = new Command(this.LoginCommandExecute);
       this.SignupCommand = new Command(this.SignupCommandExecute);
+      this.accountViewModel = accountViewModel;
     }
 
     #endregion Constructors
@@ -89,8 +91,8 @@ namespace HandshakeClient.ViewModels
 
       try
       {
-        ProfileGetData test = await client.ProfileGetAsync();
-        this.Message = $"Signed in as {test.Nickname}.";
+        await this.accountViewModel.Initialize();
+        this.Message = $"Signed in as {this.accountViewModel.Nickname}.";
 
         await SecureStorage.SetAsync(LoginViewModel.UsernameKey, this.Username);
         await SecureStorage.SetAsync(LoginViewModel.PasswordKey, this.Password);

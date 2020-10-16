@@ -1,5 +1,6 @@
 ﻿using HandshakeClient.Services;
 using HandshakeClient.Themes;
+using HandshakeClient.ViewModels;
 using System.Collections.Generic;
 using Unity;
 using Xamarin.Essentials;
@@ -42,6 +43,7 @@ namespace HandshakeClient
 
       MainPage = new AppShell();
       container.RegisterSingleton<LocationCache>();
+      container.RegisterSingleton<AccountViewModel>();
     }
 
     public App(string initialNavigation) : this()

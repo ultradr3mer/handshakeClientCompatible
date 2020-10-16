@@ -87,10 +87,13 @@ namespace HandshakeClient.ViewModels
     {
       string[] placehoders = new string[]
       {
-        "I like unicorns",
+        "I like unicorns.",
         "Nahrwal swimming in the ocean",
         "First !!1!!!!",
-        "We must construct additional pylons"
+        "We must construct additional pylons!",
+        "I yoinked my mind!",
+        "Ya yeet!",
+
       };
       Random rnd = new Random();
       string placehoder = placehoders[rnd.Next(0, placehoders.Length - 1)];

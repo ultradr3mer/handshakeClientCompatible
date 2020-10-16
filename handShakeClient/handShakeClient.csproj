@@ -42,10 +42,16 @@
     <Compile Update="Themes\GreenTheme.xaml.cs">
       <DependentUpon>GreenTheme.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\AccountPage.xaml.cs">
+      <DependentUpon>AccountPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Themes\GreenTheme.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AccountPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\AboutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
