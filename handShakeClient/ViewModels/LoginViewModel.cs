@@ -89,7 +89,7 @@ namespace HandshakeClient.ViewModels
 
       try
       {
-        UserGetData test = await client.UserAsync();
+        ProfileGetData test = await client.ProfileGetAsync();
         this.Message = $"Signed in as {test.Nickname}.";
 
         await SecureStorage.SetAsync(LoginViewModel.UsernameKey, this.Username);
