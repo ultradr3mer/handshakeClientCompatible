@@ -4,8 +4,13 @@
              x:Class="HandshakeClient.Views.PostsPage"
              Title="{Binding Title}"
              xmlns:vm="clr-namespace:HandshakeClient.ViewModels"
+             xmlns:comp="clr-namespace:HandshakeClient.Composite"
              x:Name="BrowsePostsPage">
-
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <comp:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
   <ContentPage.ToolbarItems>
     <ToolbarItem Text="Add" Clicked="ToolbarAddItemClicked" />
   </ContentPage.ToolbarItems>
@@ -13,7 +18,7 @@
     <RefreshView x:DataType="vm:PostsViewModel" 
                  Command="{Binding LoadItemsCommand}" 
                  IsRefreshing="{Binding IsBusy}">
-      <ContentView Padding="2">
+      <StackLayout Padding="2">
         <CollectionView x:Name="ItemsListView"
                         ItemsSource="{Binding Posts}"
                         SelectionMode="None">
@@ -52,7 +57,9 @@
             </DataTemplate>
           </CollectionView.ItemTemplate>
         </CollectionView>
-      </ContentView>
+        <Label IsVisible="{Binding Message, Converter={StaticResource StringNullOrEmptyBoolConverter}}" 
+                 Text="{Binding Message}" />
+      </StackLayout>
     </RefreshView>
   </Frame>
 </ContentPage>

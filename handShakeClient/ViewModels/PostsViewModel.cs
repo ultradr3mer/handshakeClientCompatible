@@ -70,8 +70,9 @@ namespace HandshakeClient.ViewModels
         {
           this.Posts.Add(new PostEntryViewModel().GetWithDataModel(item));
         }
+        this.Message = null;
       }
-      catch (ApiException exception)
+      catch (Exception exception)
       {
         this.Message = exception.ToString();
       }

@@ -6,7 +6,13 @@
              xmlns:local="clr-namespace:HandshakeClient.ViewModels"  
              xmlns:service="clr-namespace:HandshakeClient.Services"
              xmlns:vm="clr-namespace:HandshakeClient.ViewModels"
+             xmlns:comp="clr-namespace:HandshakeClient.Composite"
              Title="{Binding Title}">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <comp:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
   <StackLayout BackgroundColor="{DynamicResource DeepBackgroundColor}" Spacing="0">
     <RefreshView VerticalOptions="FillAndExpand" Grid.Row="0" Grid.ColumnSpan="3" x:DataType="local:PostDetailViewModel" Command="{Binding RefreshCommand}"  IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
       <ScrollView Padding="2">
@@ -44,6 +50,12 @@
               </DataTemplate>
             </BindableLayout.ItemTemplate>
           </StackLayout>
+          <ActivityIndicator IsVisible="{Binding IsPostingRepy}" 
+                         x:Name="defaultActivityIndicator"
+                         VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="Fill" IsRunning="{Binding IsPostingRepy}"/>
+          <Label IsVisible="{Binding Message, Converter={StaticResource StringNullOrEmptyBoolConverter}}" 
+                 Text="{Binding Message}" />
         </StackLayout>
       </ScrollView>
     </RefreshView>

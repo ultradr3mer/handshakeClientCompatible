@@ -5,10 +5,22 @@
              Shell.PresentationMode="ModalAnimated"
              Title="New Post"
              xmlns:viewModel="clr-namespace:HandshakeClient.ViewModels"
+             xmlns:comp="clr-namespace:HandshakeClient.Composite"
              x:DataType="viewModel:NewPostViewModel">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <comp:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
   <ContentPage.Content>
     <StackLayout Spacing="3" Padding="15">
-        <Editor Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="{Binding Placeholder}" AutoSize="TextChanges" VerticalOptions="FillAndExpand" />
+      <Editor Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="{Binding Placeholder}" AutoSize="TextChanges" VerticalOptions="FillAndExpand" />
+      <ActivityIndicator IsVisible="{Binding IsBusy}" 
+                         x:Name="defaultActivityIndicator"
+                         VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="Fill" IsRunning="{Binding IsBusy}"/>
+      <Label IsVisible="{Binding Message, Converter={StaticResource StringNullOrEmptyBoolConverter}}" 
+                 Text="{Binding Message}" />
       <StackLayout Orientation="Horizontal">
         <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
         <Button Text="Post" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>

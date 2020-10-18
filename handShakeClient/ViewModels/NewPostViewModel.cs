@@ -31,8 +31,7 @@ namespace HandshakeClient.ViewModels
 
     private void NewPostViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-      if (e.PropertyName == nameof(NewPostViewModel.Location) 
-        || e.PropertyName == nameof(NewPostViewModel.Text) 
+      if (e.PropertyName == nameof(NewPostViewModel.Text)
         || e.PropertyName == nameof(NewPostViewModel.IsBusy))
       {
         this.SaveCommand.ChangeCanExecute();
@@ -44,12 +43,6 @@ namespace HandshakeClient.ViewModels
     #region Properties
 
     public Command CancelCommand { get; }
-
-    public Location Location
-    {
-      get { return this.propLocation; }
-      set { this.SetProperty(ref this.propLocation, value); }
-    }
 
     public string Message
     {
@@ -75,12 +68,10 @@ namespace HandshakeClient.ViewModels
 
     #region Methods
 
-    internal async void Initialize()
+    internal void Initialize()
     {
       string placehoder = GetRandomPlaceholder();
       this.Placeholder = placehoder;
-
-      this.Location = await this.locationCache.GetCurrentLocation(Enums.TimePassed.JustNow);
     }
 
     private static string GetRandomPlaceholder()
@@ -108,7 +99,6 @@ namespace HandshakeClient.ViewModels
     private bool SaveCommandCanExecute()
     {
       return !string.IsNullOrWhiteSpace(this.Text)
-          && this.Location != null
           && !this.IsBusy;
     }
 
@@ -117,28 +107,28 @@ namespace HandshakeClient.ViewModels
       this.IsBusy = true;
       this.Message = string.Empty;
 
-      Location location = this.Location;
-
-      PostPostData data = new PostPostData()
-      {
-        Content = Text,
-        Latitude = location.Latitude,
-        Longitude = location.Longitude
-      };
-
       try
       {
+        var location = await this.locationCache.GetCurrentLocation(Enums.TimePassed.JustNow);
+
+        PostPostData data = new PostPostData()
+        {
+          Content = Text,
+          Latitude = location.Latitude,
+          Longitude = location.Longitude
+        };
+
         await App.Client.PostPostAsync(data);
 
         await Shell.Current.GoToAsync("..");
       }
-      catch (ApiException exception)
+      catch (Exception exception)
       {
         this.Message = exception.ToString();
       }
       finally
       {
-        this.IsBusy = true;
+        this.IsBusy = false;
       }
     }
 

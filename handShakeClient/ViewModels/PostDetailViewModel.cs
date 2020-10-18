@@ -123,7 +123,7 @@ namespace HandshakeClient.ViewModels
           this.Replys.Add(new ReplyEntryViewModel().GetWithDataModel(item));
         }
       }
-      catch (ApiException exception)
+      catch (Exception exception)
       {
         this.Message = exception.ToString();
       }
@@ -177,7 +177,7 @@ namespace HandshakeClient.ViewModels
         this.Replys.Clear();
         this.NewReplyText = string.Empty;
       }
-      catch (ApiException exception)
+      catch (Exception exception)
       {
         this.Message = exception.ToString();
       }
