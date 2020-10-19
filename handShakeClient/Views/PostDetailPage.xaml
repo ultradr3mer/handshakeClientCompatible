@@ -18,7 +18,10 @@
       <ScrollView Padding="2">
         <StackLayout Spacing="0">
           <ContentView Padding="2">
-            <Frame Padding="10" BackgroundColor="{DynamicResource PageBackgroundColor}">
+            <Frame BackgroundColor="{DynamicResource PageBackgroundColor}"
+                   CornerRadius="3"
+                   HasShadow="True"
+                   Padding="10" >
               <StackLayout>
                 <Label Text="{Binding PostTitle}" 
                  Style="{DynamicResource ListItemTextStyle}" 

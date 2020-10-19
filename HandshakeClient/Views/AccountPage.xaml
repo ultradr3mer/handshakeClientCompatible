@@ -12,7 +12,26 @@
   </ContentPage.Resources>
   <StackLayout x:DataType="vm:AccountViewModel" Padding="10">
     <StackLayout Orientation="Horizontal">
-      <Image Source="{AppThemeBinding Light=baseline_account_circle_black_48dp.png, Dark=baseline_account_circle_white_48dp.png}" />
+      <Frame Padding="0"
+             BackgroundColor="Transparent"
+             HasShadow="False">
+        <Grid>
+          <Image Source="{Binding AvatarSource}" HeightRequest="48" WidthRequest="48"/>
+          <Frame BackgroundColor="{DynamicResource PageBackgroundColor}"
+               CornerRadius="3"
+               HasShadow="True"
+               Padding="0"  
+               HorizontalOptions="End" 
+               VerticalOptions="End" HeightRequest="20">
+            <Image Source="{AppThemeBinding Light=baseline_upload_black_24dp.png, Dark=baseline_upload_white_24dp.png}" HeightRequest="20"/>
+          </Frame>
+        </Grid>
+        <Frame.GestureRecognizers>
+          <TapGestureRecognizer NumberOfTapsRequired="1"
+                                    Command="{Binding AvatarTappedCommand}">
+          </TapGestureRecognizer>
+        </Frame.GestureRecognizers>
+      </Frame>
       <Entry Placeholder="DISPLAY NAME" Text="{Binding Nickname, Mode=TwoWay}" HorizontalOptions="FillAndExpand"/>
     </StackLayout>
     <Editor Placeholder="SUMMARY" Text="{Binding Description, Mode=TwoWay}" VerticalOptions="FillAndExpand"/>
