@@ -1379,6 +1379,10 @@ namespace HandshakeClient.Services
         [Newtonsoft.Json.JsonProperty("authorName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string AuthorName { get; set; }
     
+        /// <summary>The url of the Avatar.</summary>
+        [Newtonsoft.Json.JsonProperty("avatar", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Avatar { get; set; }
+    
         /// <summary>The content of this reply.</summary>
         [Newtonsoft.Json.JsonProperty("content", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Content { get; set; }
@@ -1408,6 +1412,10 @@ namespace HandshakeClient.Services
         /// <summary>The author name.</summary>
         [Newtonsoft.Json.JsonProperty("authorName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string AuthorName { get; set; }
+    
+        /// <summary>The url of the Avatar.</summary>
+        [Newtonsoft.Json.JsonProperty("avatar", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Avatar { get; set; }
     
         /// <summary>The content.</summary>
         [Newtonsoft.Json.JsonProperty("content", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -1517,6 +1525,10 @@ namespace HandshakeClient.Services
     
         [Newtonsoft.Json.JsonProperty("timeAgo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public SimpleTimeSpan TimeAgo { get; set; }
+    
+        /// <summary>The avatar url.</summary>
+        [Newtonsoft.Json.JsonProperty("avatar", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Avatar { get; set; }
     
     
     }

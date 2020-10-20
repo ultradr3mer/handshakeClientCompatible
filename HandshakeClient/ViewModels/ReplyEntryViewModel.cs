@@ -1,6 +1,7 @@
 ﻿using HandshakeClient.Composite;
 using HandshakeClient.Extensions;
 using HandshakeClient.Services;
+using Xamarin.Forms;
 
 namespace HandshakeClient.ViewModels
 {
@@ -8,12 +9,19 @@ namespace HandshakeClient.ViewModels
   {
     #region Fields
 
+    private ImageSource propAvatarSource;
     private string propContent;
     private string propReplyTitle;
 
     #endregion Fields
 
     #region Properties
+
+    public ImageSource AvatarSource
+    {
+      get { return propAvatarSource; }
+      set { SetProperty(ref propAvatarSource, value); }
+    }
 
     public string Content
     {
@@ -34,6 +42,7 @@ namespace HandshakeClient.ViewModels
     protected override void OnReadingDataModel(PostReplyGetData data)
     {
       this.ReplyTitle = $"{data.AuthorName} wrote {data.TimeAgo.ToStringForHumans()} ago";
+      this.AvatarSource = SimpleFileTokenData.CreateUrl(data.Avatar);
     }
 
     #endregion Methods

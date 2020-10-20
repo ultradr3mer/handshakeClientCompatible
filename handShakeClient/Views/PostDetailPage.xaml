@@ -23,9 +23,21 @@
                    HasShadow="True"
                    Padding="10" >
               <StackLayout>
-                <Label Text="{Binding PostTitle}" 
-                 Style="{DynamicResource ListItemTextStyle}" 
-                 FontSize="16"/>
+                <StackLayout Orientation="Horizontal">
+                  <Frame Padding="0"
+                         IsClippedToBounds="True" 
+                         BackgroundColor="{DynamicResource PlaceholderColor}" 
+                         CornerRadius="5">
+                    <Image Source="{Binding AvatarSource}" 
+                           HeightRequest="32" 
+                           WidthRequest="32"/>
+                  </Frame>
+                  <Label Text="{Binding PostTitle}" 
+                           LineBreakMode="NoWrap" 
+                           Style="{DynamicResource ListItemTextStyle}" 
+                           FontSize="16" 
+                           VerticalTextAlignment="Center" />
+                </StackLayout>
                 <Label Text="{Binding Content}" FontSize="13"/>
               </StackLayout>
             </Frame>
@@ -40,10 +52,21 @@
                          Padding="10"
                          HorizontalOptions="Start">
                     <StackLayout x:DataType="vm:ReplyEntryViewModel">
-                      <Label Text="{Binding ReplyTitle}" 
-                             LineBreakMode="NoWrap" 
-                             Style="{DynamicResource ListItemTextStyle}" 
-                             FontSize="16" />
+                      <StackLayout Orientation="Horizontal">
+                        <Frame Padding="0" 
+                               IsClippedToBounds="True" 
+                               BackgroundColor="{DynamicResource PlaceholderColor}" 
+                               CornerRadius="5">
+                          <Image Source="{Binding AvatarSource}"                              
+                                 HeightRequest="32" 
+                                 WidthRequest="32" />
+                        </Frame>
+                        <Label Text="{Binding ReplyTitle}" 
+                           LineBreakMode="NoWrap" 
+                           Style="{DynamicResource ListItemTextStyle}" 
+                           FontSize="16" 
+                           VerticalTextAlignment="Center" />
+                      </StackLayout>
                       <Label Text="{Binding Content}" 
                              Style="{DynamicResource ListItemDetailTextStyle}"
                              FontSize="13" />

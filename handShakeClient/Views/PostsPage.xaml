@@ -30,10 +30,21 @@
                        HasShadow="True"
                        Padding="10">
                   <StackLayout>
-                    <Label Text="{Binding PostTitle}" 
+                    <StackLayout Orientation="Horizontal">
+                      <Frame Padding="0" 
+                             IsClippedToBounds="True" 
+                             BackgroundColor="{DynamicResource PlaceholderColor}" 
+                             CornerRadius="5">
+                        <Image Source="{Binding AvatarSource}" 
+                               HeightRequest="32" 
+                               WidthRequest="32"/>
+                      </Frame>
+                      <Label Text="{Binding PostTitle}" 
                            LineBreakMode="NoWrap" 
                            Style="{DynamicResource ListItemTextStyle}" 
-                           FontSize="16" />
+                           FontSize="16" 
+                           VerticalTextAlignment="Center" />
+                    </StackLayout>
                     <Label Text="{Binding Content}" 
                            Style="{DynamicResource ListItemDetailTextStyle}"
                            FontSize="13" />
@@ -44,7 +55,7 @@
                       <Label Text="{Binding ReplyCount}" 
                            Style="{DynamicResource ListItemDetailTextStyle}"
                            FontSize="13"
-                           VerticalOptions="Center"/>
+                            VerticalTextAlignment="Center"/>
                     </StackLayout>
                   </StackLayout>
                   <Frame.GestureRecognizers>

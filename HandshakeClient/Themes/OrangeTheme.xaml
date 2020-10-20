@@ -5,6 +5,7 @@
   <Color x:Key="PageBackgroundColor">#fbfbfb</Color>
   <Color x:Key="DeepBackgroundColor">#e3e3e3</Color>
   <Color x:Key="PageTextColor">#282828</Color>
+  <Color x:Key="PlaceholderColor">#77282828</Color>
   <Color x:Key="NavigationBarColor">#e8bb00</Color>
   <Color x:Key="PrimaryColor">#e8bb00</Color>
   <Color x:Key="DisabledColor">#55e8bb00</Color>

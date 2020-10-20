@@ -17,8 +17,16 @@
            BackgroundColor="Transparent"
            HasShadow="False">
       <Grid HorizontalOptions="Center">
-        <Frame Padding="0" CornerRadius="30" IsClippedToBounds="True">
-          <imgcrop:ImageCropView HeightRequest="300" WidthRequest="300" Source="{Binding AvatarSource}" IsEnabled="{Binding IsCropViewEnabled}" x:Name="avatarCrop"/>
+        <Frame Padding="0" 
+               CornerRadius="30" 
+               BackgroundColor="Transparent"  
+               IsClippedToBounds="True">
+          <imgcrop:ImageCropView BackgroundColor="{DynamicResource PlaceholderColor}" 
+                                 HeightRequest="300" 
+                                 WidthRequest="300" 
+                                 Source="{Binding AvatarSource}" 
+                                 IsEnabled="{Binding IsCropViewEnabled}" 
+                                 x:Name="avatarCrop"/>
         </Frame>
         <Frame BackgroundColor="{DynamicResource PageBackgroundColor}"
                CornerRadius="10"

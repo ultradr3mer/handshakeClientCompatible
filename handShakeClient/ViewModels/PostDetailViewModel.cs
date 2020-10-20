@@ -13,12 +13,13 @@ namespace HandshakeClient.ViewModels
     #region Fields
 
     private Guid idGuid;
-    private string propPostTitle;
+    private ImageSource propAvatarSource;
     private string propContent;
     private string propId;
     private bool propIsPosting;
     private string propMessage;
     private string propNewReplyText;
+    private string propPostTitle;
     private ObservableCollection<ReplyEntryViewModel> propReplys;
 
     #endregion Fields
@@ -38,10 +39,10 @@ namespace HandshakeClient.ViewModels
 
     #region Properties
 
-    public string PostTitle
+    public ImageSource AvatarSource
     {
-      get { return this.propPostTitle; }
-      set { this.SetProperty(ref this.propPostTitle, value); }
+      get { return propAvatarSource; }
+      set { SetProperty(ref propAvatarSource, value); }
     }
 
     public Command CancelCommand
@@ -91,6 +92,12 @@ namespace HandshakeClient.ViewModels
       get;
     }
 
+    public string PostTitle
+    {
+      get { return this.propPostTitle; }
+      set { this.SetProperty(ref this.propPostTitle, value); }
+    }
+
     public Command RefreshCommand
     {
       get;
@@ -116,6 +123,7 @@ namespace HandshakeClient.ViewModels
 
         this.Content = post.Content;
         this.PostTitle = $"{post.AuthorName} wrote {post.TimeAgo.ToStringForHumans()} ago";
+        this.AvatarSource = SimpleFileTokenData.CreateUrl(post.Avatar);
         this.Replys.Clear();
         ObservableCollection<PostReplyGetData> replys = new ObservableCollection<PostReplyGetData>(post.Replys);
         foreach (PostReplyGetData item in replys)

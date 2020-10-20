@@ -77,11 +77,6 @@ namespace HandshakeClient.ViewModels
 
     internal async Task Initialize()
     {
-      if (this.isInitialized)
-      {
-        return;
-      }
-
       ProfileGetData data = await App.Client.ProfileGetAsync();
       this.SetDataModel(data);
 
@@ -90,10 +85,7 @@ namespace HandshakeClient.ViewModels
 
     protected override void OnReadingDataModel(ProfileGetData data)
     {
-      if (!string.IsNullOrEmpty(data.Avatar))
-      {
-        this.AvatarSource = new UriImageSource { Uri = new Uri("https://handshake.azurewebsites.net/file/" + data.Avatar), CachingEnabled = false };
-      }
+      this.AvatarSource = SimpleFileTokenData.CreateUrl(data.Avatar);
     }
 
     private void AccountViewModelPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
