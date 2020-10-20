@@ -1,4 +1,5 @@
-﻿using HandshakeClient.Services;
+﻿using FFImageLoading.Transformations;
+using HandshakeClient.Services;
 using HandshakeClient.Themes;
 using HandshakeClient.ViewModels;
 using System.Collections.Generic;
@@ -44,6 +45,8 @@ namespace HandshakeClient
       MainPage = new AppShell();
       container.RegisterSingleton<LocationCache>();
       container.RegisterSingleton<AccountViewModel>();
+
+      var ignore = typeof(CropTransformation);
     }
 
     public App(string initialNavigation) : this()

@@ -1,4 +1,5 @@
 ﻿using HandshakeClient.ViewModels;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace HandshakeClient.Views
@@ -12,6 +13,8 @@ namespace HandshakeClient.Views
       this.InitializeComponent();
 
       this.ViewModel = new AccountViewModel();
+
+      this.SaveButton.Command = new Command(async () => await this.SaveButtonCommandExecute());
     }
 
     #endregion Constructors
@@ -33,6 +36,16 @@ namespace HandshakeClient.Views
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
       this.ViewModel.Initialize();
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+    }
+
+    private async Task SaveButtonCommandExecute()
+    {
+      System.IO.Stream avatar = null;
+      if (this.avatarCrop.IsEnabled)
+      {
+        avatar = await this.avatarCrop.GetImageAsJpegAsync(quality: 90, maxWidth: 300, maxHeight: 300);
+      }
+      this.ViewModel.SaveCommand.Execute(avatar);
     }
 
     #endregion Methods

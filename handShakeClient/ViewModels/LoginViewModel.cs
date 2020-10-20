@@ -87,7 +87,7 @@ namespace HandshakeClient.ViewModels
       this.IsBusy = true;
       this.Message = string.Empty;
 
-      Client client = new Client(new CustomHttpClient(this.Username, this.Password));
+      App.Client = new Client(new CustomHttpClient(this.Username, this.Password));
 
       try
       {
@@ -96,8 +96,6 @@ namespace HandshakeClient.ViewModels
 
         await SecureStorage.SetAsync(LoginViewModel.UsernameKey, this.Username);
         await SecureStorage.SetAsync(LoginViewModel.PasswordKey, this.Password);
-
-        App.Client = client;
 
         await Continue();
       }

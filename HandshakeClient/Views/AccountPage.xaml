@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HandshakeClient.Views.AccountPage"
              xmlns:vm="clr-namespace:HandshakeClient.ViewModels"
-             xmlns:comp="clr-namespace:HandshakeClient.Composite"
+             xmlns:comp="clr-namespace:HandshakeClient.Composite" 
+             xmlns:views="clr-namespace:HandshakeClient.Views"
+             xmlns:imgcrop="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.ImageCropView"
              Title="{Binding Title}">
   <ContentPage.Resources>
     <ResourceDictionary>
@@ -11,29 +13,29 @@
     </ResourceDictionary>
   </ContentPage.Resources>
   <StackLayout x:DataType="vm:AccountViewModel" Padding="10">
-    <StackLayout Orientation="Horizontal">
-      <Frame Padding="0"
-             BackgroundColor="Transparent"
-             HasShadow="False">
-        <Grid>
-          <Image Source="{Binding AvatarSource}" HeightRequest="48" WidthRequest="48"/>
-          <Frame BackgroundColor="{DynamicResource PageBackgroundColor}"
-               CornerRadius="3"
+    <Frame Padding="0"
+           BackgroundColor="Transparent"
+           HasShadow="False">
+      <Grid HorizontalOptions="Center">
+        <Frame Padding="0" CornerRadius="30" IsClippedToBounds="True">
+          <imgcrop:ImageCropView HeightRequest="300" WidthRequest="300" Source="{Binding AvatarSource}" IsEnabled="{Binding IsCropViewEnabled}" x:Name="avatarCrop"/>
+        </Frame>
+        <Frame BackgroundColor="{DynamicResource PageBackgroundColor}"
+               CornerRadius="10"
                HasShadow="True"
-               Padding="0"  
+               Padding="7"  
                HorizontalOptions="End" 
-               VerticalOptions="End" HeightRequest="20">
-            <Image Source="{AppThemeBinding Light=baseline_upload_black_24dp.png, Dark=baseline_upload_white_24dp.png}" HeightRequest="20"/>
-          </Frame>
-        </Grid>
-        <Frame.GestureRecognizers>
-          <TapGestureRecognizer NumberOfTapsRequired="1"
+               VerticalOptions="End">
+          <Image Source="{AppThemeBinding Light=baseline_upload_black_24dp.png, Dark=baseline_upload_white_24dp.png}" HeightRequest="20"/>
+          <Frame.GestureRecognizers>
+            <TapGestureRecognizer NumberOfTapsRequired="1"
                                     Command="{Binding AvatarTappedCommand}">
-          </TapGestureRecognizer>
-        </Frame.GestureRecognizers>
-      </Frame>
-      <Entry Placeholder="DISPLAY NAME" Text="{Binding Nickname, Mode=TwoWay}" HorizontalOptions="FillAndExpand"/>
-    </StackLayout>
+            </TapGestureRecognizer>
+          </Frame.GestureRecognizers>
+        </Frame>
+      </Grid>
+    </Frame>
+    <Entry Placeholder="DISPLAY NAME" Text="{Binding Nickname, Mode=TwoWay}" HorizontalOptions="FillAndExpand"/>
     <Editor Placeholder="SUMMARY" Text="{Binding Description, Mode=TwoWay}" VerticalOptions="FillAndExpand"/>
     <ActivityIndicator IsVisible="{Binding IsBusy}" 
                          x:Name="defaultActivityIndicator"
@@ -42,6 +44,6 @@
                          IsRunning="{Binding IsBusy}"/>
     <Label IsVisible="{Binding Message, Converter={StaticResource StringNullOrEmptyBoolConverter}}" 
            Text="{Binding Message}" />
-    <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="End" />
+    <Button x:Name="SaveButton" Text="Save" HorizontalOptions="End" />
   </StackLayout>
 </ContentPage>

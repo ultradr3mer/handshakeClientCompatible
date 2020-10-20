@@ -4,6 +4,7 @@ using Android.Runtime;
 using Android.OS;
 using HandshakeClient.Views;
 using HandshakeClient.ViewModels;
+using FFImageLoading.Forms.Droid;
 
 namespace HandshakeClient.Droid
 {
@@ -63,6 +64,8 @@ namespace HandshakeClient.Droid
       }
 
       LoadApplication(new App(initialNavigation));
+
+      CachedImageRenderer.Init();
     }
 
     #endregion Methods
