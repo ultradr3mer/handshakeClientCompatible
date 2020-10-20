@@ -45,8 +45,6 @@ namespace HandshakeClient
       MainPage = new AppShell();
       container.RegisterSingleton<LocationCache>();
       container.RegisterSingleton<AccountViewModel>();
-
-      var ignore = typeof(CropTransformation);
     }
 
     public App(string initialNavigation) : this()

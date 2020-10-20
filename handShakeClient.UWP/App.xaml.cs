@@ -68,6 +68,8 @@ namespace HandshakeClient.UWP
       }
 
       CachedImageRenderer.Init();
+
+      var ignore = typeof(CropTransformation);
     }
 
     /// <summary>
