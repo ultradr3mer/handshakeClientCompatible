@@ -33,6 +33,12 @@ namespace HandshakeClient.Views
       this.ViewModel.OnAppearing();
     }
 
+    private void postImageSizeChanged(object sender, System.EventArgs e)
+    {
+      var postImage = (Image)sender;
+      postImage.HeightRequest = postImage.Width / 4.0 * 3.0;
+    }
+
     private void ToolbarAddItemClicked(object sender, System.EventArgs e)
     {
       // Invoke over the clicked event because the command is invoked twice.

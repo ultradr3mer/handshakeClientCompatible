@@ -11,9 +11,10 @@ namespace HandshakeClient.ViewModels
   {
     #region Fields
 
-    private ImageSource propAvatarSource;
+    private ImageSource propAvatar;
     private string propContent;
     private Guid propId;
+    private ImageSource propImage;
     private string propPostTitle;
 
     private int propReplyCount;
@@ -31,10 +32,10 @@ namespace HandshakeClient.ViewModels
 
     #region Properties
 
-    public ImageSource AvatarSource
+    public ImageSource Avatar
     {
-      get { return propAvatarSource; }
-      set { SetProperty(ref propAvatarSource, value); }
+      get { return propAvatar; }
+      set { SetProperty(ref propAvatar, value); }
     }
 
     public string Content
@@ -47,6 +48,12 @@ namespace HandshakeClient.ViewModels
     {
       get { return propId; }
       set { SetProperty(ref propId, value); }
+    }
+
+    public ImageSource Image
+    {
+      get { return propImage; }
+      set { SetProperty(ref propImage, value); }
     }
 
     public string PostTitle
@@ -70,7 +77,8 @@ namespace HandshakeClient.ViewModels
     protected override void OnReadingDataModel(PostGetData data)
     {
       this.PostTitle = $"{data.AuthorName} wrote {data.TimeAgo.ToStringForHumans()} ago";
-      this.AvatarSource = SimpleFileTokenData.CreateUrl(data.Avatar);
+      this.Avatar = SimpleFileTokenData.CreateUrl(data.Avatar);
+      this.Image = SimpleFileTokenData.CreateUrl(data.Image);
     }
 
     private async void TappedExecute()

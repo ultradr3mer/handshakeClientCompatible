@@ -180,7 +180,7 @@ namespace HandshakeClient.ViewModels
           Content = this.NewReplyText,
           Post = this.idGuid
         };
-        ReplyEntity repy = await App.Client.ReplyAsync(post);
+        await App.Client.ReplyAsync(post);
 
         this.Replys.Clear();
         this.NewReplyText = string.Empty;

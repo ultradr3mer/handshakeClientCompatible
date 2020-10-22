@@ -6,24 +6,44 @@
              Title="New Post"
              xmlns:viewModel="clr-namespace:HandshakeClient.ViewModels"
              xmlns:comp="clr-namespace:HandshakeClient.Composite"
-             x:DataType="viewModel:NewPostViewModel">
+             xmlns:imgcrop="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.ImageCropView"
+             x:DataType="viewModel:NewPostViewModel"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
   <ContentPage.Resources>
     <ResourceDictionary>
       <comp:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter" />
+      <comp:ObjectNullBoolConverter x:Key="ObjectNullBoolConverter" />
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.Content>
-    <StackLayout Spacing="3" Padding="15">
-      <Editor Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" Placeholder="{Binding Placeholder}" AutoSize="TextChanges" VerticalOptions="FillAndExpand" />
-      <ActivityIndicator IsVisible="{Binding IsBusy}" 
-                         x:Name="defaultActivityIndicator"
-                         VerticalOptions="CenterAndExpand"
-                         HorizontalOptions="Fill" IsRunning="{Binding IsBusy}"/>
-      <Label IsVisible="{Binding Message, Converter={StaticResource StringNullOrEmptyBoolConverter}}" 
+    <StackLayout Padding="15" VerticalOptions="End">
+      <ScrollView>
+        <StackLayout>
+          <imgcrop:ImageCropView BackgroundColor="{DynamicResource PlaceholderColor}"
+                                 Source="{Binding PostImage}"
+                                 x:Name="imageCrop" 
+                                 VerticalOptions="FillAndExpand" 
+                                 HorizontalOptions="FillAndExpand" 
+                                 SizeChanged="ImageCropSizeChanged"
+                                 IsVisible="{Binding PostImage, Converter={StaticResource ObjectNullBoolConverter}}"/>
+          <Editor Text="{Binding Text, Mode=TwoWay}" 
+                  FontSize="Medium" 
+                  Placeholder="{Binding Placeholder}" 
+                  AutoSize="TextChanges" 
+                  VerticalOptions="FillAndExpand" />
+          <ActivityIndicator IsVisible="{Binding IsBusy}"
+                             VerticalOptions="CenterAndExpand"
+                             HorizontalOptions="Fill" IsRunning="{Binding IsBusy}" />   
+          <Label IsVisible="{Binding Message, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
                  Text="{Binding Message}" />
+        </StackLayout>
+      </ScrollView>
       <StackLayout Orientation="Horizontal">
-        <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
-        <Button Text="Post" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+        <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand" />
+        <Button Text="Post" x:Name="SaveButton" HorizontalOptions="FillAndExpand" />
+        <ImageButton Padding="20" Source="baseline_upload_white_24dp.png"
+                     Command="{Binding PickImageCommand}"
+                     HorizontalOptions="End" />
       </StackLayout>
     </StackLayout>
   </ContentPage.Content>

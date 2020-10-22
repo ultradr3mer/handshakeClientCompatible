@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     x:Class="HandshakeClient.Themes.OrangeDarkTheme">
   <Color x:Key="PageBackgroundColor">#282828</Color>
-  <Color x:Key="DeepBackgroundColor">#1b1b1b</Color>
+  <Color x:Key="DeepBackgroundColor">black</Color>
   <Color x:Key="PageTextColor">#f7f7f7</Color>
   <Color x:Key="PlaceholderColor">#77f7f7f7</Color>
   <Color x:Key="NavigationBarColor">#e8c222</Color>

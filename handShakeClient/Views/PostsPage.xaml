@@ -4,11 +4,11 @@
              x:Class="HandshakeClient.Views.PostsPage"
              Title="{Binding Title}"
              xmlns:vm="clr-namespace:HandshakeClient.ViewModels"
-             xmlns:comp="clr-namespace:HandshakeClient.Composite"
-             x:Name="BrowsePostsPage">
+             xmlns:comp="clr-namespace:HandshakeClient.Composite">
   <ContentPage.Resources>
     <ResourceDictionary>
       <comp:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter" />
+      <comp:ObjectNullBoolConverter x:Key="ObjectNullBoolConverter" />
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.ToolbarItems>
@@ -18,9 +18,8 @@
     <RefreshView x:DataType="vm:PostsViewModel" 
                  Command="{Binding LoadItemsCommand}" 
                  IsRefreshing="{Binding IsBusy}">
-      <StackLayout Padding="2">
-        <CollectionView x:Name="ItemsListView"
-                        ItemsSource="{Binding Posts}"
+      <StackLayout Padding="2" HorizontalOptions="Center">
+        <CollectionView ItemsSource="{Binding Posts}"
                         SelectionMode="None">
           <CollectionView.ItemTemplate>
             <DataTemplate>
@@ -29,33 +28,36 @@
                        CornerRadius="3"
                        HasShadow="True"
                        Padding="10">
-                  <StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                      <Frame Padding="0" 
-                             IsClippedToBounds="True" 
-                             BackgroundColor="{DynamicResource PlaceholderColor}" 
-                             CornerRadius="5">
-                        <Image Source="{Binding AvatarSource}" 
+                  <StackLayout Orientation="Horizontal">
+                    <Frame Padding="0" 
+                          IsClippedToBounds="True" 
+                          BackgroundColor="{DynamicResource PlaceholderColor}" 
+                          CornerRadius="5"
+                          VerticalOptions="Start">
+                      <Image Source="{Binding Avatar}" 
                                HeightRequest="32" 
                                WidthRequest="32"/>
-                      </Frame>
+                    </Frame>
+                    <StackLayout>
                       <Label Text="{Binding PostTitle}" 
-                           LineBreakMode="NoWrap" 
-                           Style="{DynamicResource ListItemTextStyle}" 
-                           FontSize="16" 
-                           VerticalTextAlignment="Center" />
-                    </StackLayout>
-                    <Label Text="{Binding Content}" 
+                           LineBreakMode="WordWrap" 
+                           Style="{DynamicResource ListItemTextStyle}"/>
+                      <Image Source="{Binding Image}" 
+                             IsVisible="{Binding Image, Converter={StaticResource ObjectNullBoolConverter}}" 
+                             HorizontalOptions="FillAndExpand" 
+                             SizeChanged="postImageSizeChanged"/>
+                      <Label Text="{Binding Content}" 
                            Style="{DynamicResource ListItemDetailTextStyle}"
                            FontSize="13" />
-                    <StackLayout Spacing="3" Orientation="Horizontal">
-                      <Image Source="{AppThemeBinding Light=baseline_mode_comment_black_24dp.png, Dark=baseline_mode_comment_white_24dp.png}" 
-                             Opacity="0.5" 
-                             HeightRequest="18"/>
-                      <Label Text="{Binding ReplyCount}" 
-                           Style="{DynamicResource ListItemDetailTextStyle}"
-                           FontSize="13"
-                            VerticalTextAlignment="Center"/>
+                      <StackLayout Spacing="3" Orientation="Horizontal">
+                        <Image Source="{AppThemeBinding Light=baseline_mode_comment_black_24dp.png, Dark=baseline_mode_comment_white_24dp.png}" 
+                            Opacity="0.5" 
+                            HeightRequest="18"/>
+                        <Label Text="{Binding ReplyCount}" 
+                          Style="{DynamicResource ListItemDetailTextStyle}"
+                          FontSize="13"
+                          VerticalTextAlignment="Center"/>
+                      </StackLayout>
                     </StackLayout>
                   </StackLayout>
                   <Frame.GestureRecognizers>
