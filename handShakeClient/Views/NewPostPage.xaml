@@ -16,16 +16,16 @@
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.Content>
-    <StackLayout Padding="15" VerticalOptions="End">
-      <ScrollView>
-        <StackLayout>
-          <imgcrop:ImageCropView BackgroundColor="{DynamicResource PlaceholderColor}"
+    <StackLayout Padding="15" VerticalOptions="FillAndExpand">
+      <imgcrop:ImageCropView BackgroundColor="{DynamicResource PlaceholderColor}"
                                  Source="{Binding PostImage}"
                                  x:Name="imageCrop" 
-                                 VerticalOptions="FillAndExpand" 
-                                 HorizontalOptions="FillAndExpand" 
+                                 WidthRequest="400"
+                                 HeightRequest="300"
                                  SizeChanged="ImageCropSizeChanged"
                                  IsVisible="{Binding PostImage, Converter={StaticResource ObjectNullBoolConverter}}"/>
+      <ScrollView VerticalOptions="FillAndExpand">
+        <StackLayout>
           <Editor Text="{Binding Text, Mode=TwoWay}" 
                   FontSize="Medium" 
                   Placeholder="{Binding Placeholder}" 

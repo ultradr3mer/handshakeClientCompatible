@@ -38,7 +38,7 @@
                                HeightRequest="32" 
                                WidthRequest="32"/>
                     </Frame>
-                    <StackLayout>
+                    <StackLayout HorizontalOptions="FillAndExpand">
                       <Label Text="{Binding PostTitle}" 
                            LineBreakMode="WordWrap" 
                            Style="{DynamicResource ListItemTextStyle}"/>

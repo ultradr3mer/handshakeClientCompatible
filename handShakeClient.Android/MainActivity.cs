@@ -11,7 +11,8 @@ namespace HandshakeClient.Droid
   [Activity(Label = "HandshakeClient", 
   Icon = "@mipmap/icon", 
   Theme = "@style/MainTheme", 
-  MainLauncher = true, 
+  MainLauncher = true,
+  ScreenOrientation = ScreenOrientation.Portrait,
   ConfigurationChanges = ConfigChanges.ScreenSize |
                           ConfigChanges.Orientation |
                           ConfigChanges.UiMode |
