@@ -15,8 +15,8 @@
     <ToolbarItem Text="Add" Clicked="ToolbarAddItemClicked" />
   </ContentPage.ToolbarItems>
   <Frame BackgroundColor="{DynamicResource DeepBackgroundColor}" Padding="0">
-    <RefreshView x:DataType="vm:PostsViewModel" 
-                 Command="{Binding LoadItemsCommand}" 
+    <RefreshView x:DataType="vm:PostsViewModel"
+                 Command="{Binding LoadItemsCommand}"
                  IsRefreshing="{Binding IsBusy}">
       <StackLayout Padding="2" HorizontalOptions="Center">
         <CollectionView ItemsSource="{Binding Posts}"
@@ -27,36 +27,44 @@
                 <Frame BackgroundColor="{DynamicResource PageBackgroundColor}"
                        CornerRadius="3"
                        HasShadow="True"
-                       Padding="10">
+                       Padding="10"
+                       WidthRequest="500">
+                  <Frame.HorizontalOptions>
+                    <OnPlatform x:TypeArguments="LayoutOptions" Android="FillAndExpand"  WinPhone="Center" />
+                  </Frame.HorizontalOptions>
                   <StackLayout Orientation="Horizontal">
-                    <Frame Padding="0" 
-                          IsClippedToBounds="True" 
-                          BackgroundColor="{DynamicResource PlaceholderColor}" 
+                    <Frame Padding="0"
+                          IsClippedToBounds="True"
+                          BackgroundColor="{DynamicResource PlaceholderColor}"
                           CornerRadius="5"
                           VerticalOptions="Start">
-                      <Image Source="{Binding Avatar}" 
-                               HeightRequest="32" 
-                               WidthRequest="32"/>
+                      <Image Source="{Binding Avatar}"
+                               HeightRequest="48"
+                               WidthRequest="48" />
                     </Frame>
                     <StackLayout HorizontalOptions="FillAndExpand">
-                      <Label Text="{Binding PostTitle}" 
-                           LineBreakMode="WordWrap" 
-                           Style="{DynamicResource ListItemTextStyle}"/>
-                      <Image Source="{Binding Image}" 
-                             IsVisible="{Binding Image, Converter={StaticResource ObjectNullBoolConverter}}" 
-                             HorizontalOptions="FillAndExpand" 
-                             SizeChanged="postImageSizeChanged"/>
-                      <Label Text="{Binding Content}" 
+                      <Label Text="{Binding PostTitle}"
+                           LineBreakMode="WordWrap"
+                           Style="{DynamicResource ListItemTextStyle}" />
+                      <Image Source="{Binding Image}"
+                             IsVisible="{Binding Image, Converter={StaticResource ObjectNullBoolConverter}}"
+                             HorizontalOptions="FillAndExpand"
+                             SizeChanged="postImageSizeChanged">
+                        <Image.WidthRequest>
+                          <OnPlatform x:TypeArguments="x:Double" Android ="0" WinPhone="442" />
+                        </Image.WidthRequest>
+                      </Image>
+                      <Label Text="{Binding Content}"
                            Style="{DynamicResource ListItemDetailTextStyle}"
                            FontSize="13" />
                       <StackLayout Spacing="3" Orientation="Horizontal">
-                        <Image Source="{AppThemeBinding Light=baseline_mode_comment_black_24dp.png, Dark=baseline_mode_comment_white_24dp.png}" 
-                            Opacity="0.5" 
-                            HeightRequest="18"/>
-                        <Label Text="{Binding ReplyCount}" 
+                        <Image Source="{AppThemeBinding Light=baseline_mode_comment_black_24dp.png, Dark=baseline_mode_comment_white_24dp.png}"
+                            Opacity="0.5"
+                            HeightRequest="18" />
+                        <Label Text="{Binding ReplyCount}"
                           Style="{DynamicResource ListItemDetailTextStyle}"
                           FontSize="13"
-                          VerticalTextAlignment="Center"/>
+                          VerticalTextAlignment="Center" />
                       </StackLayout>
                     </StackLayout>
                   </StackLayout>
@@ -70,7 +78,7 @@
             </DataTemplate>
           </CollectionView.ItemTemplate>
         </CollectionView>
-        <Label IsVisible="{Binding Message, Converter={StaticResource StringNullOrEmptyBoolConverter}}" 
+        <Label IsVisible="{Binding Message, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
                  Text="{Binding Message}" />
       </StackLayout>
     </RefreshView>
