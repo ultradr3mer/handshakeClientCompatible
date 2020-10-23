@@ -13,9 +13,10 @@ namespace HandshakeClient.ViewModels
     #region Fields
 
     private Guid idGuid;
-    private ImageSource propAvatarSource;
+    private ImageSource propAvatar;
     private string propContent;
     private string propId;
+    private ImageSource propImage;
     private bool propIsPosting;
     private string propMessage;
     private string propNewReplyText;
@@ -39,10 +40,10 @@ namespace HandshakeClient.ViewModels
 
     #region Properties
 
-    public ImageSource AvatarSource
+    public ImageSource Avatar
     {
-      get { return propAvatarSource; }
-      set { SetProperty(ref propAvatarSource, value); }
+      get { return propAvatar; }
+      set { SetProperty(ref propAvatar, value); }
     }
 
     public Command CancelCommand
@@ -67,6 +68,12 @@ namespace HandshakeClient.ViewModels
         this.propId = value;
         this.idGuid = Guid.Parse(value);
       }
+    }
+
+    public ImageSource Image
+    {
+      get { return propImage; }
+      set { SetProperty(ref propImage, value); }
     }
 
     public bool IsPostingRepy
@@ -123,7 +130,8 @@ namespace HandshakeClient.ViewModels
 
         this.Content = post.Content;
         this.PostTitle = $"{post.AuthorName} wrote {post.TimeAgo.ToStringForHumans()} ago";
-        this.AvatarSource = SimpleFileTokenData.CreateUrl(post.Avatar);
+        this.Avatar = SimpleFileTokenData.CreateUrl(post.Avatar);
+        this.Image = SimpleFileTokenData.CreateUrl(post.Image);
         this.Replys.Clear();
         ObservableCollection<PostReplyGetData> replys = new ObservableCollection<PostReplyGetData>(post.Replys);
         foreach (PostReplyGetData item in replys)

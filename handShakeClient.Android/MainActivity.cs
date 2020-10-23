@@ -5,6 +5,8 @@ using Android.OS;
 using HandshakeClient.Views;
 using HandshakeClient.ViewModels;
 using FFImageLoading.Forms.Droid;
+using Xamarin.Essentials;
+using Android.Graphics;
 
 namespace HandshakeClient.Droid
 {
@@ -66,6 +68,7 @@ namespace HandshakeClient.Droid
 
       LoadApplication(new App(initialNavigation));
 
+      Window.SetStatusBarColor(Color.Argb(255, 196, 164, 29));
       CachedImageRenderer.Init();
     }
 

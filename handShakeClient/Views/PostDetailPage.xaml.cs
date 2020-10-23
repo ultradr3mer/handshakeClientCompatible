@@ -32,6 +32,12 @@ namespace HandshakeClient.Views
       this.ViewModel.OnAppearing();
     }
 
+    private void postImageSizeChanged(object sender, System.EventArgs e)
+    {
+      var postImage = (Image)sender;
+      postImage.HeightRequest = postImage.Width / 4.0 * 3.0;
+    }
+
     #endregion Methods
   }
 }

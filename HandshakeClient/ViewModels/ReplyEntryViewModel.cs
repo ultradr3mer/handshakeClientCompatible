@@ -9,7 +9,7 @@ namespace HandshakeClient.ViewModels
   {
     #region Fields
 
-    private ImageSource propAvatarSource;
+    private ImageSource propAvatar;
     private string propContent;
     private string propReplyTitle;
 
@@ -17,10 +17,10 @@ namespace HandshakeClient.ViewModels
 
     #region Properties
 
-    public ImageSource AvatarSource
+    public ImageSource Avatar
     {
-      get { return propAvatarSource; }
-      set { SetProperty(ref propAvatarSource, value); }
+      get { return propAvatar; }
+      set { SetProperty(ref propAvatar, value); }
     }
 
     public string Content
@@ -42,7 +42,7 @@ namespace HandshakeClient.ViewModels
     protected override void OnReadingDataModel(PostReplyGetData data)
     {
       this.ReplyTitle = $"{data.AuthorName} wrote {data.TimeAgo.ToStringForHumans()} ago";
-      this.AvatarSource = SimpleFileTokenData.CreateUrl(data.Avatar);
+      this.Avatar = SimpleFileTokenData.CreateUrl(data.Avatar);
     }
 
     #endregion Methods

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HandshakeClient.Views.PostDetailPage"
              Shell.PresentationMode="ModalAnimated"
-             xmlns:local="clr-namespace:HandshakeClient.ViewModels"  
+             xmlns:local="clr-namespace:HandshakeClient.ViewModels"
              xmlns:service="clr-namespace:HandshakeClient.Services"
              xmlns:vm="clr-namespace:HandshakeClient.ViewModels"
              xmlns:comp="clr-namespace:HandshakeClient.Composite"
@@ -11,91 +11,104 @@
   <ContentPage.Resources>
     <ResourceDictionary>
       <comp:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter" />
+      <comp:ObjectNullBoolConverter x:Key="ObjectNullBoolConverter" />
     </ResourceDictionary>
   </ContentPage.Resources>
   <StackLayout BackgroundColor="{DynamicResource DeepBackgroundColor}" Spacing="0">
-    <RefreshView VerticalOptions="FillAndExpand" Grid.Row="0" Grid.ColumnSpan="3" x:DataType="local:PostDetailViewModel" Command="{Binding RefreshCommand}"  IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-      <ScrollView Padding="2">
-        <StackLayout Spacing="0">
-          <ContentView Padding="2">
-            <Frame BackgroundColor="{DynamicResource PageBackgroundColor}"
+    <RefreshView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.ColumnSpan="3" x:DataType="local:PostDetailViewModel" Command="{Binding RefreshCommand}"  IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+      <ScrollView Padding="5" HorizontalOptions="FillAndExpand">
+        <ContentView Padding="0">
+          <StackLayout Spacing="0" WidthRequest="530" HorizontalOptions="Center">
+            <StackLayout.HorizontalOptions>
+              <OnPlatform x:TypeArguments="LayoutOptions" Android="FillAndExpand" WinPhone="Center" />
+            </StackLayout.HorizontalOptions>
+            <ContentView Padding="2">
+              <Frame BackgroundColor="{DynamicResource PageBackgroundColor}"
                    CornerRadius="3"
                    HasShadow="True"
-                   Padding="10" >
-              <StackLayout>
+                   Padding="10">
                 <StackLayout Orientation="Horizontal">
                   <Frame Padding="0"
-                         IsClippedToBounds="True" 
-                         BackgroundColor="{DynamicResource PlaceholderColor}" 
-                         CornerRadius="5">
-                    <Image Source="{Binding AvatarSource}" 
-                           HeightRequest="32" 
-                           WidthRequest="32"/>
+                       IsClippedToBounds="True"
+                       BackgroundColor="{DynamicResource PlaceholderColor}"
+                       CornerRadius="5"
+                       VerticalOptions="Start">
+                    <Image Source="{Binding Avatar}"
+                         HeightRequest="48"
+                         WidthRequest="48" />
                   </Frame>
-                  <Label Text="{Binding PostTitle}" 
-                           LineBreakMode="NoWrap" 
-                           Style="{DynamicResource ListItemTextStyle}" 
-                           FontSize="16" 
-                           VerticalTextAlignment="Center" />
+                  <StackLayout HorizontalOptions="FillAndExpand">
+                    <Label Text="{Binding PostTitle}"
+                         LineBreakMode="WordWrap"
+                         Style="{DynamicResource ListItemTextStyle}" />
+                    <Image Source="{Binding Image}"
+                         IsVisible="{Binding Image, Converter={StaticResource ObjectNullBoolConverter}}"
+                         HorizontalOptions="FillAndExpand"
+                         SizeChanged="postImageSizeChanged">
+                      <Image.WidthRequest>
+                        <OnPlatform x:TypeArguments="x:Double" Android ="0" WinPhone="442" />
+                      </Image.WidthRequest>
+                    </Image>
+                    <Label Text="{Binding Content}"
+                         Style="{DynamicResource ListItemDetailTextStyle}"
+                         FontSize="13" />
+                  </StackLayout>
                 </StackLayout>
-                <Label Text="{Binding Content}" FontSize="13"/>
-              </StackLayout>
-            </Frame>
-          </ContentView>
-          <StackLayout Padding="0" Spacing="0" BindableLayout.ItemsSource="{Binding Replys}">
-            <BindableLayout.ItemTemplate>
-              <DataTemplate>
-                <ContentView Padding="2">
-                  <Frame BackgroundColor="{DynamicResource PageBackgroundColor}"
-                         CornerRadius="3"
-                         HasShadow="True"
-                         Padding="10"
-                         HorizontalOptions="Start">
-                    <StackLayout x:DataType="vm:ReplyEntryViewModel">
-                      <StackLayout Orientation="Horizontal">
-                        <Frame Padding="0" 
-                               IsClippedToBounds="True" 
-                               BackgroundColor="{DynamicResource PlaceholderColor}" 
-                               CornerRadius="5">
-                          <Image Source="{Binding AvatarSource}"                              
-                                 HeightRequest="32" 
-                                 WidthRequest="32" />
+              </Frame>
+            </ContentView>
+            <StackLayout Padding="0" Spacing="0" BindableLayout.ItemsSource="{Binding Replys}">
+              <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                  <ContentView Padding="2">
+                    <Frame BackgroundColor="{DynamicResource PageBackgroundColor}"
+                           CornerRadius="3"
+                           HasShadow="True"
+                           Padding="10">
+                      <StackLayout Orientation="Horizontal" x:DataType="vm:ReplyEntryViewModel">
+                        <Frame Padding="0"
+                               IsClippedToBounds="True"
+                               BackgroundColor="{DynamicResource PlaceholderColor}"
+                               CornerRadius="5"
+                               VerticalOptions="Start">
+                          <Image Source="{Binding Avatar}"
+                                 HeightRequest="48"
+                                 WidthRequest="48" />
                         </Frame>
-                        <Label Text="{Binding ReplyTitle}" 
-                           LineBreakMode="NoWrap" 
-                           Style="{DynamicResource ListItemTextStyle}" 
-                           FontSize="16" 
-                           VerticalTextAlignment="Center" />
+                        <StackLayout HorizontalOptions="FillAndExpand">
+                          <Label Text="{Binding ReplyTitle}"
+                                 LineBreakMode="WordWrap"
+                                 Style="{DynamicResource ListItemTextStyle}" />
+                          <Label Text="{Binding Content}"
+                         Style="{DynamicResource ListItemDetailTextStyle}"
+                         FontSize="13" />
+                        </StackLayout>
                       </StackLayout>
-                      <Label Text="{Binding Content}" 
-                             Style="{DynamicResource ListItemDetailTextStyle}"
-                             FontSize="13" />
-                    </StackLayout>
-                  </Frame>
-                </ContentView>
-              </DataTemplate>
-            </BindableLayout.ItemTemplate>
-          </StackLayout>
-          <ActivityIndicator IsVisible="{Binding IsPostingRepy}" 
+                    </Frame>
+                  </ContentView>
+                </DataTemplate>
+              </BindableLayout.ItemTemplate>
+            </StackLayout>
+            <ActivityIndicator IsVisible="{Binding IsPostingRepy}"
                          x:Name="defaultActivityIndicator"
                          VerticalOptions="CenterAndExpand"
-                         HorizontalOptions="Fill" IsRunning="{Binding IsPostingRepy}"/>
-          <Label IsVisible="{Binding Message, Converter={StaticResource StringNullOrEmptyBoolConverter}}" 
+                         HorizontalOptions="Fill" IsRunning="{Binding IsPostingRepy}" />
+            <Label IsVisible="{Binding Message, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
                  Text="{Binding Message}" />
-        </StackLayout>
+          </StackLayout>
+        </ContentView>
       </ScrollView>
     </RefreshView>
-    <Grid Padding="7" BackgroundColor="{DynamicResource PageBackgroundColor}">
+    <Grid Padding="7" BackgroundColor="{DynamicResource PageBackgroundColor}" MinimumHeightRequest="57">
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="Auto"/>
-        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
       </Grid.ColumnDefinitions>
       <Editor Text="{Binding NewReplyText, Mode=TwoWay}"
-              FontSize="Medium" 
-              AutoSize="TextChanges"/>
-      <Button Grid.Column="1" Text="Reply" Command="{Binding PostReplyCommand}"/>
-      <Button Grid.Column="2" Text="Cancel" Command="{Binding CancelCommand}"/>
+              FontSize="Medium"
+              AutoSize="TextChanges" />
+      <Button Grid.Column="1" Text="Reply" Command="{Binding PostReplyCommand}" />
+      <Button Grid.Column="2" Text="Cancel" Command="{Binding CancelCommand}" />
     </Grid>
   </StackLayout>
 </ContentPage>

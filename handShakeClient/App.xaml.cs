@@ -22,14 +22,12 @@ namespace HandshakeClient
     {
       InitializeComponent();
 
-      var theme = AppInfo.RequestedTheme;
-
       ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
       if (mergedDictionaries != null)
       {
         mergedDictionaries.Clear();
 
-
+        var theme = AppInfo.RequestedTheme;
         switch (theme)
         {
           case AppTheme.Dark:
@@ -43,6 +41,7 @@ namespace HandshakeClient
       }
 
       MainPage = new AppShell();
+
       container.RegisterSingleton<LocationCache>();
       container.RegisterSingleton<AccountViewModel>();
     }
