@@ -7,27 +7,36 @@
              x:Class="HandshakeClient.Views.LoginPage"
              xmlns:viewModel="clr-namespace:HandshakeClient.ViewModels"
              xmlns:comp="clr-namespace:HandshakeClient.Composite"
-             Shell.NavBarIsVisible="False" x:DataType="viewModel:LoginViewModel">
+             Shell.NavBarIsVisible="False" x:DataType="viewModel:LoginViewModel"
+             BackgroundColor="{DynamicResource DeepBackgroundColor}">
   <ContentPage.Resources>
     <ResourceDictionary>
       <comp:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter" />
     </ResourceDictionary>
   </ContentPage.Resources>
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text="Signup" Clicked="SignupItemClicked" />
+  </ContentPage.ToolbarItems>
   <ContentPage.Content>
-    <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-      <Label Text="Username" />
-      <Entry Placeholder="username" Text="{Binding Username}" />
-      <Label Text="Password" />
-      <Entry Placeholder="password" IsPassword="true" Text="{Binding Password}" />
-      <Button Text="Login" Command="{Binding LoginCommand}"/>
-      <Button Text="Signup" Command="{Binding SignupCommand}" />
-      <ActivityIndicator IsVisible="{Binding IsBusy}" 
+    <Frame CornerRadius="3"
+           HasShadow="True"
+           Padding="10"
+           BackgroundColor="{DynamicResource PageBackgroundColor}"
+           VerticalOptions="Center" 
+           HorizontalOptions="Center" 
+           WidthRequest="400">
+      <StackLayout>
+        <Entry Placeholder="USERNAME" Text="{Binding Username}" Completed="EnterPressed" />
+        <Entry Placeholder="PASSWORD" IsPassword="true" Text="{Binding Password}" Completed="EnterPressed" />
+        <Button Text="Login" Command="{Binding LoginCommand}"/>
+        <ActivityIndicator IsVisible="{Binding IsBusy}" 
                          x:Name="defaultActivityIndicator"
                          VerticalOptions="CenterAndExpand"
                          HorizontalOptions="Fill" 
                          IsRunning="{Binding IsBusy}"/>
-      <Label IsVisible="{Binding Message, Converter={StaticResource StringNullOrEmptyBoolConverter}}" 
+        <Label IsVisible="{Binding Message, Converter={StaticResource StringNullOrEmptyBoolConverter}}" 
              Text="{Binding Message}" />
-    </StackLayout>
+      </StackLayout>
+    </Frame>
   </ContentPage.Content>
 </ContentPage>

@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="ClaraOriginal"
-    Publisher="CN=ClaraOriginal, O=ClaraOriginal, C=DE"
-    Version="0.0.2.0" />
+    Name="32313ClaraOrginal.handshake-socialnetwork"
+    Publisher="CN=0BAC4F43-0CAB-4D5A-9D36-96A122B01EBD"
+    Version="0.0.8.0" />
 
-  <mp:PhoneIdentity PhoneProductId="de75bcf4-468a-45bc-a8dd-3f24558bd15d" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="11fc3960-0516-4de7-8f3d-6421e1ae1c4f" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>HandshakeClient.UWP</DisplayName>
-    <PublisherDisplayName>ClaraOriginal</PublisherDisplayName>
+    <DisplayName>handshake-socialnetwork</DisplayName>
+    <PublisherDisplayName>ClaraOrginal</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -32,7 +32,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="HandshakeClient.UWP.App">
       <uap:VisualElements
-        DisplayName="HandshakeClient.UWP"
+        DisplayName="handshake-socialnetwork"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="HandshakeClient.UWP"

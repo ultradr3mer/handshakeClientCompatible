@@ -1,11 +1,12 @@
 ﻿using HandshakeClient.ViewModels;
+using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace HandshakeClient.Views
 {
   public partial class LoginPage : ContentPage
   {
+
     #region Constructors
 
     public LoginPage()
@@ -33,6 +34,16 @@ namespace HandshakeClient.Views
       base.OnAppearing();
 
       this.ViewModel.Initialize();
+    }
+
+    private void EnterPressed(object sender, EventArgs e)
+    {
+      this.ViewModel.LoginCommand.Execute(null);
+    }
+
+    private void SignupItemClicked(object sender, System.EventArgs e)
+    {
+      this.ViewModel.SignupCommand.Execute(null);
     }
 
     #endregion Methods

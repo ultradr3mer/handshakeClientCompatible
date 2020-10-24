@@ -23,7 +23,7 @@
         <CheckBox IsChecked="{Binding IsAccepted}" />
         <Label Text="I do understand that this application is a preview and that the data entered, processed and displayed is subject to change. Accordingly, the application is provided &quot;as is,&quot; with all faults, defects, and errors, and without warranty of any kind."/>
       </StackLayout>
-      <Button Text="Sign Up" Command="{Binding SignupCommand}" />
+      <Button Text="Signup" Command="{Binding SignupCommand}" />
       <ActivityIndicator IsVisible="{Binding IsBusy}" 
                          x:Name="defaultActivityIndicator"
                          VerticalOptions="CenterAndExpand"

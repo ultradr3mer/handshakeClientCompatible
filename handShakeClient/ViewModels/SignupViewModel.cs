@@ -108,7 +108,7 @@ namespace HandshakeClient.ViewModels
         return;
       }
 
-      if(this.Password != this.PasswordRepeat)
+      if (this.Password != this.PasswordRepeat)
       {
         this.Message = "Passwords must match.";
         return;
@@ -131,9 +131,9 @@ namespace HandshakeClient.ViewModels
         await SecureStorage.SetAsync(LoginViewModel.UsernameKey, this.Username);
         await SecureStorage.SetAsync(LoginViewModel.PasswordKey, this.Password);
 
-        App.Client = client;
+        App.Client = new Client(new CustomHttpClient(this.Username, this.Password));
 
-        await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+        await Shell.Current.GoToAsync($"//{nameof(PostsPage)}");
       }
       catch (ApiException exception)
       {

@@ -1,6 +1,7 @@
 ﻿using HandshakeClient.Composite;
 using HandshakeClient.Services;
 using HandshakeClient.Views;
+using System;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -70,14 +71,14 @@ namespace HandshakeClient.ViewModels
         if (!string.IsNullOrEmpty(this.Username) && !string.IsNullOrEmpty(this.Password))
         {
           App.Client = new Client(new CustomHttpClient(this.Username, this.Password));
-          await Continue();
+          await this.Continue();
         }
 
         this.firstOpened = false;
       }
     }
 
-    private static async Task Continue()
+    private async Task Continue()
     {
       await Shell.Current.GoToAsync($"//{nameof(PostsPage)}");
     }
@@ -85,19 +86,20 @@ namespace HandshakeClient.ViewModels
     private async void LoginCommandExecute()
     {
       this.IsBusy = true;
-      this.Message = string.Empty;
+      this.Message = $"Signing in as {this.Username}";
 
       App.Client = new Client(new CustomHttpClient(this.Username, this.Password));
 
       try
       {
         await this.accountViewModel.Initialize();
-        this.Message = $"Signed in as {this.accountViewModel.Nickname}.";
 
         await SecureStorage.SetAsync(LoginViewModel.UsernameKey, this.Username);
         await SecureStorage.SetAsync(LoginViewModel.PasswordKey, this.Password);
 
-        await Continue();
+        this.Message = string.Empty;
+
+        await this.Continue();
       }
       catch (ApiException exception)
       {
