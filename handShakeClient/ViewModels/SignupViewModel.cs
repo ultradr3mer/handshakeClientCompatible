@@ -1,6 +1,5 @@
 ﻿using HandshakeClient.Composite;
 using HandshakeClient.Services;
-using HandshakeClient.Views;
 using System;
 using System.Net.Http;
 using Xamarin.Essentials;
@@ -28,6 +27,7 @@ namespace HandshakeClient.ViewModels
     public SignupViewModel()
     {
       this.SignupCommand = new Command(this.SignupCommandExecute, this.SignupCommandCanExecute);
+      this.CancelCommand = new Command(this.CancelCommandExecute);
 
       this.PropertyChanged += this.SignupViewModelPropertyChanged;
     }
@@ -35,6 +35,8 @@ namespace HandshakeClient.ViewModels
     #endregion Constructors
 
     #region Properties
+
+    public Command CancelCommand { get; }
 
     public string Id
     {
@@ -87,6 +89,11 @@ namespace HandshakeClient.ViewModels
 
     #region Methods
 
+    private async void CancelCommandExecute()
+    {
+      await Shell.Current.GoToAsync($"..");
+    }
+
     private bool SignupCommandCanExecute()
     {
       return !string.IsNullOrEmpty(this.Id)
@@ -131,9 +138,7 @@ namespace HandshakeClient.ViewModels
         await SecureStorage.SetAsync(LoginViewModel.UsernameKey, this.Username);
         await SecureStorage.SetAsync(LoginViewModel.PasswordKey, this.Password);
 
-        App.Client = new Client(new CustomHttpClient(this.Username, this.Password));
-
-        await Shell.Current.GoToAsync($"//{nameof(PostsPage)}");
+        await Shell.Current.GoToAsync($"..");
       }
       catch (ApiException exception)
       {

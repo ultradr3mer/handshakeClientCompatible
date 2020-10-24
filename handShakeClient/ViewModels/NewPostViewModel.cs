@@ -29,7 +29,7 @@ namespace HandshakeClient.ViewModels
     {
       this.SaveCommand = new Command(this.SaveCommandExecute, this.SaveCommandCanExecute);
       this.CancelCommand = new Command(this.OnCancel);
-      this.PickImageCommand = new Command(async () => await this.PickImageCommandExecute(), this.PickImageCommandCanExecute);
+      this.PickImageCommand = new Command(this.PickImageCommandExecute, this.PickImageCommandCanExecute);
       this.PropertyChanged += this.NewPostViewModelPropertyChanged;
       this.locationCache = locationCache;
     }
@@ -114,7 +114,7 @@ namespace HandshakeClient.ViewModels
       return !this.IsBusy;
     }
 
-    private async Task PickImageCommandExecute()
+    private async void PickImageCommandExecute()
     {
       await CrossMedia.Current.Initialize();
       if (!CrossMedia.Current.IsPickPhotoSupported)

@@ -4,6 +4,8 @@
              x:Class="HandshakeClient.Views.SignupPage"
              xmlns:viewModel="clr-namespace:HandshakeClient.ViewModels"
              xmlns:comp="clr-namespace:HandshakeClient.Composite"
+             Shell.PresentationMode="ModalAnimated"
+             BackgroundColor="{DynamicResource DeepBackgroundColor}"
              x:DataType="viewModel:SignupViewModel">
   <ContentPage.Resources>
     <ResourceDictionary>
@@ -11,25 +13,36 @@
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.Content>
-    <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-      <Label Text="INVITE CODE:" />
-      <Entry Placeholder="INVITE CODE*" Text="{Binding Id}" />
-      <Entry Placeholder="USERNAME*" Text="{Binding Username}" />
-      <Entry Placeholder="DISPLAY NAME" Text="{Binding Nickname}" />
-      <Entry Placeholder="PASSWORD*" IsPassword="true" Text="{Binding Password}" />
-      <Entry Placeholder="REPEAT PASSWORD*" IsPassword="true" Text="{Binding PasswordRepeat}" />
-      <Label Text="*Required" />
-      <StackLayout Orientation="Horizontal">
-        <CheckBox IsChecked="{Binding IsAccepted}" />
-        <Label Text="I do understand that this application is a preview and that the data entered, processed and displayed is subject to change. Accordingly, the application is provided &quot;as is,&quot; with all faults, defects, and errors, and without warranty of any kind."/>
-      </StackLayout>
-      <Button Text="Signup" Command="{Binding SignupCommand}" />
-      <ActivityIndicator IsVisible="{Binding IsBusy}" 
+    <Frame CornerRadius="3"
+           HasShadow="True"
+           Padding="10"
+           BackgroundColor="{DynamicResource PageBackgroundColor}"
+           VerticalOptions="Center"
+           HorizontalOptions="Center"
+           WidthRequest="400">
+      <StackLayout>
+        <Label Text="INVITE CODE:" />
+        <Entry Placeholder="INVITE CODE*" Text="{Binding Id}" />
+        <Entry Placeholder="USERNAME*" Text="{Binding Username}" />
+        <Entry Placeholder="DISPLAY NAME" Text="{Binding Nickname}" />
+        <Entry Placeholder="PASSWORD*" IsPassword="true" Text="{Binding Password}" />
+        <Entry Placeholder="REPEAT PASSWORD*" IsPassword="true" Text="{Binding PasswordRepeat}" />
+        <Label Text="*Required" />
+        <StackLayout Orientation="Horizontal">
+          <CheckBox IsChecked="{Binding IsAccepted}" />
+          <Label Text="I do understand that this application is a preview and that the data entered, processed and displayed is subject to change. Accordingly, the application is provided &quot;as is,&quot; with all faults, defects, and errors, and without warranty of any kind." />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+          <Button Text="Signup" Command="{Binding SignupCommand}" HorizontalOptions="FillAndExpand" />
+          <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand" />
+        </StackLayout>
+        <ActivityIndicator IsVisible="{Binding IsBusy}"
                          x:Name="defaultActivityIndicator"
                          VerticalOptions="CenterAndExpand"
-                         HorizontalOptions="Fill" IsRunning="{Binding IsBusy}"/>
-      <Label IsVisible="{Binding Message, Converter={StaticResource StringNullOrEmptyBoolConverter}}" 
+                         HorizontalOptions="Fill" IsRunning="{Binding IsBusy}" />
+        <Label IsVisible="{Binding Message, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
              Text="{Binding Message}" />
-    </StackLayout>
+      </StackLayout>
+    </Frame>
   </ContentPage.Content>
 </ContentPage>

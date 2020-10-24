@@ -27,8 +27,8 @@ namespace HandshakeClient.ViewModels
 
     public AccountViewModel()
     {
-      this.SaveCommand = new Command(async o => await this.SaveCommandExecute(o), this.SaveCommandCanExecute);
-      this.AvatarTappedCommand = new Command(async () => await this.AvatarTappedCommandExecute());
+      this.SaveCommand = new Command(this.SaveCommandExecute, this.SaveCommandCanExecute);
+      this.AvatarTappedCommand = new Command(this.AvatarTappedCommandExecute);
 
       this.PropertyChanged += this.AccountViewModelPropertyChanged;
     }
@@ -96,7 +96,7 @@ namespace HandshakeClient.ViewModels
       }
     }
 
-    private async Task AvatarTappedCommandExecute()
+    private async void AvatarTappedCommandExecute()
     {
       await CrossMedia.Current.Initialize();
       if (!CrossMedia.Current.IsPickPhotoSupported)
@@ -126,7 +126,7 @@ namespace HandshakeClient.ViewModels
             !this.IsBusy;
     }
 
-    private async Task SaveCommandExecute(object o)
+    private async void SaveCommandExecute(object o)
     {
       this.IsBusy = true;
 

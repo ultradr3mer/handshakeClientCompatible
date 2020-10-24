@@ -15,10 +15,10 @@ namespace HandshakeClient.ViewModels
     public const string PasswordKey = "password";
     public const string UsernameKey = "username";
     private readonly AccountViewModel accountViewModel;
+    private bool firstOpened = true;
     private string propMessage;
     private string propPassword;
     private string propUsername;
-    private bool firstOpened = true;
 
     #endregion Fields
 
@@ -26,9 +26,19 @@ namespace HandshakeClient.ViewModels
 
     public LoginViewModel(AccountViewModel accountViewModel)
     {
-      this.LoginCommand = new Command(this.LoginCommandExecute);
+      this.LoginCommand = new Command(this.LoginCommandExecute, this.LoginCommandCanExecute);
       this.SignupCommand = new Command(this.SignupCommandExecute);
       this.accountViewModel = accountViewModel;
+
+      this.PropertyChanged += this.LoginViewModel_PropertyChanged;
+    }
+
+    private void LoginViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+      if(e.PropertyName == nameof(Password) || e.PropertyName == nameof(Username))
+      {
+        this.LoginCommand.ChangeCanExecute();
+      }
     }
 
     #endregion Constructors
@@ -80,13 +90,19 @@ namespace HandshakeClient.ViewModels
 
     private async Task Continue()
     {
+      this.Message = $"Signed in as {this.Username}";
       await Shell.Current.GoToAsync($"//{nameof(PostsPage)}");
+    }
+
+    private bool LoginCommandCanExecute()
+    {
+      return !string.IsNullOrWhiteSpace(this.Username) && !string.IsNullOrWhiteSpace(this.Password);
     }
 
     private async void LoginCommandExecute()
     {
       this.IsBusy = true;
-      this.Message = $"Signing in as {this.Username}";
+      this.Message = $"Signing in as {this.Username}...";
 
       App.Client = new Client(new CustomHttpClient(this.Username, this.Password));
 

@@ -14,7 +14,7 @@ namespace HandshakeClient.Views
 
       this.ViewModel = new AccountViewModel();
 
-      this.SaveButton.Command = new Command(async () => await this.SaveButtonCommandExecute());
+      this.SaveButton.Command = new Command(this.SaveButtonCommandExecute);
     }
 
     #endregion Constructors
@@ -38,7 +38,7 @@ namespace HandshakeClient.Views
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
     }
 
-    private async Task SaveButtonCommandExecute()
+    private async void SaveButtonCommandExecute()
     {
       System.IO.Stream avatar = null;
       if (this.avatarCrop.IsEnabled)

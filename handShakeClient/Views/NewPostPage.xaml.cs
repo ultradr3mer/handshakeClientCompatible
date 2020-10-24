@@ -21,7 +21,7 @@ namespace HandshakeClient.Views
       this.ViewModel = App.Resolve<NewPostViewModel>();
       this.ViewModel.SaveCommand.CanExecuteChanged += this.SaveCommandCanExecuteChanged;
 
-      this.saveButtonCommand = new Command(async () => await this.SaveButtonCommandExecute(), this.SaveButtonCommandCanExecute);
+      this.saveButtonCommand = new Command(this.SaveButtonCommandExecute, this.SaveButtonCommandCanExecute);
       this.SaveButton.Command = this.saveButtonCommand;
     }
 
@@ -56,7 +56,7 @@ namespace HandshakeClient.Views
       return this.ViewModel.SaveCommand.CanExecute(null);
     }
 
-    private async Task SaveButtonCommandExecute()
+    private async void SaveButtonCommandExecute()
     {
       System.IO.Stream image = null;
       if (this.imageCrop.Source != null)

@@ -28,7 +28,7 @@ namespace HandshakeClient.ViewModels
     {
       this.Title = "Browse";
       this.Posts = new ObservableCollection<PostEntryViewModel>();
-      this.LoadItemsCommand = new Command(async () => await this.ExecuteLoadItemsCommand());
+      this.LoadItemsCommand = new Command(this.ExecuteLoadItemsCommand);
       this.AddItemCommand = new Command(this.OnAddItem);
       this.locationCache = locationCache;
     }
@@ -57,7 +57,7 @@ namespace HandshakeClient.ViewModels
       this.IsBusy = true;
     }
 
-    private async Task ExecuteLoadItemsCommand()
+    private async void ExecuteLoadItemsCommand()
     {
       this.IsBusy = true;
 
