@@ -9,7 +9,7 @@
   <Identity
     Name="32313ClaraOrginal.handshake-socialnetwork"
     Publisher="CN=0BAC4F43-0CAB-4D5A-9D36-96A122B01EBD"
-    Version="0.0.8.0" />
+    Version="0.1.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="11fc3960-0516-4de7-8f3d-6421e1ae1c4f" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
