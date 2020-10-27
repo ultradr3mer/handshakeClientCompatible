@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HandshakeClient.Views.GroupsPage">
   <ContentPage.Content>
-    <CollectionView ItemsSource="{Binding Posts}"
+    <!--<CollectionView ItemsSource="{Binding Posts}"
                         SelectionMode="None">
       <CollectionView.ItemTemplate>
         <DataTemplate>
@@ -61,6 +61,6 @@
           </ContentView>
         </DataTemplate>
       </CollectionView.ItemTemplate>
-    </CollectionView>
+    </CollectionView>-->
   </ContentPage.Content>
 </ContentPage>

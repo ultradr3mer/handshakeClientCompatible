@@ -15,11 +15,6 @@ namespace HandshakeClient.ViewModels
 
     private bool isInitialized = false;
     private MediaFile mediaFile;
-    private ImageSource propAvatarSource;
-    private bool propIsCropViewEnabled;
-    private string propMessage;
-    private string propNickname;
-    private string propSummary;
 
     #endregion Fields
 
@@ -37,37 +32,17 @@ namespace HandshakeClient.ViewModels
 
     #region Properties
 
-    public ImageSource AvatarSource
-    {
-      get { return this.propAvatarSource; }
-      set { this.SetProperty(ref this.propAvatarSource, value); }
-    }
+    public ImageSource AvatarSource { get; set; }
 
     public Command AvatarTappedCommand { get; }
 
-    public string Description
-    {
-      get { return this.propSummary; }
-      set { this.SetProperty(ref this.propSummary, value); }
-    }
+    public string Description { get; set; }
 
-    public bool IsCropViewEnabled
-    {
-      get { return this.propIsCropViewEnabled; }
-      set { this.SetProperty(ref this.propIsCropViewEnabled, value); }
-    }
+    public bool IsCropViewEnabled { get; set; }
 
-    public string Message
-    {
-      get { return this.propMessage; }
-      set { this.SetProperty(ref this.propMessage, value); }
-    }
+    public string Message { get; set; }
 
-    public string Nickname
-    {
-      get { return this.propNickname; }
-      set { this.SetProperty(ref this.propNickname, value); }
-    }
+    public string Nickname { get; set; }
 
     public Command SaveCommand { get; }
 

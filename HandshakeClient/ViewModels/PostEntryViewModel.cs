@@ -9,17 +9,6 @@ namespace HandshakeClient.ViewModels
 {
   public class PostEntryViewModel : BaseViewModel<PostGetData>
   {
-    #region Fields
-
-    private ImageSource propAvatar;
-    private string propContent;
-    private Guid propId;
-    private ImageSource propImage;
-    private string propPostTitle;
-
-    private int propReplyCount;
-
-    #endregion Fields
 
     #region Constructors
 
@@ -32,41 +21,17 @@ namespace HandshakeClient.ViewModels
 
     #region Properties
 
-    public ImageSource Avatar
-    {
-      get { return propAvatar; }
-      set { SetProperty(ref propAvatar, value); }
-    }
+    public ImageSource Avatar { get; set; }
 
-    public string Content
-    {
-      get { return propContent; }
-      set { SetProperty(ref propContent, value); }
-    }
+    public string Content { get; set; }
 
-    public Guid Id
-    {
-      get { return propId; }
-      set { SetProperty(ref propId, value); }
-    }
+    public Guid Id { get; set; }
 
-    public ImageSource Image
-    {
-      get { return propImage; }
-      set { SetProperty(ref propImage, value); }
-    }
+    public ImageSource Image { get; set; }
 
-    public string PostTitle
-    {
-      get { return this.propPostTitle; }
-      set { this.SetProperty(ref this.propPostTitle, value); }
-    }
+    public string PostTitle { get; set; }
 
-    public int ReplyCount
-    {
-      get { return propReplyCount; }
-      set { SetProperty(ref propReplyCount, value); }
-    }
+    public int ReplyCount { get; set; }
 
     public Command Tapped { get; }
 

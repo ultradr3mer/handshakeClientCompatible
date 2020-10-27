@@ -7,33 +7,13 @@ namespace HandshakeClient.ViewModels
 {
   public class ReplyEntryViewModel : BaseViewModel<PostReplyGetData>
   {
-    #region Fields
-
-    private ImageSource propAvatar;
-    private string propContent;
-    private string propReplyTitle;
-
-    #endregion Fields
-
     #region Properties
 
-    public ImageSource Avatar
-    {
-      get { return propAvatar; }
-      set { SetProperty(ref propAvatar, value); }
-    }
+    public ImageSource Avatar { get; set; }
 
-    public string Content
-    {
-      get { return propContent; }
-      set { SetProperty(ref propContent, value); }
-    }
+    public string Content { get; set; }
 
-    public string ReplyTitle
-    {
-      get { return propReplyTitle; }
-      set { SetProperty(ref propReplyTitle, value); }
-    }
+    public string ReplyTitle { get; set; }
 
     #endregion Properties
 

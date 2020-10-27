@@ -16,9 +16,6 @@ namespace HandshakeClient.ViewModels
     public const string UsernameKey = "username";
     private readonly AccountViewModel accountViewModel;
     private bool firstOpened = true;
-    private string propMessage;
-    private string propPassword;
-    private string propUsername;
 
     #endregion Fields
 
@@ -47,25 +44,13 @@ namespace HandshakeClient.ViewModels
 
     public Command LoginCommand { get; }
 
-    public string Message
-    {
-      get { return this.propMessage; }
-      set { this.SetProperty(ref this.propMessage, value); }
-    }
+    public string Message { get; set; }
 
-    public string Password
-    {
-      get { return this.propPassword; }
-      set { this.SetProperty(ref this.propPassword, value); }
-    }
+    public string Password { get; set; }
 
     public Command SignupCommand { get; }
 
-    public string Username
-    {
-      get { return this.propUsername; }
-      set { this.SetProperty(ref this.propUsername, value); }
-    }
+    public string Username { get; set; }
 
     #endregion Properties
 

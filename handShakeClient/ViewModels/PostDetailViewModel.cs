@@ -13,15 +13,6 @@ namespace HandshakeClient.ViewModels
     #region Fields
 
     private Guid idGuid;
-    private ImageSource propAvatar;
-    private string propContent;
-    private string propId;
-    private ImageSource propImage;
-    private bool propIsPosting;
-    private string propMessage;
-    private string propNewReplyText;
-    private string propPostTitle;
-    private ObservableCollection<ReplyEntryViewModel> propReplys;
 
     #endregion Fields
 
@@ -40,81 +31,28 @@ namespace HandshakeClient.ViewModels
 
     #region Properties
 
-    public ImageSource Avatar
-    {
-      get { return propAvatar; }
-      set { SetProperty(ref propAvatar, value); }
-    }
+    public ImageSource Avatar { get; set; }
 
-    public Command CancelCommand
-    {
-      get;
-    }
+    public Command CancelCommand { get; }
 
-    public string Content
-    {
-      get { return this.propContent; }
-      set { this.SetProperty(ref this.propContent, value); }
-    }
+    public string Content { get; set; }
 
-    public string Id
-    {
-      get
-      {
-        return this.propId;
-      }
-      set
-      {
-        this.propId = value;
-        this.idGuid = Guid.Parse(value);
-      }
-    }
+    public string Id { get; set; }
+    public ImageSource Image { get; set; }
 
-    public ImageSource Image
-    {
-      get { return propImage; }
-      set { SetProperty(ref propImage, value); }
-    }
+    public bool IsPostingRepy { get; set; }
 
-    public bool IsPostingRepy
-    {
-      get { return this.propIsPosting; }
-      set { this.SetProperty(ref this.propIsPosting, value); }
-    }
+    public string Message { get; set; }
 
-    public string Message
-    {
-      get { return this.propMessage; }
-      set { this.SetProperty(ref this.propMessage, value); }
-    }
+    public string NewReplyText { get; set; }
 
-    public string NewReplyText
-    {
-      get { return this.propNewReplyText; }
-      set { this.SetProperty(ref this.propNewReplyText, value); }
-    }
+    public Command PostReplyCommand { get; }
 
-    public Command PostReplyCommand
-    {
-      get;
-    }
+    public string PostTitle { get; set; }
 
-    public string PostTitle
-    {
-      get { return this.propPostTitle; }
-      set { this.SetProperty(ref this.propPostTitle, value); }
-    }
+    public Command RefreshCommand { get; }
 
-    public Command RefreshCommand
-    {
-      get;
-    }
-
-    public ObservableCollection<ReplyEntryViewModel> Replys
-    {
-      get { return this.propReplys; }
-      set { this.SetProperty(ref this.propReplys, value); }
-    }
+    public ObservableCollection<ReplyEntryViewModel> Replys { get; set; }
 
     #endregion Properties
 
@@ -164,6 +102,10 @@ namespace HandshakeClient.ViewModels
       if (e.PropertyName == nameof(this.NewReplyText) || e.PropertyName == nameof(this.IsPostingRepy))
       {
         this.PostReplyCommand.ChangeCanExecute();
+      }
+      else if (e.PropertyName == nameof(Id))
+      {
+        this.idGuid = Guid.Parse(this.Id);
       }
     }
 

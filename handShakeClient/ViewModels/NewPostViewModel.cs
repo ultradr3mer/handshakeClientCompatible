@@ -15,11 +15,6 @@ namespace HandshakeClient.ViewModels
 
     private readonly LocationCache locationCache;
     private string fileName;
-    private bool propIsImageVisible;
-    private string propMessage;
-    private string propPlaceholder;
-    private ImageSource propPostImage;
-    private string propText;
 
     #endregion Fields
 
@@ -40,33 +35,17 @@ namespace HandshakeClient.ViewModels
 
     public Command CancelCommand { get; }
 
-    public string Message
-    {
-      get { return this.propMessage; }
-      set { this.SetProperty(ref this.propMessage, value); }
-    }
+    public string Message { get; set; }
 
     public Command PickImageCommand { get; }
 
-    public string Placeholder
-    {
-      get { return this.propPlaceholder; }
-      set { this.SetProperty(ref this.propPlaceholder, value); }
-    }
+    public string Placeholder { get; set; }
 
-    public ImageSource PostImage
-    {
-      get { return propPostImage; }
-      set { SetProperty(ref propPostImage, value); }
-    }
+    public ImageSource PostImage { get; set; }
 
     public Command SaveCommand { get; }
 
-    public string Text
-    {
-      get { return this.propText; }
-      set { this.SetProperty(ref this.propText, value); }
-    }
+    public string Text { get; set; }
 
     #endregion Properties
 

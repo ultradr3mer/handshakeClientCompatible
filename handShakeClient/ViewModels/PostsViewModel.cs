@@ -17,8 +17,6 @@ namespace HandshakeClient.ViewModels
     #region Fields
 
     private readonly LocationCache locationCache;
-    private string propMessage;
-    private PostGetData propSelectedPost;
 
     #endregion Fields
 
@@ -38,13 +36,10 @@ namespace HandshakeClient.ViewModels
     #region Properties
 
     public Command AddItemCommand { get; }
+
     public Command LoadItemsCommand { get; }
 
-    public string Message
-    {
-      get { return this.propMessage; }
-      set { this.SetProperty(ref this.propMessage, value); }
-    }
+    public string Message { get; set; }
 
     public ObservableCollection<PostEntryViewModel> Posts { get; }
 
