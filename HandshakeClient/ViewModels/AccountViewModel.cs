@@ -140,7 +140,7 @@ namespace HandshakeClient.ViewModels
         if (this.mediaFile != null)
         {
           FileParameter file = new FileParameter((Stream)o, System.IO.Path.GetFileName(this.mediaFile.Path));
-          ProfileGetData result = await App.Client.ProfileAvatarAsync(file);
+          await App.Client.ProfileAvatarAsync(file);
           this.mediaFile = null;
           this.IsCropViewEnabled = false;
         }

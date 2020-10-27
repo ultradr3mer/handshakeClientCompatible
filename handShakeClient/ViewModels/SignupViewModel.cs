@@ -10,18 +10,6 @@ namespace HandshakeClient.ViewModels
   [QueryProperty(nameof(Id), nameof(Id))]
   public class SignupViewModel : BaseViewModel
   {
-    #region Fields
-
-    private string propId;
-    private bool propIsAccepted;
-    private string propMessage;
-    private string propNickname;
-    private string propPassword;
-    private string propPasswordRepeat;
-    private string propUsername;
-
-    #endregion Fields
-
     #region Constructors
 
     public SignupViewModel()
@@ -40,38 +28,38 @@ namespace HandshakeClient.ViewModels
 
     public string Id
     {
-      get { return this.propId; }
-      set { this.SetProperty(ref this.propId, value); }
+      get;
+      set;
     }
 
     public bool IsAccepted
     {
-      get { return propIsAccepted; }
-      set { SetProperty(ref propIsAccepted, value); }
+      get;
+      set;
     }
 
     public string Message
     {
-      get { return this.propMessage; }
-      set { this.SetProperty(ref this.propMessage, value); }
+      get;
+      set;
     }
 
     public string Nickname
     {
-      get { return this.propNickname; }
-      set { this.SetProperty(ref this.propNickname, value); }
+      get;
+      set;
     }
 
     public string Password
     {
-      get { return this.propPassword; }
-      set { this.SetProperty(ref this.propPassword, value); }
+      get;
+      set;
     }
 
     public string PasswordRepeat
     {
-      get { return this.propPasswordRepeat; }
-      set { this.SetProperty(ref this.propPasswordRepeat, value); }
+      get;
+      set;
     }
 
     public Command SignupCommand
@@ -81,8 +69,8 @@ namespace HandshakeClient.ViewModels
 
     public string Username
     {
-      get { return this.propUsername; }
-      set { this.SetProperty(ref this.propUsername, value); }
+      get;
+      set;
     }
 
     #endregion Properties

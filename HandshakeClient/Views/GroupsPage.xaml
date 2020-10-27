@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HandshakeClient.Views.GroupsPage">
+  <ContentPage.Content>
+    <CollectionView ItemsSource="{Binding Posts}"
+                        SelectionMode="None">
+      <CollectionView.ItemTemplate>
+        <DataTemplate>
+          <ContentView Padding="2" x:DataType="vm:PostEntryViewModel">
+            <Frame BackgroundColor="{DynamicResource PageBackgroundColor}"
+                       CornerRadius="3"
+                       HasShadow="True"
+                       Padding="10"
+                       WidthRequest="500">
+              <Frame.HorizontalOptions>
+                <OnPlatform x:TypeArguments="LayoutOptions" Android="FillAndExpand"  WinPhone="Center" />
+              </Frame.HorizontalOptions>
+              <StackLayout Orientation="Horizontal">
+                <Frame Padding="0"
+                          IsClippedToBounds="True"
+                          BackgroundColor="{DynamicResource PlaceholderColor}"
+                          CornerRadius="5"
+                          VerticalOptions="Start">
+                  <Image Source="{Binding Avatar}"
+                               HeightRequest="48"
+                               WidthRequest="48" />
+                </Frame>
+                <StackLayout HorizontalOptions="FillAndExpand">
+                  <Label Text="{Binding PostTitle}"
+                           LineBreakMode="WordWrap"
+                           Style="{DynamicResource ListItemTextStyle}" />
+                  <Image Source="{Binding Image}"
+                             IsVisible="{Binding Image, Converter={StaticResource ObjectNullBoolConverter}}"
+                             HorizontalOptions="FillAndExpand"
+                             SizeChanged="postImageSizeChanged">
+                    <Image.WidthRequest>
+                      <OnPlatform x:TypeArguments="x:Double" Android ="0" WinPhone="442" />
+                    </Image.WidthRequest>
+                  </Image>
+                  <Label Text="{Binding Content}"
+                           Style="{DynamicResource ListItemDetailTextStyle}"
+                           FontSize="13" />
+                  <StackLayout Spacing="3" Orientation="Horizontal">
+                    <Image Source="{AppThemeBinding Light=baseline_mode_comment_black_24dp.png, Dark=baseline_mode_comment_white_24dp.png}"
+                            Opacity="0.5"
+                            HeightRequest="18" />
+                    <Label Text="{Binding ReplyCount}"
+                          Style="{DynamicResource ListItemDetailTextStyle}"
+                          FontSize="13"
+                          VerticalTextAlignment="Center" />
+                  </StackLayout>
+                </StackLayout>
+              </StackLayout>
+              <Frame.GestureRecognizers>
+                <TapGestureRecognizer NumberOfTapsRequired="1"
+                                          Command="{Binding Tapped}">
+                </TapGestureRecognizer>
+              </Frame.GestureRecognizers>
+            </Frame>
+          </ContentView>
+        </DataTemplate>
+      </CollectionView.ItemTemplate>
+    </CollectionView>
+  </ContentPage.Content>
+</ContentPage>

@@ -90,6 +90,13 @@
   </FlyoutItem>
 
   <FlyoutItem FlyoutDisplayOptions="AsSingleItem"
+              Title="Groups"
+              Icon="{AppThemeBinding Light=baseline_hash_circle_black_48dp.png, Dark=baseline_hash_circle_white_48dp.png}"
+              Route="GroupsPage" >
+    <ShellContent ContentTemplate="{DataTemplate views:GroupsPage}" />
+  </FlyoutItem>
+
+  <FlyoutItem FlyoutDisplayOptions="AsSingleItem"
               Title="About"
               Icon="{AppThemeBinding Light=baseline_info_black_48dp.png, Dark=baseline_info_white_48dp.png}"
               Route="AboutPage">
