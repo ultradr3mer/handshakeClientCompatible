@@ -12,9 +12,9 @@ namespace HandshakeClient.Services
 
     #region Methods
 
-    public static Uri CreateUrl(string url)
+    public static Uri CreateUrl(string localUrl)
     {
-      return string.IsNullOrEmpty(url) ? null : new Uri(BaseUrl + url);
+      return string.IsNullOrEmpty(localUrl) ? null : new Uri(BaseUrl + localUrl);
     }
 
     #endregion Methods

@@ -6,10 +6,12 @@
              xmlns:comp="clr-namespace:HandshakeClient.Composite" 
              xmlns:views="clr-namespace:HandshakeClient.Views"
              xmlns:imgcrop="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.ImageCropView"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
   <ContentPage.Resources>
     <ResourceDictionary>
       <comp:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter" />
+      <comp:ObjectNullBoolConverter x:Key="ObjectNullBoolConverter" />
     </ResourceDictionary>
   </ContentPage.Resources>
   <StackLayout x:DataType="vm:AccountViewModel" Padding="10">
@@ -19,14 +21,36 @@
       <Grid HorizontalOptions="Center">
         <Frame Padding="0" 
                CornerRadius="30" 
-               BackgroundColor="Transparent"  
+               BackgroundColor="{DynamicResource PlaceholderColor}"  
                IsClippedToBounds="True">
-          <imgcrop:ImageCropView BackgroundColor="{DynamicResource PlaceholderColor}" 
-                                 HeightRequest="300" 
-                                 WidthRequest="300" 
-                                 Source="{Binding AvatarSource}" 
-                                 IsEnabled="{Binding IsCropViewEnabled}" 
-                                 x:Name="avatarCrop"/>
+          <Grid>
+            <Image Source="{Binding IconCurrent}"
+                   HeightRequest="300"
+                   WidthRequest="300"
+                   IsAnimationPlaying="True"
+                   IsVisible="{Binding IconCurrent, Converter={StaticResource ObjectNullBoolConverter}}" />
+            <imgcrop:ImageCropView HeightRequest="300"
+                                   WidthRequest="300"
+                                   Source="{Binding IconNewCrop}"
+                                   x:Name="avatarCrop"
+                                   IsVisible="{Binding IconNewCrop, Converter={StaticResource ObjectNullBoolConverter}}" />
+            <Image Source="{Binding IconNewAnimated}"
+                   HeightRequest="300"
+                   WidthRequest="300"
+                   IsVisible="{Binding IconNewAnimated, Converter={StaticResource ObjectNullBoolConverter}}" />
+            <Frame BackgroundColor="#66000000"
+                   HasShadow="False"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   CornerRadius="5"
+                   Padding="5"
+                   IsVisible="{Binding IconNewAnimated, Converter={StaticResource ObjectNullBoolConverter}}">
+              <StackLayout>
+                <Image Source="baseline_gif_white_48dp.png" HeightRequest="48" />
+                <Label Text="Animation will be playing after the upload." />
+              </StackLayout>
+            </Frame>
+          </Grid>
         </Frame>
         <Frame BackgroundColor="{DynamicResource PageBackgroundColor}"
                CornerRadius="10"

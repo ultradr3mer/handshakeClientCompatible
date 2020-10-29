@@ -24,7 +24,7 @@
                HeightRequest="300"
                WidthRequest="300"
                IsClippedToBounds="True">
-            <Grid HorizontalOptions="Center">
+            <Grid>
               <imgcrop:ImageCropView HeightRequest="300"
                                      WidthRequest="300"
                                      Source="{Binding IconCrop}"
@@ -34,10 +34,18 @@
                      HeightRequest="300"
                      WidthRequest="300"
                      IsVisible="{Binding IconAnimated, Converter={StaticResource ObjectNullBoolConverter}}" />
-              <Label Text="Animation will be playing after the upload."
+              <Frame BackgroundColor="#66000000"
+                     HasShadow="False"
                      VerticalOptions="Center"
                      HorizontalOptions="Center"
-                     IsVisible="{Binding IconAnimated, Converter={StaticResource ObjectNullBoolConverter}}" />
+                     CornerRadius="5"
+                     Padding="5"
+                     IsVisible="{Binding IconAnimated, Converter={StaticResource ObjectNullBoolConverter}}">
+                <StackLayout>
+                  <Image Source="baseline_gif_white_48dp.png" HeightRequest="48" />
+                  <Label Text="Animation will be playing after the upload." />
+                </StackLayout>
+              </Frame>
             </Grid>
           </Frame>
           <Frame BackgroundColor="{DynamicResource PageBackgroundColor}"
@@ -62,8 +70,10 @@
                          VerticalOptions="End"
                          HorizontalOptions="Fill"
                          IsRunning="{Binding IsBusy}" />
-      <Label IsVisible="{Binding Message, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
-           Text="{Binding Message}" />
+      <ScrollView HeightRequest="100" 
+                  IsVisible="{Binding Message, Converter={StaticResource StringNullOrEmptyBoolConverter}}">
+        <Label Text="{Binding Message}" />
+      </ScrollView>
       <Button x:Name="saveButton" Text="Save" HorizontalOptions="End" />
     </StackLayout>
   </ContentPage.Content>

@@ -35,6 +35,7 @@
                        VerticalOptions="Start">
                     <Image Source="{Binding Avatar}"
                          HeightRequest="48"
+                         IsAnimationPlaying="True"
                          WidthRequest="48" />
                   </Frame>
                   <StackLayout HorizontalOptions="FillAndExpand">
@@ -72,6 +73,7 @@
                                VerticalOptions="Start">
                           <Image Source="{Binding Avatar}"
                                  HeightRequest="48"
+                                 IsAnimationPlaying="True"
                                  WidthRequest="48" />
                         </Frame>
                         <StackLayout HorizontalOptions="FillAndExpand">

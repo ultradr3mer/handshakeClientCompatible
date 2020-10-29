@@ -41,7 +41,7 @@ namespace HandshakeClient.Views
     private async void SaveButtonCommandExecute()
     {
       System.IO.Stream avatar = null;
-      if (this.avatarCrop.IsEnabled)
+      if (this.avatarCrop.IsVisible)
       {
         avatar = await this.avatarCrop.GetImageAsJpegAsync(quality: 90, maxWidth: 300, maxHeight: 300);
       }

@@ -32,13 +32,15 @@ namespace HandshakeClient.ViewModels
 
     #region Properties
 
-    public ImageSource AvatarSource { get; set; }
+    public ImageSource IconNewCrop { get; set; }
+
+    public ImageSource IconNewAnimated { get; set; }
+
+    public ImageSource IconCurrent { get; set; }
 
     public Command AvatarTappedCommand { get; }
 
     public string Description { get; set; }
-
-    public bool IsCropViewEnabled { get; set; }
 
     public string Message { get; set; }
 
@@ -46,21 +48,26 @@ namespace HandshakeClient.ViewModels
 
     public Command SaveCommand { get; }
 
+
     #endregion Properties
 
     #region Methods
 
     internal async Task Initialize()
     {
-      ProfileGetData data = await App.Client.ProfileGetAsync();
-      this.SetDataModel(data);
-
-      this.isInitialized = true;
+      if (!this.isInitialized)
+      {
+        ProfileGetData data = await App.Client.ProfileGetAsync();
+        this.SetDataModel(data);
+        this.isInitialized = true;
+      }
     }
 
     protected override void OnReadingDataModel(ProfileGetData data)
     {
-      this.AvatarSource = SimpleFileTokenData.CreateUrl(data.Avatar);
+      this.IconCurrent = SimpleFileTokenData.CreateUrl(data.Avatar);
+      this.IconNewAnimated = null;
+      this.IconNewCrop = null;
     }
 
     private void AccountViewModelPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -87,21 +94,31 @@ namespace HandshakeClient.ViewModels
           return;
         }
 
-        this.AvatarSource = ImageSource.FromStream(() => this.mediaFile.GetStream());
-
-        this.IsCropViewEnabled = true;
+        var source = ImageSource.FromStream(() => this.mediaFile.GetStream());
+        if (Util.IsGif(this.mediaFile.Path))
+        {
+          this.IconCurrent = null;
+          this.IconNewAnimated = source;
+          this.IconNewCrop = null;
+        }
+        else
+        {
+          this.IconCurrent = null;
+          this.IconNewAnimated = null;
+          this.IconNewCrop = source;
+        }
       }
     }
 
     private bool SaveCommandCanExecute(object o)
     {
       return !string.IsNullOrEmpty(this.Nickname) &&
-            this.Nickname.Length > 3 &&
-            !string.IsNullOrEmpty(this.Description) &&
-            !this.IsBusy;
+             this.Nickname.Length > 3 &&
+             !string.IsNullOrEmpty(this.Description) &&
+             !this.IsBusy;
     }
 
-    private async void SaveCommandExecute(object o)
+    private async void SaveCommandExecute(object obj)
     {
       this.IsBusy = true;
 
@@ -112,12 +129,24 @@ namespace HandshakeClient.ViewModels
         ProfilePutData data = this.WriteToDataModel();
         await App.Client.ProfilePutAsync(data);
 
-        if (this.mediaFile != null)
+        FileParameter file = null;
+        if (obj is Stream stream)
         {
-          FileParameter file = new FileParameter((Stream)o, System.IO.Path.GetFileName(this.mediaFile.Path));
-          await App.Client.ProfileAvatarAsync(file);
+          file = new FileParameter(stream, System.IO.Path.GetFileName(this.mediaFile.Path));
+        }
+        else if(this.IconNewAnimated != null)
+        {
+          file = new FileParameter(this.mediaFile.GetStream(), System.IO.Path.GetFileName(this.mediaFile.Path));
+        }
+
+        if (file != null)
+        {
+          var avatarData = await App.Client.ProfileAvatarAsync(file);
           this.mediaFile = null;
-          this.IsCropViewEnabled = false;
+
+          this.IconCurrent = SimpleFileTokenData.CreateUrl(avatarData.LocalUrl);
+          this.IconNewAnimated = null;
+          this.IconNewCrop = null;
         }
 
         await Shell.Current.GoToAsync("..");

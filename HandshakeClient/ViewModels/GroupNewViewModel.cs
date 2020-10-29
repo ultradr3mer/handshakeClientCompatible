@@ -67,7 +67,7 @@ namespace HandshakeClient.ViewModels
       }
 
       ImageSource stream = ImageSource.FromStream(() => this.mediaFile.GetStream());
-      if (string.Compare(Path.GetExtension(this.mediaFile.Path), ".gif", true) == 0)
+      if (Util.IsGif(this.mediaFile.Path))
       {
         this.IconAnimated = stream;
         this.IconCrop = null;

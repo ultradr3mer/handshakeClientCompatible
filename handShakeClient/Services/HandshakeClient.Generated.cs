@@ -124,7 +124,7 @@ namespace HandshakeClient.Services
         /// <summary>Saves a new file on the server.</summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<FileTokenData> FileUploadAsync(FileParameter file)
+        public System.Threading.Tasks.Task<FileUploadResultData> FileUploadAsync(FileParameter file)
         {
             return FileUploadAsync(file, System.Threading.CancellationToken.None);
         }
@@ -133,7 +133,7 @@ namespace HandshakeClient.Services
         /// <summary>Saves a new file on the server.</summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<FileTokenData> FileUploadAsync(FileParameter file, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<FileUploadResultData> FileUploadAsync(FileParameter file, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/File/Upload");
@@ -180,7 +180,7 @@ namespace HandshakeClient.Services
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<FileTokenData>(response_, headers_).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<FileUploadResultData>(response_, headers_).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -210,7 +210,7 @@ namespace HandshakeClient.Services
         /// <summary>Saves a new file on the server.</summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<FileTokenData> FileUploadwithreplaceAsync(FileParameter file)
+        public System.Threading.Tasks.Task<FileUploadResultData> FileUploadwithreplaceAsync(FileParameter file)
         {
             return FileUploadwithreplaceAsync(file, System.Threading.CancellationToken.None);
         }
@@ -219,7 +219,7 @@ namespace HandshakeClient.Services
         /// <summary>Saves a new file on the server.</summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<FileTokenData> FileUploadwithreplaceAsync(FileParameter file, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<FileUploadResultData> FileUploadwithreplaceAsync(FileParameter file, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/File/UploadWithReplace");
@@ -266,7 +266,7 @@ namespace HandshakeClient.Services
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<FileTokenData>(response_, headers_).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<FileUploadResultData>(response_, headers_).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -684,7 +684,7 @@ namespace HandshakeClient.Services
         /// <summary>Update the group icon.</summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<FileTokenData> GroupIconAsync(System.Guid? id, FileParameter file)
+        public System.Threading.Tasks.Task<FileUploadResultData> GroupIconAsync(System.Guid? id, FileParameter file)
         {
             return GroupIconAsync(id, file, System.Threading.CancellationToken.None);
         }
@@ -693,7 +693,7 @@ namespace HandshakeClient.Services
         /// <summary>Update the group icon.</summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<FileTokenData> GroupIconAsync(System.Guid? id, FileParameter file, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<FileUploadResultData> GroupIconAsync(System.Guid? id, FileParameter file, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/Group/Icon");
@@ -746,7 +746,7 @@ namespace HandshakeClient.Services
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<FileTokenData>(response_, headers_).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<FileUploadResultData>(response_, headers_).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -1094,7 +1094,7 @@ namespace HandshakeClient.Services
         /// <summary>Update the post image.</summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<FileTokenData> PostImageAsync(System.Guid? id, FileParameter file)
+        public System.Threading.Tasks.Task<FileUploadResultData> PostImageAsync(System.Guid? id, FileParameter file)
         {
             return PostImageAsync(id, file, System.Threading.CancellationToken.None);
         }
@@ -1103,7 +1103,7 @@ namespace HandshakeClient.Services
         /// <summary>Update the post image.</summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<FileTokenData> PostImageAsync(System.Guid? id, FileParameter file, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<FileUploadResultData> PostImageAsync(System.Guid? id, FileParameter file, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/Post/Image");
@@ -1156,7 +1156,7 @@ namespace HandshakeClient.Services
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<FileTokenData>(response_, headers_).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<FileUploadResultData>(response_, headers_).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -1397,7 +1397,7 @@ namespace HandshakeClient.Services
         /// <summary>Update the user avatar.</summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task ProfileAvatarAsync(FileParameter file)
+        public System.Threading.Tasks.Task<FileUploadResultData> ProfileAvatarAsync(FileParameter file)
         {
             return ProfileAvatarAsync(file, System.Threading.CancellationToken.None);
         }
@@ -1406,7 +1406,7 @@ namespace HandshakeClient.Services
         /// <summary>Update the user avatar.</summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task ProfileAvatarAsync(FileParameter file, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<FileUploadResultData> ProfileAvatarAsync(FileParameter file, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/Profile/Avatar");
@@ -1430,6 +1430,7 @@ namespace HandshakeClient.Services
                     }
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("PUT");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
     
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
@@ -1452,7 +1453,12 @@ namespace HandshakeClient.Services
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            return;
+                            var objectResponse_ = await ReadObjectResponseAsync<FileUploadResultData>(response_, headers_).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
                         }
                         else
                         {
@@ -1796,21 +1802,13 @@ namespace HandshakeClient.Services
         }
     }
 
-    /// <summary>The data needed to access a file.</summary>
+    /// <summary>The result data of uploading a file.</summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.2.1.0 (Newtonsoft.Json v12.0.0.0)")]
-    public partial class FileTokenData 
+    public partial class FileUploadResultData 
     {
-        /// <summary>The filename.</summary>
-        [Newtonsoft.Json.JsonProperty("filename", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Filename { get; set; }
-    
-        /// <summary>The id of the token.</summary>
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid Id { get; set; }
-    
-        /// <summary>The access token.</summary>
-        [Newtonsoft.Json.JsonProperty("token", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Token { get; set; }
+        /// <summary>The local url to retrive the file.</summary>
+        [Newtonsoft.Json.JsonProperty("localUrl", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string LocalUrl { get; set; }
     
     
     }
