@@ -37,7 +37,7 @@ namespace HandshakeClient.Droid
 
     public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
     {
-      Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+      Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
       base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
     }
@@ -50,7 +50,7 @@ namespace HandshakeClient.Droid
       base.OnCreate(savedInstanceState);
 
       Window.SetStatusBarColor(Android.Graphics.Color.Argb(255, 0, 0, 0));
-      Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+      Platform.Init(this, savedInstanceState);
       global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
       string initialNavigation = null;
@@ -69,7 +69,7 @@ namespace HandshakeClient.Droid
       LoadApplication(new App(initialNavigation));
 
       Window.SetStatusBarColor(Color.Argb(255, 196, 164, 29));
-      CachedImageRenderer.Init();
+      CachedImageRenderer.Init(true);
     }
 
     #endregion Methods

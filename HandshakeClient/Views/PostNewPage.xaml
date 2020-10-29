@@ -1,13 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HandshakeClient.Views.NewPostPage"
+             x:Class="HandshakeClient.Views.PostNewPage"
              Shell.PresentationMode="ModalAnimated"
              Title="New Post"
-             xmlns:viewModel="clr-namespace:HandshakeClient.ViewModels"
+             xmlns:vm="clr-namespace:HandshakeClient.ViewModels"
              xmlns:comp="clr-namespace:HandshakeClient.Composite"
              xmlns:imgcrop="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.ImageCropView"
-             x:DataType="viewModel:NewPostViewModel"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
   <ContentPage.Resources>
     <ResourceDictionary>
@@ -16,7 +15,7 @@
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.Content>
-    <StackLayout Padding="15" VerticalOptions="FillAndExpand">
+    <StackLayout Padding="15" VerticalOptions="FillAndExpand" x:DataType="vm:PostNewViewModel">
       <imgcrop:ImageCropView BackgroundColor="{DynamicResource PlaceholderColor}"
                                  Source="{Binding PostImage}"
                                  x:Name="imageCrop" 

@@ -79,7 +79,7 @@ namespace HandshakeClient.ViewModels
 
     private async void OnAddItem(object obj)
     {
-      await Shell.Current.GoToAsync(nameof(NewPostPage));
+      await Shell.Current.GoToAsync(nameof(PostNewPage));
     }
 
     #endregion Methods

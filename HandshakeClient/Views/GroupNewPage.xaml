@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HandshakeClient.Views.GroupNewPage"
+             xmlns:imgcrop="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.ImageCropView"
+             xmlns:comp="clr-namespace:HandshakeClient.Composite"
+             xmlns:vm="clr-namespace:HandshakeClient.ViewModels"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <comp:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter" />
+      <comp:ObjectNullBoolConverter x:Key="ObjectNullBoolConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ContentPage.Content>
+    <StackLayout x:DataType="vm:GroupNewViewModel" Padding="10">
+      <Frame Padding="0"
+           BackgroundColor="Transparent"
+           HasShadow="False">
+        <Grid HorizontalOptions="Center">
+          <Frame Padding="0"
+               CornerRadius="30"
+               BackgroundColor="{DynamicResource PlaceholderColor}"
+               HeightRequest="300"
+               WidthRequest="300"
+               IsClippedToBounds="True">
+            <Grid HorizontalOptions="Center">
+              <imgcrop:ImageCropView HeightRequest="300"
+                                     WidthRequest="300"
+                                     Source="{Binding IconCrop}"
+                                     x:Name="iconCrop"
+                                     IsVisible="{Binding IconCrop, Converter={StaticResource ObjectNullBoolConverter}}" />
+              <Image Source="{Binding IconAnimated}"
+                     HeightRequest="300"
+                     WidthRequest="300"
+                     IsVisible="{Binding IconAnimated, Converter={StaticResource ObjectNullBoolConverter}}" />
+              <Label Text="Animation will be playing after the upload."
+                     VerticalOptions="Center"
+                     HorizontalOptions="Center"
+                     IsVisible="{Binding IconAnimated, Converter={StaticResource ObjectNullBoolConverter}}" />
+            </Grid>
+          </Frame>
+          <Frame BackgroundColor="{DynamicResource PageBackgroundColor}"
+                 CornerRadius="10"
+                 HasShadow="True"
+                 Padding="7"
+                 HorizontalOptions="End"
+                 VerticalOptions="End">
+            <Image Source="{AppThemeBinding Light=baseline_upload_black_24dp.png, Dark=baseline_upload_white_24dp.png}" HeightRequest="20" />
+            <Frame.GestureRecognizers>
+              <TapGestureRecognizer NumberOfTapsRequired="1"
+                                    Command="{Binding PickIconCommand}">
+              </TapGestureRecognizer>
+            </Frame.GestureRecognizers>
+          </Frame>
+        </Grid>
+      </Frame>
+      <Entry Placeholder="NAME" Text="{Binding Name, Mode=TwoWay}" HorizontalOptions="FillAndExpand" />
+      <Editor Placeholder="DESCRIPTION" Text="{Binding Description, Mode=TwoWay}" VerticalOptions="FillAndExpand" />
+      <ActivityIndicator IsVisible="{Binding IsBusy}"
+                         x:Name="defaultActivityIndicator"
+                         VerticalOptions="End"
+                         HorizontalOptions="Fill"
+                         IsRunning="{Binding IsBusy}" />
+      <Label IsVisible="{Binding Message, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
+           Text="{Binding Message}" />
+      <Button x:Name="saveButton" Text="Save" HorizontalOptions="End" />
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>

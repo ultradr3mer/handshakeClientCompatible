@@ -38,6 +38,7 @@ namespace HandshakeClient.ViewModels
     public string Content { get; set; }
 
     public string Id { get; set; }
+
     public ImageSource Image { get; set; }
 
     public bool IsPostingRepy { get; set; }
@@ -89,7 +90,7 @@ namespace HandshakeClient.ViewModels
 
     public void OnAppearing()
     {
-      IsBusy = true;
+      this.IsBusy = true;
     }
 
     private async void CancelCommandExecute(object obj)
@@ -103,7 +104,7 @@ namespace HandshakeClient.ViewModels
       {
         this.PostReplyCommand.ChangeCanExecute();
       }
-      else if (e.PropertyName == nameof(Id))
+      else if (e.PropertyName == nameof(this.Id))
       {
         this.idGuid = Guid.Parse(this.Id);
       }

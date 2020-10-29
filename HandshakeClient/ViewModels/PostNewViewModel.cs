@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace HandshakeClient.ViewModels
 {
-  public class NewPostViewModel : BaseViewModel
+  public class PostNewViewModel : BaseViewModel
   {
     #region Fields
 
@@ -20,7 +20,7 @@ namespace HandshakeClient.ViewModels
 
     #region Constructors
 
-    public NewPostViewModel(LocationCache locationCache)
+    public PostNewViewModel(LocationCache locationCache)
     {
       this.SaveCommand = new Command(this.SaveCommandExecute, this.SaveCommandCanExecute);
       this.CancelCommand = new Command(this.OnCancel);
@@ -75,8 +75,8 @@ namespace HandshakeClient.ViewModels
 
     private void NewPostViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-      if (e.PropertyName == nameof(NewPostViewModel.Text)
-        || e.PropertyName == nameof(NewPostViewModel.IsBusy))
+      if (e.PropertyName == nameof(PostNewViewModel.Text)
+        || e.PropertyName == nameof(PostNewViewModel.IsBusy))
       {
         this.SaveCommand.ChangeCanExecute();
         this.PickImageCommand.ChangeCanExecute();

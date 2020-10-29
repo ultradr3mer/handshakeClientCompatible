@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace HandshakeClient.Views
 {
-  public partial class NewPostPage : ContentPage
+  public partial class PostNewPage : ContentPage
   {
     #region Fields
 
@@ -15,10 +15,10 @@ namespace HandshakeClient.Views
 
     #region Constructors
 
-    public NewPostPage()
+    public PostNewPage()
     {
       InitializeComponent();
-      this.ViewModel = App.Resolve<NewPostViewModel>();
+      this.ViewModel = App.Resolve<PostNewViewModel>();
       this.ViewModel.SaveCommand.CanExecuteChanged += this.SaveCommandCanExecuteChanged;
 
       this.saveButtonCommand = new Command(this.SaveButtonCommandExecute, this.SaveButtonCommandCanExecute);
@@ -29,9 +29,10 @@ namespace HandshakeClient.Views
 
     #region Properties
 
-    public NewPostViewModel ViewModel
+    public PostNewViewModel ViewModel
     {
-      get { return this.BindingContext as NewPostViewModel; }
+      get { return this.BindingContext as PostNewViewModel; }
+
       set { this.BindingContext = value; }
     }
 
