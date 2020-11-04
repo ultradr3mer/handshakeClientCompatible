@@ -59,6 +59,11 @@ namespace HandshakeClient.ViewModels
 
     #region Methods
 
+    public void Initialize()
+    {
+      this.IsBusy = true;
+    }
+
     public async void LoadItemById(Guid itemId)
     {
       this.IsBusy = true;
@@ -86,11 +91,6 @@ namespace HandshakeClient.ViewModels
       {
         this.IsBusy = false;
       }
-    }
-
-    public void Initialize()
-    {
-      this.IsBusy = true;
     }
 
     private async void CancelCommandExecute(object obj)

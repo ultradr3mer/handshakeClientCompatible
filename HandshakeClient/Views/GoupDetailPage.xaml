@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HandshakeClient.Views.GroupDetailPage"
-                          xmlns:comp="clr-namespace:HandshakeClient.Composite"
+             xmlns:comp="clr-namespace:HandshakeClient.Composite"
              xmlns:vm="clr-namespace:HandshakeClient.ViewModels"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
   <ContentPage.Resources>
@@ -22,9 +22,9 @@
     <StackLayout Orientation="Horizontal">
       <Frame Padding="0"
         	   IsClippedToBounds="True"
-               CornerRadius="5"
-               BackgroundColor="{DynamicResource PlaceholderColor}"
-               VerticalOptions="Start">
+             CornerRadius="5"
+             BackgroundColor="{DynamicResource PlaceholderColor}"
+             VerticalOptions="Start">
         <Image Source="{Binding Icon}"
                  HeightRequest="48"
                  WidthRequest="48"
@@ -35,6 +35,7 @@
         <Label Text="{Binding Description}" VerticalOptions="FillAndExpand" Style="{DynamicResource ListItemDetailTextStyle}" />
         <Label IsVisible="{Binding Message, Converter={StaticResource StringNullOrEmptyBoolConverter}}" Text="{Binding Message}" />
       </StackLayout>
+      <Button Text="{Binding JoinLeaveText}" Command="{Binding JoinLeaveCommand}" VerticalOptions="Start" />
     </StackLayout>
   </RefreshView>
 </ContentPage>

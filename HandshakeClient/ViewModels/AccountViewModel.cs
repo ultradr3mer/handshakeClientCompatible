@@ -48,6 +48,7 @@ namespace HandshakeClient.ViewModels
 
     public Command SaveCommand { get; }
 
+    public Guid Id { get; set; }
 
     #endregion Properties
 

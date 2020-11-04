@@ -1,6 +1,7 @@
 ﻿using HandshakeClient.Composite;
 using HandshakeClient.Services;
 using System;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace HandshakeClient.ViewModels
@@ -11,17 +12,22 @@ namespace HandshakeClient.ViewModels
   {
     #region Fields
 
+    private readonly AccountViewModel accountViewModel;
+
     private Guid? idGuid;
 
     #endregion Fields
 
     #region Constructors
 
-    public GroupDetailViewModel()
+    public GroupDetailViewModel(AccountViewModel accountViewModel)
     {
       this.PropertyChanged += this.GroupDetailsViewModelPropertyChanged;
 
       this.RefreshCommand = new Command(this.RefreshCommandExecute);
+      this.JoinLeaveCommand = new Command(this.JoinLeaveCommandExecute);
+
+      this.accountViewModel = accountViewModel;
     }
 
     #endregion Constructors
@@ -34,11 +40,17 @@ namespace HandshakeClient.ViewModels
 
     public string Id { get; set; }
 
+    public Command JoinLeaveCommand { get; }
+
+    public string JoinLeaveText { get; set; }
+
     public string Message { get; set; }
 
     public string Name { get; set; }
 
     public Command RefreshCommand { get; }
+
+    public bool IsJoined { get; set; }
 
     #endregion Properties
 
@@ -50,9 +62,13 @@ namespace HandshakeClient.ViewModels
 
       try
       {
+        await this.accountViewModel.Initialize();
         GroupGetData group = await App.Client.GroupGetAsync(this.idGuid, this.Name);
+        this.IsJoined = group.Users.Any(o => o.Id == this.accountViewModel.Id);
+        this.UpdateJoinLeaveText();
         this.SetDataModel(group);
         this.Icon = SimpleFileTokenData.CreateUrl(group.Icon);
+        this.idGuid = group.Id;
       }
       catch (Exception exception)
       {
@@ -74,6 +90,42 @@ namespace HandshakeClient.ViewModels
       if (e.PropertyName == nameof(this.Id))
       {
         this.idGuid = Guid.Parse(this.Id);
+      }
+      else if (e.PropertyName == nameof(this.IsJoined))
+      {
+        this.UpdateJoinLeaveText();
+      }
+    }
+
+    private void UpdateJoinLeaveText()
+    {
+      this.JoinLeaveText = this.IsJoined ? "Leave" : "Join";
+    }
+
+    private async void JoinLeaveCommandExecute(object obj)
+    {
+      this.IsBusy = true;
+
+      try
+      {
+        if(this.IsJoined)
+        {
+          await App.Client.GroupDissociateuserAsync(this.idGuid);
+          this.IsJoined = false;
+        }
+        else
+        {
+          await App.Client.GroupAssociateuserAsync(this.idGuid);
+          this.IsJoined = true;
+        }
+      }
+      catch (Exception exception)
+      {
+        this.Message = exception.ToString();
+      }
+      finally
+      {
+        this.IsBusy = false;
       }
     }
 
