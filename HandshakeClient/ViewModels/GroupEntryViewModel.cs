@@ -1,5 +1,7 @@
 ﻿using HandshakeClient.Composite;
 using HandshakeClient.Services;
+using HandshakeClient.Views;
+using System;
 using Xamarin.Forms;
 
 namespace HandshakeClient.ViewModels
@@ -25,6 +27,8 @@ namespace HandshakeClient.ViewModels
 
     public Command TappedCommand { get; }
 
+    public Guid Id { get; set; }
+
     #endregion Properties
 
     #region Methods
@@ -34,8 +38,9 @@ namespace HandshakeClient.ViewModels
       this.GroupIcon = SimpleFileTokenData.CreateUrl(data.Icon);
     }
 
-    private void TappedCommandExecute(object obj)
+    private async void TappedCommandExecute(object obj)
     {
+      await Shell.Current.GoToAsync($"{nameof(GroupDetailPage)}?{nameof(GroupDetailViewModel.Id)}={this.Id}");
     }
 
     #endregion Methods

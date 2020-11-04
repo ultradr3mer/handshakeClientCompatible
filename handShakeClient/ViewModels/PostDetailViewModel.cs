@@ -88,7 +88,7 @@ namespace HandshakeClient.ViewModels
       }
     }
 
-    public void OnAppearing()
+    public void Initialize()
     {
       this.IsBusy = true;
     }

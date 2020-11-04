@@ -48,6 +48,9 @@
     <Compile Update="Views\PostNewPage.xaml.cs">
       <DependentUpon>PostNewPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\GoupDetailPage.xaml.cs">
+      <DependentUpon>GoupDetailPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Themes\GreenTheme.xaml">
@@ -79,6 +82,9 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SignupPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\GoupDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
 

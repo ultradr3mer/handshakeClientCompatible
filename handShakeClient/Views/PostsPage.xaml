@@ -9,6 +9,7 @@
     <ResourceDictionary>
       <comp:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter" />
       <comp:ObjectNullBoolConverter x:Key="ObjectNullBoolConverter" />
+      <comp:HtmlLabelConverter x:Key="HtmlLabelConverter" />
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.ToolbarItems>
@@ -39,14 +40,14 @@
                           CornerRadius="5"
                           VerticalOptions="Start">
                       <Image Source="{Binding Avatar}"
-                               HeightRequest="48"
-                               IsAnimationPlaying="True"
-                               WidthRequest="48" />
+                             HeightRequest="48"
+                             IsAnimationPlaying="True"
+                             WidthRequest="48" />
                     </Frame>
                     <StackLayout HorizontalOptions="FillAndExpand">
                       <Label Text="{Binding PostTitle}"
-                           LineBreakMode="WordWrap"
-                           Style="{DynamicResource ListItemTextStyle}" />
+                             LineBreakMode="WordWrap"
+                             Style="{DynamicResource ListItemTextStyle}" />
                       <Image Source="{Binding Image}"
                              IsVisible="{Binding Image, Converter={StaticResource ObjectNullBoolConverter}}"
                              HorizontalOptions="FillAndExpand"
@@ -55,9 +56,9 @@
                           <OnPlatform x:TypeArguments="x:Double" Android ="0" WinPhone="442" />
                         </Image.WidthRequest>
                       </Image>
-                      <Label Text="{Binding Content}"
-                           Style="{DynamicResource ListItemDetailTextStyle}"
-                           FontSize="13" />
+                      <Label FormattedText="{Binding Content, Converter={StaticResource HtmlLabelConverter}}"
+                             Style="{DynamicResource ListItemDetailTextStyle}"
+                             FontSize="13" />
                       <StackLayout Spacing="3" Orientation="Horizontal">
                         <Image Source="{AppThemeBinding Light=baseline_mode_comment_black_24dp.png, Dark=baseline_mode_comment_white_24dp.png}"
                             Opacity="0.5"

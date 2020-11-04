@@ -10,4 +10,5 @@
   <Color x:Key="PrimaryColor">#e8bb00</Color>
   <Color x:Key="DisabledColor">#55e8bb00</Color>
   <Color x:Key="PrimaryTextColor">White</Color>
+  <Color x:Key="LinkTextColor">#20a4f4</Color>
 </ResourceDictionary>

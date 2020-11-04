@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HandshakeClient.Views.GroupDetailPage"
+                          xmlns:comp="clr-namespace:HandshakeClient.Composite"
+             xmlns:vm="clr-namespace:HandshakeClient.ViewModels"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <comp:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter" />
+      <comp:ObjectNullBoolConverter x:Key="ObjectNullBoolConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <RefreshView VerticalOptions="FillAndExpand" 
+               HorizontalOptions="FillAndExpand" 
+               Grid.Row="0" 
+               Grid.ColumnSpan="3" 
+               x:DataType="vm:GroupDetailViewModel" 
+               Command="{Binding RefreshCommand}"  
+               IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+               Padding="10">
+    <StackLayout Orientation="Horizontal">
+      <Frame Padding="0"
+        	   IsClippedToBounds="True"
+               CornerRadius="5"
+               BackgroundColor="{DynamicResource PlaceholderColor}"
+               VerticalOptions="Start">
+        <Image Source="{Binding Icon}"
+                 HeightRequest="48"
+                 WidthRequest="48"
+                 IsAnimationPlaying="True" />
+      </Frame>
+      <StackLayout HorizontalOptions="FillAndExpand">
+        <Label Text="{Binding Name}" HorizontalOptions="FillAndExpand" Style="{DynamicResource ListItemTextStyle}" />
+        <Label Text="{Binding Description}" VerticalOptions="FillAndExpand" Style="{DynamicResource ListItemDetailTextStyle}" />
+        <Label IsVisible="{Binding Message, Converter={StaticResource StringNullOrEmptyBoolConverter}}" Text="{Binding Message}" />
+      </StackLayout>
+    </StackLayout>
+  </RefreshView>
+</ContentPage>

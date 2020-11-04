@@ -66,5 +66,9 @@
       <Setter Property="TextColor" Value="{DynamicResource PageTextColor}"/>
       <Setter Property="PlaceholderColor" Value="{DynamicResource PlaceholderColor}"/>
     </Style>
+
+    <Style x:Key="LinkLabel" TargetType="Label">
+      <Setter Property="TextColor" Value="Blue" />
+    </Style>
   </Application.Resources>
 </Application>

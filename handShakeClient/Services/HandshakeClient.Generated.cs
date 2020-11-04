@@ -454,22 +454,26 @@ namespace HandshakeClient.Services
         /// <summary>Gets a group.</summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<GroupGetData> GroupGetAsync(System.Guid? id)
+        public System.Threading.Tasks.Task<GroupGetData> GroupGetAsync(System.Guid? id, string name)
         {
-            return GroupGetAsync(id, System.Threading.CancellationToken.None);
+            return GroupGetAsync(id, name, System.Threading.CancellationToken.None);
         }
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>Gets a group.</summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<GroupGetData> GroupGetAsync(System.Guid? id, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<GroupGetData> GroupGetAsync(System.Guid? id, string name, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/Group?");
             if (id != null) 
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("id") + "=").Append(System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
+            if (name != null) 
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("name") + "=").Append(System.Uri.EscapeDataString(ConvertToString(name, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             urlBuilder_.Length--;
     
