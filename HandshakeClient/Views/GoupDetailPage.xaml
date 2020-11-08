@@ -4,38 +4,108 @@
              x:Class="HandshakeClient.Views.GroupDetailPage"
              xmlns:comp="clr-namespace:HandshakeClient.Composite"
              xmlns:vm="clr-namespace:HandshakeClient.ViewModels"
-             BackgroundColor="{DynamicResource PageBackgroundColor}">
+             BackgroundColor="{DynamicResource DeepBackgroundColor}">
   <ContentPage.Resources>
     <ResourceDictionary>
       <comp:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter" />
       <comp:ObjectNullBoolConverter x:Key="ObjectNullBoolConverter" />
+      <comp:HtmlLabelConverter x:Key="HtmlLabelConverter" />
     </ResourceDictionary>
   </ContentPage.Resources>
-  <RefreshView VerticalOptions="FillAndExpand" 
-               HorizontalOptions="FillAndExpand" 
-               Grid.Row="0" 
-               Grid.ColumnSpan="3" 
-               x:DataType="vm:GroupDetailViewModel" 
-               Command="{Binding RefreshCommand}"  
+  <ContentPage.Content>
+    <RefreshView VerticalOptions="FillAndExpand"
+               HorizontalOptions="FillAndExpand"
+               x:DataType="vm:GroupDetailViewModel"
+               Command="{Binding RefreshCommand}"
                IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
                Padding="10">
-    <StackLayout Orientation="Horizontal">
-      <Frame Padding="0"
+      <ScrollView Padding="5" HorizontalOptions="FillAndExpand">
+        <StackLayout>
+          <Frame BackgroundColor="{DynamicResource PageBackgroundColor}"
+           CornerRadius="3"
+           HasShadow="True"
+           Padding="10"
+           VerticalOptions="Start">
+          <StackLayout Orientation="Horizontal">
+            <Frame Padding="0"
         	   IsClippedToBounds="True"
              CornerRadius="5"
              BackgroundColor="{DynamicResource PlaceholderColor}"
              VerticalOptions="Start">
-        <Image Source="{Binding Icon}"
+              <Image Source="{Binding Icon}"
                  HeightRequest="48"
                  WidthRequest="48"
                  IsAnimationPlaying="True" />
-      </Frame>
-      <StackLayout HorizontalOptions="FillAndExpand">
-        <Label Text="{Binding Name}" HorizontalOptions="FillAndExpand" Style="{DynamicResource ListItemTextStyle}" />
-        <Label Text="{Binding Description}" VerticalOptions="FillAndExpand" Style="{DynamicResource ListItemDetailTextStyle}" />
-        <Label IsVisible="{Binding Message, Converter={StaticResource StringNullOrEmptyBoolConverter}}" Text="{Binding Message}" />
+            </Frame>
+            <StackLayout HorizontalOptions="FillAndExpand">
+              <Label Text="{Binding Name}" HorizontalOptions="FillAndExpand" Style="{DynamicResource ListItemTextStyle}" />
+              <Label Text="{Binding Description}" VerticalOptions="FillAndExpand" Style="{DynamicResource ListItemDetailTextStyle}" />
+              <Label IsVisible="{Binding Message, Converter={StaticResource StringNullOrEmptyBoolConverter}}" Text="{Binding Message}" />
+            </StackLayout>
+            <Button Text="{Binding JoinLeaveText}" Command="{Binding JoinLeaveCommand}" VerticalOptions="Start" />
+          </StackLayout>
+        </Frame>
+        <StackLayout Padding="0" Spacing="0" BindableLayout.ItemsSource="{Binding Posts}">
+          <BindableLayout.ItemTemplate>
+            <DataTemplate>
+              <ContentView Padding="2" x:DataType="vm:PostEntryViewModel">
+                <Frame BackgroundColor="{DynamicResource PageBackgroundColor}"
+                       CornerRadius="3"
+                       HasShadow="True"
+                       Padding="10"
+                       WidthRequest="500">
+                  <Frame.HorizontalOptions>
+                    <OnPlatform x:TypeArguments="LayoutOptions" Android="FillAndExpand"  WinPhone="Center" />
+                  </Frame.HorizontalOptions>
+                  <StackLayout Orientation="Horizontal">
+                    <Frame Padding="0"
+                          IsClippedToBounds="True"
+                          BackgroundColor="{DynamicResource PlaceholderColor}"
+                          CornerRadius="5"
+                          VerticalOptions="Start">
+                      <Image Source="{Binding Avatar}"
+                             HeightRequest="48"
+                             IsAnimationPlaying="True"
+                             WidthRequest="48" />
+                    </Frame>
+                    <StackLayout HorizontalOptions="FillAndExpand">
+                      <Label Text="{Binding PostTitle}"
+                             LineBreakMode="WordWrap"
+                             Style="{DynamicResource ListItemTextStyle}" />
+                      <Image Source="{Binding Image}"
+                             IsVisible="{Binding Image, Converter={StaticResource ObjectNullBoolConverter}}"
+                             HorizontalOptions="FillAndExpand"
+                             SizeChanged="postImageSizeChanged">
+                        <Image.WidthRequest>
+                          <OnPlatform x:TypeArguments="x:Double" Android ="0" WinPhone="442" />
+                        </Image.WidthRequest>
+                      </Image>
+                      <Label FormattedText="{Binding Content, Converter={StaticResource HtmlLabelConverter}}"
+                             Style="{DynamicResource ListItemDetailTextStyle}"
+                             FontSize="13" />
+                      <StackLayout Spacing="3" Orientation="Horizontal">
+                        <Image Source="{AppThemeBinding Light=baseline_mode_comment_black_24dp.png, Dark=baseline_mode_comment_white_24dp.png}"
+                            Opacity="0.5"
+                            HeightRequest="18" />
+                        <Label Text="{Binding ReplyCount}"
+                          Style="{DynamicResource ListItemDetailTextStyle}"
+                          FontSize="13"
+                          VerticalTextAlignment="Center" />
+                      </StackLayout>
+                    </StackLayout>
+                  </StackLayout>
+                  <Frame.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                          Command="{Binding Tapped}">
+                    </TapGestureRecognizer>
+                  </Frame.GestureRecognizers>
+                </Frame>
+              </ContentView>
+            </DataTemplate>
+          </BindableLayout.ItemTemplate>
+        </StackLayout>
       </StackLayout>
-      <Button Text="{Binding JoinLeaveText}" Command="{Binding JoinLeaveCommand}" VerticalOptions="Start" />
-    </StackLayout>
-  </RefreshView>
+      </ScrollView>
+    </RefreshView>
+  </ContentPage.Content>
 </ContentPage>

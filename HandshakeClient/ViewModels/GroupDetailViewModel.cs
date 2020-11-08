@@ -1,6 +1,8 @@
 ﻿using HandshakeClient.Composite;
+using HandshakeClient.Extensions;
 using HandshakeClient.Services;
 using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Xamarin.Forms;
 
@@ -35,22 +37,15 @@ namespace HandshakeClient.ViewModels
     #region Properties
 
     public string Description { get; set; }
-
     public ImageSource Icon { get; set; }
-
     public string Id { get; set; }
-
-    public Command JoinLeaveCommand { get; }
-
-    public string JoinLeaveText { get; set; }
-
-    public string Message { get; set; }
-
-    public string Name { get; set; }
-
-    public Command RefreshCommand { get; }
-
     public bool IsJoined { get; set; }
+    public Command JoinLeaveCommand { get; }
+    public string JoinLeaveText { get; set; }
+    public string Message { get; set; }
+    public string Name { get; set; }
+    public ObservableCollection<PostEntryViewModel> Posts { get; set; } = new ObservableCollection<PostEntryViewModel>();
+    public Command RefreshCommand { get; }
 
     #endregion Properties
 
@@ -67,6 +62,8 @@ namespace HandshakeClient.ViewModels
         this.IsJoined = group.Users.Any(o => o.Id == this.accountViewModel.Id);
         this.UpdateJoinLeaveText();
         this.SetDataModel(group);
+        this.Posts.Clear();
+        this.Posts.AddRangeSequential(group.Posts.Select(p => new PostEntryViewModel().GetWithDataModel(p)));
         this.Icon = SimpleFileTokenData.CreateUrl(group.Icon);
         this.idGuid = group.Id;
       }
@@ -97,18 +94,13 @@ namespace HandshakeClient.ViewModels
       }
     }
 
-    private void UpdateJoinLeaveText()
-    {
-      this.JoinLeaveText = this.IsJoined ? "Leave" : "Join";
-    }
-
     private async void JoinLeaveCommandExecute(object obj)
     {
       this.IsBusy = true;
 
       try
       {
-        if(this.IsJoined)
+        if (this.IsJoined)
         {
           await App.Client.GroupDissociateuserAsync(this.idGuid);
           this.IsJoined = false;
@@ -132,6 +124,11 @@ namespace HandshakeClient.ViewModels
     private void RefreshCommandExecute()
     {
       this.LoadItem();
+    }
+
+    private void UpdateJoinLeaveText()
+    {
+      this.JoinLeaveText = this.IsJoined ? "Leave" : "Join";
     }
 
     #endregion Methods
