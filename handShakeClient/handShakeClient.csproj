@@ -80,6 +80,9 @@
     <EmbeddedResource Update="Views\PostsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\ProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\SignupPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

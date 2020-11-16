@@ -58,7 +58,7 @@ namespace HandshakeClient.ViewModels
     {
       if (!this.isInitialized)
       {
-        ProfileGetData data = await App.Client.ProfileGetAsync();
+        ProfileGetData data = await App.Client.ProfileGetAsync(null);
         this.SetDataModel(data);
         this.isInitialized = true;
       }

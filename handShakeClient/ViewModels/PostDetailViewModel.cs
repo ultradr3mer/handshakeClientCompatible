@@ -1,6 +1,7 @@
 ﻿using HandshakeClient.Composite;
 using HandshakeClient.Extensions;
 using HandshakeClient.Services;
+using HandshakeClient.Views;
 using System;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
@@ -8,7 +9,7 @@ using Xamarin.Forms;
 namespace HandshakeClient.ViewModels
 {
   [QueryProperty(nameof(Id), nameof(Id))]
-  public class PostDetailViewModel : BaseViewModel
+  public class PostDetailViewModel : BaseViewModel<PostDetailGetData>
   {
     #region Fields
 
@@ -25,34 +26,26 @@ namespace HandshakeClient.ViewModels
       this.CancelCommand = new Command(this.CancelCommandExecute);
       this.PostReplyCommand = new Command(this.PostReplyCommandExecute, this.PostReplyCommandCanExecute);
       this.PropertyChanged += this.PostDetailViewModelPropertyChanged;
+      this.AvatarTapped = new Command(this.AvatarTappedExecute);
     }
 
     #endregion Constructors
 
     #region Properties
 
+    public Guid Author { get; set; }
     public ImageSource Avatar { get; set; }
-
+    public Command AvatarTapped { get; }
     public Command CancelCommand { get; }
-
     public string Content { get; set; }
-
     public string Id { get; set; }
-
     public ImageSource Image { get; set; }
-
     public bool IsPostingRepy { get; set; }
-
     public string Message { get; set; }
-
     public string NewReplyText { get; set; }
-
     public Command PostReplyCommand { get; }
-
     public string PostTitle { get; set; }
-
     public Command RefreshCommand { get; }
-
     public ObservableCollection<ReplyEntryViewModel> Replys { get; set; }
 
     #endregion Properties
@@ -72,7 +65,7 @@ namespace HandshakeClient.ViewModels
       {
         PostDetailGetData post = await App.Client.PostGetAsync(itemId);
 
-        this.Content = post.Content;
+        this.SetDataModel(post);
         this.PostTitle = $"{post.AuthorName} wrote {post.TimeAgo.ToStringForHumans()} ago";
         this.Avatar = SimpleFileTokenData.CreateUrl(post.Avatar);
         this.Image = SimpleFileTokenData.CreateUrl(post.Image);
@@ -91,6 +84,11 @@ namespace HandshakeClient.ViewModels
       {
         this.IsBusy = false;
       }
+    }
+
+    private async void AvatarTappedExecute(object obj)
+    {
+      await Shell.Current.GoToAsync($"{nameof(ProfilePage)}?{ProfileViewModel.IdQueryId}={this.Author}");
     }
 
     private async void CancelCommandExecute(object obj)

@@ -26,6 +26,7 @@ namespace HandshakeClient
       Routing.RegisterRoute(nameof(SignupPage), typeof(SignupPage));
       Routing.RegisterRoute(nameof(GroupNewPage), typeof(GroupNewPage));
       Routing.RegisterRoute(nameof(GroupDetailPage), typeof(GroupDetailPage));
+      Routing.RegisterRoute(nameof(ProfilePage), typeof(ProfilePage));
     }
 
     #endregion Methods

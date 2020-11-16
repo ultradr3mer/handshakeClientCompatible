@@ -43,6 +43,11 @@
                              HeightRequest="48"
                              IsAnimationPlaying="True"
                              WidthRequest="48" />
+                      <Frame.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                                          Command="{Binding AvatarTapped}">
+                        </TapGestureRecognizer>
+                      </Frame.GestureRecognizers>
                     </Frame>
                     <StackLayout HorizontalOptions="FillAndExpand">
                       <Label Text="{Binding PostTitle}"

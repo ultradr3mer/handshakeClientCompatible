@@ -1331,22 +1331,29 @@ namespace HandshakeClient.Services
             }
         }
     
-        /// <summary>Gets the current profile.</summary>
+        /// <summary>Gets the profile of the user with the given id or the current user.</summary>
+        /// <param name="id">The id of the user.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<ProfileGetData> ProfileGetAsync()
+        public System.Threading.Tasks.Task<ProfileGetData> ProfileGetAsync(System.Guid? id)
         {
-            return ProfileGetAsync(System.Threading.CancellationToken.None);
+            return ProfileGetAsync(id, System.Threading.CancellationToken.None);
         }
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>Gets the current profile.</summary>
+        /// <summary>Gets the profile of the user with the given id or the current user.</summary>
+        /// <param name="id">The id of the user.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<ProfileGetData> ProfileGetAsync(System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<ProfileGetData> ProfileGetAsync(System.Guid? id, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/Profile");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/Profile?");
+            if (id != null) 
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("id") + "=").Append(System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
+            urlBuilder_.Length--;
     
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -2193,10 +2200,6 @@ namespace HandshakeClient.Services
         /// <summary>The users nickname.</summary>
         [Newtonsoft.Json.JsonProperty("nickname", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Nickname { get; set; }
-    
-        /// <summary>The username for login.</summary>
-        [Newtonsoft.Json.JsonProperty("username", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Username { get; set; }
     
         /// <summary>The associated groups.</summary>
         [Newtonsoft.Json.JsonProperty("groups", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
