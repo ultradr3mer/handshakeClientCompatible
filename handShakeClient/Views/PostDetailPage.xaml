@@ -57,8 +57,8 @@
                       </Image.WidthRequest>
                     </Image>
                     <Label FormattedText="{Binding Content, Converter={StaticResource HtmlLabelConverter}}"
-                         Style="{DynamicResource ListItemDetailTextStyle}"
-                         FontSize="13" />
+                           Style="{DynamicResource ListItemDetailTextStyle}"
+                           FontSize="13" />
                   </StackLayout>
                 </StackLayout>
               </Frame>
@@ -92,8 +92,8 @@
                                  LineBreakMode="WordWrap"
                                  Style="{DynamicResource ListItemTextStyle}" />
                           <Label Text="{Binding Content}"
-                         Style="{DynamicResource ListItemDetailTextStyle}"
-                         FontSize="13" />
+                                 Style="{DynamicResource ListItemDetailTextStyle}"
+                                 FontSize="13" />
                         </StackLayout>
                       </StackLayout>
                     </Frame>

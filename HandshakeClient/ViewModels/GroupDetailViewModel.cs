@@ -10,7 +10,7 @@ namespace HandshakeClient.ViewModels
 {
   [QueryProperty(nameof(Id), nameof(Id))]
   [QueryProperty(nameof(Name), nameof(Name))]
-  public class GroupDetailViewModel : BaseViewModel<GroupGetData>
+  public class GroupDetailViewModel : BaseViewModel<GroupDetailGetData>
   {
     #region Fields
 
@@ -58,7 +58,7 @@ namespace HandshakeClient.ViewModels
       try
       {
         await this.accountViewModel.Initialize();
-        GroupGetData group = await App.Client.GroupGetAsync(this.idGuid, this.Name);
+        GroupDetailGetData group = await App.Client.GroupGetAsync(this.idGuid, this.Name);
         this.IsJoined = group.Users.Any(o => o.Id == this.accountViewModel.Id);
         this.UpdateJoinLeaveText();
         this.SetDataModel(group);

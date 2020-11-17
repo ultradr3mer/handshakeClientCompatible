@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace HandshakeClient.ViewModels
 {
-  internal class GroupEntryViewModel : BaseViewModel<GroupGetData>
+  public class GroupEntryViewModel : BaseViewModel<GroupGetData>
   {
     #region Constructors
 

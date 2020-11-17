@@ -1,7 +1,9 @@
 ﻿using HandshakeClient.Composite;
+using HandshakeClient.Extensions;
 using HandshakeClient.Services;
 using System;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace HandshakeClient.ViewModels
@@ -26,30 +28,32 @@ namespace HandshakeClient.ViewModels
 
     #region Properties
 
-    public Uri Avatar { get; set; }
-
+    public ImageSource Avatar { get; set; }
+    public string Description { get; set; }
+    public ObservableCollection<GroupEntryViewModel> Groups { get; set; } = new ObservableCollection<GroupEntryViewModel>();
     public Guid Id { get; set; }
-
     public string IdString { get; set; }
-
     public string Message { get; set; }
-
     public string Nickname { get; set; }
 
     #endregion Properties
 
     #region Methods
 
-    internal async Task InitializeAsync()
+    internal async void Initialize()
     {
       this.IsBusy = true;
 
       try
       {
-        var profile = await App.Client.ProfileGetAsync(this.Id);
+        ProfileGetData profile = await App.Client.ProfileGetAsync(this.Id);
 
         this.SetDataModel(profile);
         this.Avatar = SimpleFileTokenData.CreateUrl(profile.Avatar);
+        this.Groups.Clear();
+        this.Groups.AddRangeSequential(profile.Groups.Select(g => new GroupEntryViewModel().GetWithDataModel(g)));
+
+        this.Message = null;
       }
       catch (Exception exception)
       {

@@ -1,10 +1,96 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HandshakeClient.Views.ProfilePage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="{Binding Nickname}" />
+             xmlns:vm="clr-namespace:HandshakeClient.ViewModels"
+             x:Class="HandshakeClient.Views.ProfilePage"
+             xmlns:comp="clr-namespace:HandshakeClient.Composite"
+             x:DataType="vm:ProfileViewModel"
+             BackgroundColor="{DynamicResource DeepBackgroundColor}">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <comp:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter" />
+      <comp:ObjectNullBoolConverter x:Key="ObjectNullBoolConverter" />
+      <comp:HtmlLabelConverter x:Key="HtmlLabelConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ContentPage.Content>
+    <ScrollView Padding="5" HorizontalOptions="FillAndExpand">
+      <StackLayout Padding="5">
+        <Label IsVisible="{Binding Message, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
+               Text="{Binding Message}" />
+        <Frame BackgroundColor="{DynamicResource PageBackgroundColor}"
+               CornerRadius="3"
+               HasShadow="True"
+               Padding="10"
+               WidthRequest="500"
+               VerticalOptions="Start">
+          <Frame.HorizontalOptions>
+            <OnPlatform x:TypeArguments="LayoutOptions" Android="FillAndExpand"  WinPhone="Center" />
+          </Frame.HorizontalOptions>
+          <StackLayout Orientation="Horizontal">
+            <Frame Padding="0"
+                   IsClippedToBounds="True"
+                   BackgroundColor="{DynamicResource PlaceholderColor}"
+                   CornerRadius="10"
+                   VerticalOptions="Start">
+              <Image Source="{Binding Avatar}"
+                     IsAnimationPlaying="True"
+                     HeightRequest="96"
+                     WidthRequest="96" />
+            </Frame>
+            <StackLayout HorizontalOptions="FillAndExpand">
+              <Label Text="{Binding Nickname}"
+                 LineBreakMode="WordWrap"
+                 Style="{DynamicResource ListItemTextStyle}" />
+              <Label Text="{Binding Description}"
+                 Style="{DynamicResource ListItemDetailTextStyle}"
+                 FontSize="13" />
+            </StackLayout>
+          </StackLayout>
+        </Frame>
+        <StackLayout Padding="0" Spacing="0" BindableLayout.ItemsSource="{Binding Groups}">
+          <BindableLayout.ItemTemplate>
+            <DataTemplate>
+              <ContentView Padding="2" x:DataType="vm:GroupEntryViewModel">
+                <Frame BackgroundColor="{DynamicResource PageBackgroundColor}"
+                    CornerRadius="3"
+                    HasShadow="True"
+                    Padding="10"
+                    WidthRequest="500">
+                  <Frame.HorizontalOptions>
+                    <OnPlatform x:TypeArguments="LayoutOptions" Android="FillAndExpand"  WinPhone="Center" />
+                  </Frame.HorizontalOptions>
+                  <StackLayout Orientation="Horizontal">
+                    <Frame Padding="0"
+                          IsClippedToBounds="True"
+                          BackgroundColor="{DynamicResource PlaceholderColor}"
+                          CornerRadius="5"
+                          VerticalOptions="Start">
+                      <Image Source="{Binding GroupIcon}"
+                           IsAnimationPlaying="True"
+                           HeightRequest="48"
+                           WidthRequest="48" />
+                    </Frame>
+                    <StackLayout HorizontalOptions="FillAndExpand">
+                      <Label Text="{Binding Name}"
+                           LineBreakMode="WordWrap"
+                           Style="{DynamicResource ListItemTextStyle}" />
+                      <Label Text="{Binding Description}"
+                           Style="{DynamicResource ListItemDetailTextStyle}"
+                           FontSize="13" />
+                    </StackLayout>
+                  </StackLayout>
+                  <Frame.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                          Command="{Binding TappedCommand}">
+                    </TapGestureRecognizer>
+                  </Frame.GestureRecognizers>
+                </Frame>
+              </ContentView>
+            </DataTemplate>
+          </BindableLayout.ItemTemplate>
         </StackLayout>
-    </ContentPage.Content>
+      </StackLayout>
+    </ScrollView>
+  </ContentPage.Content>
 </ContentPage>

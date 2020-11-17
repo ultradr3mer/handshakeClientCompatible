@@ -1,8 +1,11 @@
 ﻿using HandshakeClient.Composite;
 using HandshakeClient.Extensions;
+using HandshakeClient.Services;
 using HandshakeClient.Views;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace HandshakeClient.ViewModels
@@ -22,11 +25,8 @@ namespace HandshakeClient.ViewModels
     #region Properties
 
     public Command AddItemCommand { get; }
-
     public ObservableCollection<GroupEntryViewModel> Groups { get; set; } = new ObservableCollection<GroupEntryViewModel>();
-
     public Command LoadItemsCommand { get; }
-
     public object Message { get; set; }
 
     #endregion Properties
@@ -49,12 +49,9 @@ namespace HandshakeClient.ViewModels
 
       try
       {
+        ICollection<GroupGetData> items = await App.Client.GroupGetallgroupsAsync();
         this.Groups.Clear();
-        System.Collections.Generic.ICollection<Services.GroupGetData> items = await App.Client.GroupGetallgroupsAsync();
-        foreach (Services.GroupGetData item in items)
-        {
-          this.Groups.Add(new GroupEntryViewModel().GetWithDataModel(item));
-        }
+        this.Groups.AddRangeSequential(items.Select(g => new GroupEntryViewModel().GetWithDataModel(g)));
         this.Message = null;
       }
       catch (Exception exception)

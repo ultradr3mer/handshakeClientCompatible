@@ -530,7 +530,7 @@ namespace HandshakeClient.Services
         /// <summary>Gets a group.</summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<GroupGetData> GroupGetAsync(System.Guid? id, string name)
+        public System.Threading.Tasks.Task<GroupDetailGetData> GroupGetAsync(System.Guid? id, string name)
         {
             return GroupGetAsync(id, name, System.Threading.CancellationToken.None);
         }
@@ -539,7 +539,7 @@ namespace HandshakeClient.Services
         /// <summary>Gets a group.</summary>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<GroupGetData> GroupGetAsync(System.Guid? id, string name, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<GroupDetailGetData> GroupGetAsync(System.Guid? id, string name, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/Group?");
@@ -583,7 +583,7 @@ namespace HandshakeClient.Services
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<GroupGetData>(response_, headers_).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<GroupDetailGetData>(response_, headers_).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -1912,6 +1912,10 @@ namespace HandshakeClient.Services
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Name { get; set; }
     
+        /// <summary>The groups icon.</summary>
+        [Newtonsoft.Json.JsonProperty("icon", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Icon { get; set; }
+    
     
     }
     
@@ -1999,9 +2003,9 @@ namespace HandshakeClient.Services
     
     }
     
-    /// <summary>The handshake.GetData.GroupGetData contains information about the group.</summary>
+    /// <summary>The handshake.GetData.GroupDetailGetData contains information about the group.</summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.2.1.0 (Newtonsoft.Json v12.0.0.0)")]
-    public partial class GroupGetData 
+    public partial class GroupDetailGetData 
     {
         /// <summary>The description.</summary>
         [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -2018,10 +2022,6 @@ namespace HandshakeClient.Services
         /// <summary>The name of the group.</summary>
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Name { get; set; }
-    
-        /// <summary>The id of the owner.</summary>
-        [Newtonsoft.Json.JsonProperty("ownerId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Guid OwnerId { get; set; }
     
         /// <summary>The name of the owner.</summary>
         [Newtonsoft.Json.JsonProperty("ownerName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -2062,6 +2062,33 @@ namespace HandshakeClient.Services
         /// <summary>The id of the created group.</summary>
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Guid Id { get; set; }
+    
+    
+    }
+    
+    /// <summary>The handshake.GetData.GroupDetailGetData contains information about the group.</summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.2.1.0 (Newtonsoft.Json v12.0.0.0)")]
+    public partial class GroupGetData 
+    {
+        /// <summary>The description.</summary>
+        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Description { get; set; }
+    
+        /// <summary>The associated icon.</summary>
+        [Newtonsoft.Json.JsonProperty("icon", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Icon { get; set; }
+    
+        /// <summary>The id.</summary>
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Guid Id { get; set; }
+    
+        /// <summary>The name of the group.</summary>
+        [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Name { get; set; }
+    
+        /// <summary>The name of the owner.</summary>
+        [Newtonsoft.Json.JsonProperty("ownerName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string OwnerName { get; set; }
     
     
     }
@@ -2203,7 +2230,7 @@ namespace HandshakeClient.Services
     
         /// <summary>The associated groups.</summary>
         [Newtonsoft.Json.JsonProperty("groups", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<AssociatedGroupData> Groups { get; set; }
+        public System.Collections.Generic.ICollection<GroupGetData> Groups { get; set; }
     
     
     }

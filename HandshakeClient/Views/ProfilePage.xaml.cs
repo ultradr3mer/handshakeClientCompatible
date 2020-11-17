@@ -25,7 +25,7 @@ namespace HandshakeClient.Views
     {
       base.OnAppearing();
 
-      this.ViewModel.InitializeAsync();
+      this.ViewModel.Initialize();
     }
 
   }
